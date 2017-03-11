@@ -1,0 +1,188 @@
+@charset "utf-8";
+
+/* menu */
+.menuList {
+	
+}
+
+.menuList ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+.menuList div {
+	text-indent: 10px;
+	list-style: none;
+	width: 100%;
+	height: 16px;
+	color: #FFF;
+	line-height: 18px;
+	padding: 3px 0px;
+	margin: 1px 0px;
+	cursor: pointer;
+	background-image: url(../images/bg/line_red01.gif);
+}
+
+.menuList .menuIndex {
+	background-image: url(../images/bg/line_gray02.gif);
+	line-height: 18px;
+}
+
+.menuList .menuExit {
+	background-image: url(../images/bg/line_gray02.gif);
+	line-height: 18px;
+}
+
+.menuList span {
+	margin: 0px;
+	display: none;
+	background-color: #F5F5F5;
+	border-color: #E0E0E0;
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px 1px;
+}
+
+.menuList a {
+	text-indent: 4px;
+	display: block;
+	height: 18px;
+	vertical-align: middle;
+	over-flow: hidden;
+}
+
+.menuList label {
+	text-indent: 4px;
+	display: block;
+	height: 18px;
+	vertical-align: middle;
+	over-flow: hidden;
+}
+
+.menuLinkSelected {
+	font-weight: bold;
+	color: #ED0677;
+}
+
+.topMenuSelected {
+	color: #FFF;
+	padding-top: 5px;
+	background-image: url(../images/frame/s1/topMenuSelected.gif);
+	width: 70px;
+	height: 23px; /*原23px 增加IM，改为28px*/
+	margin-top: 3px;
+	margin-right: 1px;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	line-height: 18px;
+}
+
+.topMenuButton {
+	color: #FFF;
+	padding-top: 5px;
+	background-image: url(../images/frame/s1/topMenuButton.gif);
+	width: 70px;
+	height: 23px; /*原23px 增加IM，改为28px*/
+	margin-top: 3px;
+	margin-right: 1px;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+	line-height: 18px;
+}
+
+.frame_s1 {
+	background-color: #999;
+}
+
+.frame_s1_table {
+	background-color: #FFF;
+}
+
+.frame_s1_bg01 {
+	background-image: url(../images/frame/s1/bg01.gif);
+	width: 10px;
+	height: 10px;
+	overflow: hidden;
+}
+
+.frame_s1_menuBg01 {
+	background-image: url(../images/frame/s1/menuBg01.gif);
+	width: 10px;
+	height: 10px;
+	overflow: hidden;
+}
+
+.frame_s1_menuBg02 {
+	background-image: url(../images/frame/s1/menuBg02.gif);
+	width: 10px;
+	overflow: hidden;
+}
+
+.frame_s1_menuBg03a {
+	background-image: url(../images/frame/s1/menuBg03a.gif);
+}
+
+.frame_s1_menuBg03b {
+	background-image: url(../images/frame/s1/menuBg03b.gif);
+}
+
+.frame_s1_menuBg04 {
+	background-image: url(../images/frame/s1/menuBg04.gif);
+	width: 10px;
+	height: 10px;
+	overflow: hidden;
+}
+
+.frame_s1_menuBg05 {
+	background-image: url(../images/frame/s1/menuBg05.gif);
+	width: 10px;
+	overflow: hidden;
+}
+
+.frame_s1_menuBg06a {
+	background-image: url(../images/frame/s1/menuBg06a.gif);
+	height: 10px;
+	over-flow: hidden;
+}
+
+.frame_s1_menuBg06b {
+	background-image: url(../images/frame/s1/menuBg06b.gif);
+	width: auto;
+	height: 10px;
+	over-flow: hidden;
+}
+
+.frame_s1_rightSpace {
+	background-color: #999;
+	height: 5px;
+	overflow: hidden;
+}
+
+.frame_rightBg {
+	background-image: url(../images/frame/s1/menuBg03a.gif);
+	background-position: left;
+	background-repeat: repeat-y;
+	background-color: #FFF;
+}
+
+.frame_title {
+	width: auto;
+	height: auto;
+	over-flow: hidden;
+	margin: 5px 10px;
+	font-size: 18px;
+	font-family: 微软雅黑, 黑体;
+	font-weight: bold;
+}
+
+.frame_content {
+	width: auto;
+	height: auto;
+	over-flow: hidden;
+	margin: 0px 10px 0px 10px;
+}

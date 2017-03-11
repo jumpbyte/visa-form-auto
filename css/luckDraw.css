@@ -1,0 +1,49 @@
+@charset "gb2312";
+/* CSS Document */
+.clear{ clear:both;}
+*{ padding:0; margin:0; font-size: 12px}
+ input, select {
+    padding: 3px 4px 3px 4px;
+    margin-right: 1px;}
+ul,li { list-style:none;}
+.Lottery-box{ padding:15px 0px 0px 20px;}
+.xs { width:6%;}
+.s { width:12%;}
+.m { width:15%;}
+.l{width:21%; }
+.xxl{ width:72%;}
+.Lottery-box h2{ font-size: 18px;
+font-family: 微软雅黑,黑体;
+margin-bottom: 20px;
+font-weight: bold;}
+.lottery-tit p{ height:25px; width:auto; border-left:3px solid #ff0078; padding-left:10px; }
+ .lottery-tit span{ color:#343434; vertical-align:-5px; font-size: 14px;
+display: inline-block;
+margin: 8px 0 0 0 ; font-weight:bold;} 
+ .cjsz p{ width:100%; height:25px; margin:12px 0px; padding-left:15px;}
+ .cjsz input{ width:54px; height:16px; line-height:20px; text-align:center}
+ .jxsz{ border:#CCC 1px solid;  margin:20px 0px;  margin-left:15px;}
+.tit-jxsz{ height:27px; background: url(../images/luckDraw/line_gray05.gif) repeat-x;  border-bottom:1px #CCC solid;}
+.tit-jxsz li { float:left; font-weight:bold; color:#000; line-height:27px;  padding-left:7px;text-align:center; }
+.con-jxsz {  height:45px; border-bottom:1px  solid #F3F3F3;}
+.con-jxsz li { float:left;  color:#555;  padding-left:7px; color:#222; text-align:center; margin-top:12px;}
+.sc-img img{ width:69px; height:30px; margin-right:10px;vertical-align: -10px;}
+.sc-btn{ width:69px; height:25px; display:inline-block; background:#6699ff; color:#fff; line-height:25px; text-align:center;cursor:pointer;  }
+.del-btn{ width:69px; height:25px; display:inline-block; background:#ff9933; color:#fff; line-height:25px; text-align:center; cursor:pointer; }
+.jp{ width:75px; height:100px; margin-right:30px; float:left;}
+.jp img{ width:75px; height:70px; }
+.jp-box{ margin-top:20px; padding-left:15px; overflow: hidden;}
+.jp-box p { text-align:center; margin-top:10px; color:#585858; font-weight:bold; cursor:pointer;}
+.jp-box a{ width:70px; height:28px; text-align:center; color:#Fff; display:inline-block;  line-height:28px; margin-right:20px; margin-top:20px;cursor:pointer;}
+
+/*主题设置*/
+ .theme p{ width:100%; height:25px; margin:12px 0px; padding-left:15px;}
+ .theme p span{ display:inline-block; width:25px; height:20px; line-height:20px; background:#999; margin:0 8px; text-align:center; color:#fff; font-size:14px;}
+ .theme input{ width:150px; height:16px; line-height:20px; text-align:center}
+ .theme textarea{height:20px; line-height:20px; text-align:center}
+/*加减数字*/
+.gw_num{border: 1px solid #dbdbdb;width: 110px;line-height: 26px;overflow: hidden;}
+.gw_num em{display: block;height: 26px;width: 23px;float: left;color: #7A7979;border-right: 1px solid #dbdbdb;text-align: center;cursor: pointer;}
+.gw_num .num{display: block;float: left;text-align: center;width: 52px;font-style: normal;font-size: 14px;line-height: 24px;border: 0;}
+.gw_num em.add{float: right;border-right: 0;border-left: 1px solid #dbdbdb;}
+
