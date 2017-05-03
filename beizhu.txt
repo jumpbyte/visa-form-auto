@@ -88,11 +88,19 @@ counter:
 
 {{#countries | select:{id:"",name:"",defaultValue:"CHIN",title:"请选择国家！",required:true} }}
 
+{{#birthDate | renderDate:{name:"",year:true,month:true,day:true} }}
 
 
 <script id="xxx-v-bind" type="text/html">
 
 </script>
+
+<span><input id="birthday-year" class="text-date-input date-year" required/><span>年</span></span>
+<span><input id="birthday-month" class="text-date-input date-month" /><span>月</span></span>
+<span><input id="birthday-day" class="text-date-input date-day" /><span>日</span></span>
+
+
+{{#date | renderDate:{name:"arrivalDate",year:true,month:false,day:false} }}
 
 1.通信地址name修改
 2.备选电话号码name修改
@@ -123,4 +131,13 @@ depatureCity 离开城市未定义
 
 
 fromId,page,progress,
+
+
+AA006SOVH6
+
+上一页:ctl00_SiteContentPlaceHolder_UpdateButton1
+下一页：ctl00_SiteContentPlaceHolder_UpdateButton3
+提交：ctl00$SiteContentPlaceHolder$btnSignApp
+
+ctl00$SiteContentPlaceHolder$FormView3$rblPREP_IND$0
 

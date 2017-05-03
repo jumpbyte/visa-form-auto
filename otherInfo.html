@@ -4,11 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>签证资料填写-其他信息</title>
-    <link href="css/common.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/vsia_common_form.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/visa_nav.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/iF.step.css" rel="stylesheet" type="text/css" />    
-    <link href="css/lib/se/loading.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/lib/se/reference.js"></script>    
     <script type="text/javascript" src="js/lib/se/visa_common_form.js"></script>   
     <script type="text/javascript">
@@ -41,8 +36,6 @@
             };
 
             var formHelper = new VisaFormHelper(options);
-            formHelper.init();
-            formHelper.bindEvents();
             formHelper.getTabOp=function(page){
                 var curIndex=this.pages.indexOf(this.curPage);
                 var tabIndex=this.pages.indexOf(page);
@@ -51,6 +44,15 @@
                 }
                 return null;
             }
+            formHelper.init();
+            formHelper.loadFormData();
+            formHelper.bindEvents();
+            if(usUtil.isWETInfoHidden(formHelper.data)){
+                $("#preBtn").data("pre-url","loadRelativeInfo");
+                formHelper.preUrl="loadRelativeInfo";
+                $("#preBtn").html("上一步:亲属信息");
+                $("#additionInfo").remove();
+           }
         });
     </script>
 </head>
@@ -143,84 +145,86 @@
         <form id="visa-form" action="">
             <input id="para-country" type="hidden" name="para.country" value="us" />
             <input id="para-page-type" type="hidden" name="para.pageType" value="" />
-            <input id="para-op" type="hidden" name="para.op" value="update" />
+            <input id="para-op" type="hidden" name="para.op" value="add" />
             <input id="para-form-id" type="hidden" name="para.formId" value="" />
             <input id="para-form-num" type="hidden" name="para.formSerialNum" value="" />
             <input id="para-progress" type="hidden" name="para.progress" value="O" />
             <input id="para-lastStep" type="hidden" name="para.isLastStep" value="true" />
             <div id="otherInfo">
                 <h2 class="area-title">补充信息</h2>
-                <div class="field-container">
-                    <label class="field-title">请提供一份您所说语言的清单</label>
-                    <input id="languages" name="languages" class="text-input" type="text" required />
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您是否属于一个党派或宗族？</label>
-                    <input type="radio" id="belongClanOrTribeYes" name="belongClanOrTribe" value="Y" class="align-middle" />
-                    <label for="belongClanOrTribeYes" class="align-middle">是</label>
-                    <input type="radio" id="belongClanOrTribeNo" name="belongClanOrTribe" value="N" checked="checked" class="align-middle" />
-                    <label for="belongClanOrTribeNo" class="align-middle">否</label>
-                    <div class="area info-area one hidden">
-                        <div class="field-container">
-                            <span class="field-title">党派或宗族的名字</span>
-                            <input id="clanOrTribeName" name="clanOrTribeName" class="text-input" type="text" required />
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您是否属于、捐助过或任职于任何职业机构、社会机构或慈善机构？</label>
-                    <input type="radio" id="contributedForOrganizationYes" name="contributedForOrganization" value="Y" class="align-middle" />
-                    <label for="contributedForOrganizationYes" class="align-middle">是</label>
-                    <input type="radio" id="contributedForOrganizationNo" name="contributedForOrganization" value="N" checked="checked" class="align-middle" />
-                    <label for="contributedForOrganizationNo" class="align-middle">否</label>
-                    <div class="area info-area one hidden">
-                        <div class="field-container">
-                            <span class="field-title">机构的名字</span>
-                            <input id="organizationName" name="organizationName" class="text-input" type="text" required />
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您是否具有特殊技能或接受过特殊培训，例如有关枪械、炸药、核装置、生物或化学方面的经验？</label>
-                    <input type="radio" id="specializedSkillYes" name="specializedSkill" value="Y" class="align-middle" />
-                    <label for="specializedSkillYes" class="align-middle">是</label>
-                    <input type="radio" id="specializedSkillNo" name="specializedSkill" value="N" checked="checked" class="align-middle" />
-                    <label for="specializedSkillNo" class="align-middle">否</label>
-                    <div class="area info-area one hidden">
-                        <div class="field-container">
-                            <span class="field-title">解释/原因说明</span>
-                            <textarea required name="skillExplain" id="skillExplain" cols="31" rows="2"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您是否曾经在军队服役？</label>
-                    <input type="radio" id="servedYes" name="served" value="Y" data-tpl-id="served-template" class="align-middle" />
-                    <label for="servedYes" class="align-middle">是</label>
-                    <input type="radio" id="servedNo" name="served" checked="checked" value="N" class="align-middle" />
-                    <label for="servedNo" class="align-middle">否</label>
-                    <div class="area info-area one hidden">
-                        <span class="field-title">请提供以下有关你曾服役的军队信息</span>
-                        <input type="hidden" id="servedCount" name="servedCount" counter value="0" />
-                        <!--服役军队占位-->
-                        <div id="operate_served_menu" class="control-menu">
-                            <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
-                            <a href="javascript:void(0)">删除</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您是否曾经服务于或参与过准军事单位、治安团体、造反组织、游击队或暴动组织，或曾经是其中一员？</label>
-                    <input type="radio" id="servedForRebelOrgYes" name="servedForRebelOrg" value="Y" class="align-middle" />
-                    <label for="isOneOfTerroristYes" class="align-middle">是</label>
-                    <input type="radio" id="servedForRebelOrgNo" name="servedForRebelOrg" value="N" checked="checked" class="align-middle" />
-                    <label for="isOneOfTerroristNo" class="align-middle">否</label>
-                    <div class="area info-area one hidden">
-                        <div class="field-container">
-                            <span class="field-title">解释/原因说明</span>
-                            <textarea required name="rebelExplain" id="rebelExplain" cols="31" rows="2"></textarea>
-                        </div>
-                    </div>
+                <div id="additionInfo" class="area">
+	                <div class="field-container">
+	                    <label class="field-title">请提供一份您所说语言的清单</label>
+	                    <input id="languages" name="languages" class="text-input" type="text" required />
+	                </div>
+	                <div class="field-container">
+	                    <label class="field-title">您是否属于一个党派或宗族？</label>
+	                    <input type="radio" id="belongClanOrTribeYes" name="belongClanOrTribe" value="Y" class="align-middle" />
+	                    <label for="belongClanOrTribeYes" class="align-middle">是</label>
+	                    <input type="radio" id="belongClanOrTribeNo" name="belongClanOrTribe" value="N" checked="checked" class="align-middle" />
+	                    <label for="belongClanOrTribeNo" class="align-middle">否</label>
+	                    <div class="area info-area one hidden">
+	                        <div class="field-container">
+	                            <span class="field-title">党派或宗族的名字</span>
+	                            <input id="clanOrTribeName" name="clanOrTribeName" class="text-input" type="text" required />
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="field-container">
+	                    <label class="field-title">您是否属于、捐助过或任职于任何职业机构、社会机构或慈善机构？</label>
+	                    <input type="radio" id="contributedForOrganizationYes" name="contributedForOrganization" value="Y" class="align-middle" />
+	                    <label for="contributedForOrganizationYes" class="align-middle">是</label>
+	                    <input type="radio" id="contributedForOrganizationNo" name="contributedForOrganization" value="N" checked="checked" class="align-middle" />
+	                    <label for="contributedForOrganizationNo" class="align-middle">否</label>
+	                    <div class="area info-area one hidden">
+	                        <div class="field-container">
+	                            <span class="field-title">机构的名字</span>
+	                            <input id="organizationName" name="organizationName" class="text-input" type="text" required />
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="field-container">
+	                    <label class="field-title">您是否具有特殊技能或接受过特殊培训，例如有关枪械、炸药、核装置、生物或化学方面的经验？</label>
+	                    <input type="radio" id="specializedSkillYes" name="specializedSkill" value="Y" class="align-middle" />
+	                    <label for="specializedSkillYes" class="align-middle">是</label>
+	                    <input type="radio" id="specializedSkillNo" name="specializedSkill" value="N" checked="checked" class="align-middle" />
+	                    <label for="specializedSkillNo" class="align-middle">否</label>
+	                    <div class="area info-area one hidden">
+	                        <div class="field-container">
+	                            <span class="field-title">解释/原因说明</span>
+	                            <textarea required name="skillExplain" id="skillExplain" cols="31" rows="2"></textarea>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="field-container">
+	                    <label class="field-title">您是否曾经在军队服役？</label>
+	                    <input type="radio" id="servedYes" name="served" value="Y" data-tpl-id="served-template" class="align-middle" />
+	                    <label for="servedYes" class="align-middle">是</label>
+	                    <input type="radio" id="servedNo" name="served" checked="checked" value="N" class="align-middle" />
+	                    <label for="servedNo" class="align-middle">否</label>
+	                    <div class="area info-area one hidden">
+	                        <span class="field-title">请提供以下有关你曾服役的军队信息</span>
+	                        <input type="hidden" id="servedCount" name="servedCount" counter value="0" />
+	                        <!--服役军队占位-->
+	                        <div id="operate_served_menu" class="control-menu">
+	                            <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+	                            <a href="javascript:void(0)">删除</a>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="field-container">
+	                    <label class="field-title">您是否曾经服务于或参与过准军事单位、治安团体、造反组织、游击队或暴动组织，或曾经是其中一员？</label>
+	                    <input type="radio" id="servedForRebelOrgYes" name="servedForRebelOrg" value="Y" class="align-middle" />
+	                    <label for="isOneOfTerroristYes" class="align-middle">是</label>
+	                    <input type="radio" id="servedForRebelOrgNo" name="servedForRebelOrg" value="N" checked="checked" class="align-middle" />
+	                    <label for="isOneOfTerroristNo" class="align-middle">否</label>
+	                    <div class="area info-area one hidden">
+	                        <div class="field-container">
+	                            <span class="field-title">解释/原因说明</span>
+	                            <textarea required name="rebelExplain" id="rebelExplain" cols="31" rows="2"></textarea>
+	                        </div>
+	                    </div>
+	                </div>
                 </div>
                 <div class="field-container">
                     <label class="field-title">您是否患有涉及公共卫生的传染病？（按照美国卫生和公众服务部界定，涉及公共卫生的传染病包括软下疳，淋病，腹股沟肉芽肿，传染性麻风，性病性淋巴肉芽肿，感染期梅毒、软活动性肺结核等）</label>
@@ -587,19 +591,6 @@
                     </div>
                 </div>
                 <div class="field-container">
-                    <label class="field-title">是否曾有人在公民及移民服务局为您申请过移民？</label>
-                    <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" value="Y" class="align-middle" />
-                    <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
-                    <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" value="N" checked="checked" class="align-middle" />
-                    <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
-                    <div class="area info-area one hidden">
-                        <div class="field-container">
-                            <span class="field-title">解释/原因说明</span>
-                            <textarea required name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
                     <label class="field-title">您是否曾在1996年11月30日以后以学生身份到美国公立小学或公立中学就读而没有向学校补偿费用？</label>
                     <input type="radio" id="notPayForSchoolYes" name="notPayForSchool" value="Y" class="align-middle" />
                     <label for="notPayForSchoolYes" class="align-middle">是</label>
@@ -631,7 +622,7 @@
 <script id="served-template" type="text/html">
     <div class="repeat">
         <div class="field-container">
-            <span class="field-title">国家</span> {{#countries | select:{id:"servedCountry",name:"servedCountry",defaultValue:"CHIN",title:"请选择国家！",required:true} }}
+            <span class="field-title">国家</span> {{#countries | select:{id:"servedCountry",name:"servedCountry",defaultValue:"CHIN",title:"请选择国家！",autoCompleted:true,required:true} }}
         </div>
         <div class="field-container">
             <label class="field-title">军种</label>
@@ -647,11 +638,17 @@
         </div>
         <div class="field-container">
             <label class="field-title">服役开始日期</label>
-            <input id="servedFromDate" name="servedFromDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="servedFromDate" name="servedFromDate" data-input-type="date" type="hidden" />
+            <span><input id="servedFromDate-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="servedFromDate-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="servedFromDate-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
         <div class="field-container">
             <label class="field-title">服役结束日期</label>
-            <input id="servedToDate" name="servedToDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="servedToDate" name="servedToDate" data-input-type="date" type="hidden" />
+            <span><input id="servedToDate-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="servedToDate-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="servedToDate-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
     </div>
 </script>

@@ -4,11 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>签证资料填写-亲属信息</title>
-    <link href="css/common.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/vsia_common_form.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/visa_nav.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/iF.step.css" rel="stylesheet" type="text/css" />  
-    <link href="css/lib/se/loading.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/lib/se/reference.js"></script>    
     <script type="text/javascript" src="js/lib/se/visa_common_form.js"></script>   
     <script type="text/javascript">
@@ -31,18 +26,34 @@
                 }
             };
             var formHelper = new VisaFormHelper(options);
+            formHelper.getNextOp=function(){
+                if(!usUtil.isChild(formHelper.data)){
+                    if(formHelper.data){
+                        return formHelper.data.wetInfo ?Constants.UPDATE:Constants.ADD;
+                    }else{
+                        return Constants.ADD
+                    }
+                }else{
+                    if(formHelper.data){
+                            return formHelper.data.backgroundInfo ?Constants.UPDATE:Constants.ADD;
+                        }else{
+                            return Constants.ADD
+                        }
+                    }
+                }
+            formHelper.getTabOp=function(page){
+                    return  usUtil.getTapOp(this.data,page);
+             }
             formHelper.init();
             formHelper.bindEvents();
             formHelper.loadFormData();
             formHelper.bindFormData();
             visaCommon.attachChangeEvent();
             visaCommon.attachAddDelEvent();
-            formHelper.getNextOp=function(){
-                if(formHelper.data){
-                     return formHelper.data.wetInfo ?Constants.UPDATE:Constants.ADD;
-                }else{
-                    return Constants.ADD
-                }
+            if(usUtil.isWETInfoHidden(formHelper.data)){
+                $("#nextBtn").data("next-url","loadOtherInfo");
+                 formHelper.nextUrl="loadOtherInfo";
+                 $("#nextBtn").html("下一步:补充信息");
             }
         });
     </script>
@@ -136,7 +147,7 @@
         <form id="visa-form" action="">
             <input id="para-country" type="hidden" name="para.country" value="us" />
             <input id="para-page-type" type="hidden" name="para.pageType" value="" />
-            <input id="para-op" type="hidden" name="para.op" value="update" />
+            <input id="para-op" type="hidden" name="para.op" value="modify" />
             <input id="para-form-id" type="hidden" name="para.formId" value="" />
             <input id="para-form-num" type="hidden" name="para.formSerialNum" value="" />
             <input id="para-progress" type="hidden" name="para.progress" value="R" />
@@ -156,232 +167,234 @@
     </div>
     </div>
 </body>
-            <!--亲属信息-->
-            <script id="relationInfoArea-v-bind" type="text/html">
-            <div id="relationInfoArea">
-                <h2 class="area-title">亲属信息</h2>
+<!--亲属信息-->
+<script id="relationInfoArea-v-bind" type="text/html">
+    <div id="relationInfoArea">
+        <h2 class="area-title">亲属信息</h2>
+        <div class="field-container">
+            <label for="fatherFirstName" class="field-title">父亲的姓</label>
+            <input type="text" required id="fatherFirstName" name="fatherFirstName" {{!form.familyInfo.father.surnName && 'disabled'}} value="{{form.familyInfo.father.surnName}}" class="text-input" />
+            <input type="checkbox" id="notAffordFFirstName" name="notAffordFFirstName" {{!form.familyInfo.father.surnName && 'checked="checked"'}} value="Y" class="align-middle" />
+            <label for="" class="align-middle">无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="fatherLastName" class="field-title">父亲的名</label>
+            <input type="text" required id="fatherLastName" name="fatherLastName" {{!form.familyInfo.father.givenName && 'disabled'}} value="{{form.familyInfo.father.givenName}}" class="text-input" />
+            <input type="checkbox" id="notAffordFLastName" name="notAffordFLastName" {{!form.familyInfo.father.givenName && 'checked="checked"'}} value="Y" class="align-middle" />
+            <label for="notAffordFLastName" class="align-middle">无法提供</label>
+        </div>
+        <div class="field-container">
+            <label class="field-title">父亲的出生日期</label>
+            {{#form.familyInfo.father.birthDate | renderDate:{name:"fatherBirthday",year:true,month:false,day:false} }}
+            <input type="checkbox" id="notFatherBirthday" name="notFatherBirthday" {{!form.familyInfo.father.birthDate && 'checked="checked"'}} value="Y" class="align-middle" />
+            <label for="notFatherBirthday" class="align-middle">无法提供</label>
+		</div>
+        <div class="field-container">
+            <label class="field-title">您的父亲是否在美国？</label>
+            <input type="radio" id="fatherInUSYes" name="isFatherInUS" {{form.familyInfo.father.inUS ? 'checked="checked"':''}} required value="Y" class="align-middle" />
+            <label for="fatherInUSYes" class="align-middle">是</label>
+            <input type="radio" id="fatherInUSNo" name="isFatherInUS" {{!form.familyInfo.father.inUS ? 'checked="checked"':''}} value="N" class="align-middle" />
+            <label for="fatherInUSNo" class="align-middle">否</label>
+            <label for="isFatherInUS" class="error">请选是或否！</label>
+            <div class="area  info-area {{!form.familyInfo.father.inUS ? 'hidden':''}} one">
+                <label style="display: block ">请填写如下信息</label>
+                <hr/>
                 <div class="field-container">
-                    <label for="fatherFirstName" class="field-title">父亲的姓</label>
-                    <input type="text" required id="fatherFirstName" name="fatherFirstName" {{!form.familyInfo.father.surnName && 'disabled'}} value="{{form.familyInfo.father.surnName}}" class="text-input" />
-                    <input type="checkbox" id="notAffordFFirstName" name="notAffordFFirstName" {{!form.familyInfo.father.surnName && 'checked="checked"'}} value="Y" class="align-middle" />
-                    <label for="" class="align-middle">无法提供</label>
-                </div>
-                <div class="field-container">
-                    <label for="fatherLastName" class="field-title">父亲的名</label>
-                    <input type="text" required id="fatherLastName" name="fatherLastName" {{!form.familyInfo.father.givenName && 'disabled'}} value="{{form.familyInfo.father.givenName}}" class="text-input" />
-                    <input type="checkbox" id="notAffordFLastName" name="notAffordFLastName" {{!form.familyInfo.father.givenName && 'checked="checked"'}} value="Y" class="align-middle" />
-                    <label for="notAffordFLastName" class="align-middle">无法提供</label>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">父亲的出生日期</label>
-                    <input id="fatherBirthday" name="fatherBirthday" class="Wdate text-input" type="text" value="{{form.familyInfo.father.birthDate}}" required onclick="WdatePicker()" />
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您的父亲是否在美国？</label>
-                    <input type="radio" id="fatherInUSYes" name="isFatherInUS" {{form.familyInfo.father.inUS ? 'checked="checked"':''}} required value="Y" class="align-middle" />
-                    <label for="fatherInUSYes" class="align-middle">是</label>
-                    <input type="radio" id="fatherInUSNo" name="isFatherInUS" {{!form.familyInfo.father.inUS ? 'checked="checked"':''}} value="N" class="align-middle" />
-                    <label for="fatherInUSNo" class="align-middle">否</label>
-                    <label for="isFatherInUS" class="error">请选是或否！</label>
-                    <div class="area  info-area {{!form.familyInfo.father.inUS ? 'hidden':''}} one">
-                        <label style="display: block ">请填写如下信息</label>
-                        <hr/>
-                        <div class="field-container">
-                            <label for="fatherIdentityInUS" class="field-title">父亲在美国的身份</label>
-                            {{#identities | select:{id:"fatherIdentityInUS",name:"fatherIdentityInUS",defaultValue:form.familyInfo.father.identityInUS,title:"请选择身份！",required:true} }}
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
-                    <label for="motherFirstName" class="field-title">母亲的姓</label>
-                    <input type="text" required id="motherFirstName" name="motherFirstName" {{!form.familyInfo.mother.surnName && 'disabled'}} value="{{form.familyInfo.mother.surnName}}" class="text-input" />
-                    <input type="checkbox" id="notAffordMFirstName" name="notAffordMFirstName" {{!form.familyInfo.mother.surnName && 'checked="checked"'}} value="Y" class="align-middle" />
-                    <label for="notAffordMFirstName" class="align-middle">无法提供</label>
-                </div>
-                <div class="field-container">
-                    <label for="motherLastName" class="field-title">母亲的名</label>
-                    <input type="text" required id="motherLastName" name="motherLastName" {{!form.familyInfo.mother.givenName && 'disabled'}} value="{{form.familyInfo.mother.givenName}}" class="text-input" />
-                    <input type="checkbox" id="notAffordMLastName" name="notAffordMLastName" {{!form.familyInfo.mother.givenName && 'checked="checked"'}} value="Y" class="align-middle" />
-                    <label for="notAffordMLastName" class="align-middle">无法提供</label>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">母亲的出生日期</label>
-                    <input id="motherBirthday" name="motherBirthday" value="{{form.familyInfo.mother.birthDate}}" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您的母亲是否在美国？</label>
-                    <input type="radio" id="motherInUSYes" name="isMotherInUS" {{form.familyInfo.mother.inUS ? 'checked="checked"':''}} value="Y" required class="align-middle" />
-                    <label for="motherInUSYes" class="align-middle">是</label>
-                    <input type="radio" id="motherInUSNo" name="isMotherInUS" {{!form.familyInfo.mother.inUS ? 'checked="checked"':''}} value="N" class="align-middle" />
-                    <label for="motherInUSNo" class="align-middle">否</label>
-                    <label for="isMotherInUS" class="error">请选是或否！</label>
-                    <div class="area  info-area {{!form.familyInfo.mother.inUS ? 'hidden':''}} one">
-                        <label style="display: block ">请填写如下信息</label>
-                        <hr/>
-                        <div class="field-container">
-                            <label for="motherIdentityInUS" class="field-title">母亲在美国的身份</label>
-                            {{#identities | select:{id:"motherIdentityInUS",name:"motherIdentityInUS",defaultValue:form.familyInfo.mother.identityInUS,title:"请选择身份！",required:true} }}
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">除父母以外，您在美国是否还有其他直系亲属？</label>
-                    <input type="radio" id="haveImmediateRelativeYes" name="isHaveImmediateRelative" {{form.familyInfo.haveImmediateRelative ? 'checked="checked"':''}} value="Y" required data-tpl-id="immediateRelative-template" class="align-middle" />
-                    <label for="haveImmediateRelativeYes" class="align-middle">是</label>
-                    <input type="radio" id="haveImmediateRelativeNo" name="isHaveImmediateRelative" {{!form.familyInfo.haveImmediateRelative ? 'checked="checked"':''}} value="N" class="align-middle" />
-                    <label for="haveImmediateRelativeNo" class="align-middle">否</label>
-                    <label for="isHaveImmediateRelative" class="error"></label>
-                    <div class="area  info-area {{!form.familyInfo.haveImmediateRelative ? 'hidden':''}} one">
-                        <label style="display: block">请填写如下信息</label>
-                        {{if form.familyInfo.haveImmediateRelative}}
-                            <input type="hidden" id="immediateRelativeCount" name="immediateRelativeCount" counter value="{{form.familyInfo.relatives.length}}" />
-                            <hr/>
-                            {{each form.familyInfo.relatives as n i}}
-                            <div class="repeat">
-                            <div class="field-container">
-                                <label for="immediateRelativeFirstName" class="field-title">直系亲属的姓</label>
-                                <input type="text" required id="immediateRelativeFirstName_{{i}}" name="immediateRelativeFirstName_{{i}}" value="{{n.surnName}}" class="text-input" />
-                            </div>
-                            <div class="field-container">
-                                <label for="immediateRelativeLastName" class="field-title">直系亲属的名</label>
-                                
-                                <input type="text" required id="immediateRelativeLastName_{{i}}" name="immediateRelativeLastName_{{i}}" value="{{n.givenName}}" class="text-input" />
-                            </div>
-                            <div class="field-container">
-                                <label for="relationWithYou" class="field-title">直系亲属和您的关系</label>
-                                {{#immediateRelations | select:{id:"relationWithYou_"+i,name:"relationWithYou_"+i,defaultValue:n.relationWithYou,title:"请选择身份！",required:true} }}
-                            
-                            </div>
-                            <div class="field-container">
-                                <label for="immediateRelativeIdentityInUS" class="field-title">直系亲属在美国的身份</label>
-                            {{#identities | select:{id:"immediateRelativeIdentityInUS_"+i,name:"immediateRelativeIdentityInUS_"+i,defaultValue:n.identityInUS,title:"请选择身份！",required:true} }}
-                            
-                            </div>
-                            </div>
-                            {{/each}}
-                            {{else}}
-                            <input type="hidden" id="immediateRelativeCount" name="immediateRelativeCount" counter value="0" />
-                        {{/if}}
-                        <!--直系亲属占位-->
-                        <div id="operate_immediateRelative_menu" class="control-menu">
-                            <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
-                            <a href="javascript:void(0)">删除</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="field-container">
-                    <label class="field-title">您在美国是否还有其他亲属？</label>
+                    <label for="fatherIdentityInUS" class="field-title">父亲在美国的身份</label>
+                    {{#identities | select:{id:"fatherIdentityInUS",name:"fatherIdentityInUS",defaultValue:form.familyInfo.father.identityInUS,title:"请选择身份！",required:true} }}
                     
-                    <input type="radio" id="ishaveOtherRelativeYes" name="ishaveOtherRelative" {{form.familyInfo.haveOtherRelative ? 'checked="checked"':''}} value="Y" class="align-middle" />
-                    
-                    <label for="ishaveOtherRelativeYes" class="align-middle">是</label>
-                    <input type="radio" id="ishaveOtherRelativeNo" name="ishaveOtherRelative" {{!form.familyInfo.haveOtherRelative ? 'checked="checked"':''}} value="N" class="align-middle" />
-                    <label for="ishaveOtherRelativeNo" class="align-middle">否</label>
                 </div>
             </div>
-            <br/>
-            <hr/>
+        </div>
+        <div class="field-container">
+            <label for="motherFirstName" class="field-title">母亲的姓</label>
+            <input type="text" required id="motherFirstName" name="motherFirstName" {{!form.familyInfo.mother.surnName && 'disabled'}} value="{{form.familyInfo.mother.surnName}}" class="text-input" />
+            <input type="checkbox" id="notAffordMFirstName" name="notAffordMFirstName" {{!form.familyInfo.mother.surnName && 'checked="checked"'}} value="Y" class="align-middle" />
+            <label for="notAffordMFirstName" class="align-middle">无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="motherLastName" class="field-title">母亲的名</label>
+            <input type="text" required id="motherLastName" name="motherLastName" {{!form.familyInfo.mother.givenName && 'disabled'}} value="{{form.familyInfo.mother.givenName}}" class="text-input" />
+            <input type="checkbox" id="notAffordMLastName" name="notAffordMLastName" {{!form.familyInfo.mother.givenName && 'checked="checked"'}} value="Y" class="align-middle" />
+            <label for="notAffordMLastName" class="align-middle">无法提供</label>
+        </div>
+        <div class="field-container">
+            <label class="field-title">母亲的出生日期</label>
+            {{#form.familyInfo.mother.birthDate | renderDate:{name:"motherBirthday",year:true,month:false,day:false} }}
+            <input type="checkbox" id="notMotherBirthday" name="notMotherBirthday" {{!form.familyInfo.mother.birthDate && 'checked="checked"'}} value="Y" class="align-middle" />
+            <label for="notMotherBirthday" class="align-middle">无法提供</label>
+		</div>
+        <div class="field-container">
+            <label class="field-title">您的母亲是否在美国？</label>
+            <input type="radio" id="motherInUSYes" name="isMotherInUS" {{form.familyInfo.mother.inUS ? 'checked="checked"':''}} value="Y" required class="align-middle" />
+            <label for="motherInUSYes" class="align-middle">是</label>
+            <input type="radio" id="motherInUSNo" name="isMotherInUS" {{!form.familyInfo.mother.inUS ? 'checked="checked"':''}} value="N" class="align-middle" />
+            <label for="motherInUSNo" class="align-middle">否</label>
+            <label for="isMotherInUS" class="error">请选是或否！</label>
+            <div class="area  info-area {{!form.familyInfo.mother.inUS ? 'hidden':''}} one">
+                <label style="display: block ">请填写如下信息</label>
+                <hr/>
+                <div class="field-container">
+                    <label for="motherIdentityInUS" class="field-title">母亲在美国的身份</label>
+                    {{#identities | select:{id:"motherIdentityInUS",name:"motherIdentityInUS",defaultValue:form.familyInfo.mother.identityInUS,title:"请选择身份！",required:true} }}
+                    
+                </div>
+            </div>
+        </div>
+        <div class="field-container">
+            <label class="field-title">除父母以外，您在美国是否还有其他直系亲属？</label>
+            <input type="radio" id="haveImmediateRelativeYes" name="isHaveImmediateRelative" {{form.familyInfo.haveImmediateRelative ? 'checked="checked"':''}} value="Y" required data-tpl-id="immediateRelative-template" class="align-middle" />
+            <label for="haveImmediateRelativeYes" class="align-middle">是</label>
+            <input type="radio" id="haveImmediateRelativeNo" name="isHaveImmediateRelative" {{!form.familyInfo.haveImmediateRelative ? 'checked="checked"':''}} value="N" class="align-middle" />
+            <label for="haveImmediateRelativeNo" class="align-middle">否</label>
+            <label for="isHaveImmediateRelative" class="error"></label>
+            <div class="area  info-area {{!form.familyInfo.haveImmediateRelative ? 'hidden':''}} one">
+                <label style="display: block">请填写如下信息</label>
+                {{if form.familyInfo.haveImmediateRelative}}
+                    <input type="hidden" id="immediateRelativeCount" name="immediateRelativeCount" counter value="{{form.familyInfo.relatives.length}}" />
+                    <hr/>
+                    {{each form.familyInfo.relatives as n i}}
+                    <div class="repeat">
+                    <div class="field-container">
+                        <label for="immediateRelativeFirstName" class="field-title">直系亲属的姓</label>
+                        <input type="text" required id="immediateRelativeFirstName_{{i}}" name="immediateRelativeFirstName_{{i}}" value="{{n.surnName}}" class="text-input" />
+                    </div>
+                    <div class="field-container">
+                        <label for="immediateRelativeLastName" class="field-title">直系亲属的名</label>
+                        
+                        <input type="text" required id="immediateRelativeLastName_{{i}}" name="immediateRelativeLastName_{{i}}" value="{{n.givenName}}" class="text-input" />
+                    </div>
+                    <div class="field-container">
+                        <label for="relationWithYou" class="field-title">直系亲属和您的关系</label>
+                        {{#immediateRelations | select:{id:"relationWithYou_"+i,name:"relationWithYou_"+i,defaultValue:n.relationWithYou,title:"请选择身份！",required:true} }}
+                    
+                    </div>
+                    <div class="field-container">
+                        <label for="immediateRelativeIdentityInUS" class="field-title">直系亲属在美国的身份</label>
+                    {{#identities | select:{id:"immediateRelativeIdentityInUS_"+i,name:"immediateRelativeIdentityInUS_"+i,defaultValue:n.identityInUS,title:"请选择身份！",required:true} }}
+                    
+                    </div>
+                    </div>
+                    {{/each}}
+                    {{else}}
+                    <input type="hidden" id="immediateRelativeCount" name="immediateRelativeCount" counter value="0" />
+                {{/if}}
+                <!--直系亲属占位-->
+                <div id="operate_immediateRelative_menu" class="control-menu">
+                    <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)">删除</a>
+                </div>
+            </div>
+        </div>
+        <div class="field-container">
+            <label class="field-title">您在美国是否还有其他亲属？</label>
             
-            </script>
+            <input type="radio" id="ishaveOtherRelativeYes" name="ishaveOtherRelative" {{form.familyInfo.haveOtherRelative ? 'checked="checked"':''}} value="Y" class="align-middle" />
+            
+            <label for="ishaveOtherRelativeYes" class="align-middle">是</label>
+            <input type="radio" id="ishaveOtherRelativeNo" name="ishaveOtherRelative" {{!form.familyInfo.haveOtherRelative ? 'checked="checked"':''}} value="N" class="align-middle" />
+            <label for="ishaveOtherRelativeNo" class="align-middle">否</label>
+        </div>
+    </div>
+    <br/>
+    <hr/>
+</script>
 
             <!--配偶信息，默认隐藏根据婚姻状态显示-->
 
-            <script id="spouseArea-v-bind" type="text/html">
-            <div id="spouseArea">
-                <!--<h2 class="area-title">配偶信息</h2>-->
-                
-                    <input type="radio" class="hidden" id="trigger-spouse-add" value="Y" data-tpl-id="divorcedSpouse-template" />
-                    {{if form.personalInfo.maritalStatus=='D'}}
-                    <div id="divorcedSpouseInfoArea">
-                        <h2 class="area-title">配偶信息</h2>
-                        <label class="field-title">请提供前配偶信息</label>
-                        <input type="hidden" id="formerSpouseCount" name="formerSpouseCount" counter value="{{form.formerSpouseInfos.length}}" />
-                        {{each form.formerSpouseInfos as n i}}
-                            <div class="repeat">
-                                <div class="field-container">
-                                    <label for="spouseSurnName" class="field-title">配偶的姓</label>
-                                    <input type="text" required id="spouseSurnName_{{i}}" name="spouseSurnName_{{i}}" value="{{n.peopleName.surnName}}" class="text-input" />
-                                </div>
-                                <div class="field-container">
-                                    <label for="spouseGivenName" class="field-title">配偶的名</label>
-                                    <input type="text" required id="spouseGivenName_{{i}}" name="spouseGivenName_{{i}}" value="{{n.peopleName.givenName}}" class="text-input" />
-                                </div>
-                                <div class="field-container">
-                                    <label class="field-title">配偶的出生日期</label>
-                                    <input id="spouseBirthday_{{i}}" name="spouseBirthday_{{i}}" value="{{n.birth.birthDate}}" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
-                                </div>
-                                <div class="field-container">
-                                    <label for="spouseNationality" class="field-title">配偶的国籍</label> 
-                                    {{#nationalities | select:{id:"spouseNationality_"+i,name:"spouseNationality_"+i,defaultValue: n.spouseNationality,title:"请选择国籍！",required:true} }}
-                                </div>
-                                <div class="field-container">
-                                    <label for="spouseBirthCity" class="field-title">配偶的出生城市</label>
-                                    <input type="text" required id="spouseBirthCity_{{i}}" name="spouseBirthCity_{{i}}" value="{{n.birth.city}}" class="text-input">
-                                    <input type="checkbox" id="notAffordSpouseBirthCity_{{i}}" name="notAffordSpouseBirthCity_{{i}}" value="Y" class="align-middle" />
-                                    <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
-                                </div>
-                                <div class="field-container">
-                                    <label for="spouseBirthCountry_{{i}}" class="field-title">配偶的出生国家</label> 
-                                    {{#countries | select:{id:"spouseBirthCountry_"+i,name:"spouseBirthCountry_"+i,defaultValue:n.birth.country,title:"请选择国家！",required:true} }}
-                                </div>
-                                <div class="field-container">
-                                    <label class="field-title">结婚日期</label>
-                                    <input id="marriageDate_{{i}}" name="marriageDate_{{i}}"  class="Wdate text-input" value="{{n.marriageDate}}" type="text" required onclick="WdatePicker()" />
-                                </div>
-                                <div class="field-container">
-                                    <label class="field-title">离婚日期</label>
-                                    <input id="divorceDate_{{i}}" name="divorceDate_{{i}}" class="Wdate text-input" value="{{n.marriageDateEnd}}" type="text" required onclick="WdatePicker()" />
-                                </div>
-                                <div class="field-container">
-                                    <label for="divorceReason" class="field-title">离婚原因</label>
-                                    <textarea required id="divorceReason_{{i}}" name="divorceReason_{{i}}" class="text-input" cols="31" rows="2">{{n.marriageEndExplain}}</textarea>
-                                </div>
-                                <div class="field-container">
-                                    <label for="divorceCountry" class="field-title">离婚地点</label> 
-                                    {{#countries | select:{id:"divorceCountry_"+i,name:"divorceCountry_"+i,defaultValue:n.terminatedCountry,title:"请选择地点！",required:true} }}
-                                </div>
-                            </div>
-                         {{/each}}
-                        <!--前配偶信息占位-->
-                        <div id="operate_divorceSpouse_menu" class="control-menu">
-                            <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
-                            <a href="javascript:void(0)">删除</a>
+    <script id="spouseArea-v-bind" type="text/html">
+    <div id="spouseArea">
+        <!--<h2 class="area-title">配偶信息</h2>-->
+            <input type="radio" class="hidden" id="trigger-spouse-add" value="Y" data-tpl-id="divorcedSpouse-template" />
+            {{if form.personalInfo.maritalStatus=='D'}}
+            <div id="divorcedSpouseInfoArea">
+                <h2 class="area-title">配偶信息</h2>
+                <label class="field-title">请提供前配偶信息</label>
+                <input type="hidden" id="formerSpouseCount" name="formerSpouseCount" counter value="{{form.formerSpouseInfos.length}}" />
+                {{each form.formerSpouseInfos as n i}}
+                    <div class="repeat">
+                        <div class="field-container">
+                            <label for="spouseSurnName" class="field-title">配偶的姓</label>
+                            <input type="text" required id="spouseSurnName_{{i}}" name="spouseSurnName_{{i}}" value="{{n.peopleName.surnName}}" class="text-input" />
+                        </div>
+                        <div class="field-container">
+                            <label for="spouseGivenName" class="field-title">配偶的名</label>
+                            <input type="text" required id="spouseGivenName_{{i}}" name="spouseGivenName_{{i}}" value="{{n.peopleName.givenName}}" class="text-input" />
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">配偶的出生日期</label>
+                            {{#n.birth.birthDate | renderDate:{name:"spouseBirthday_"+i,year:true,month:false,day:false} }}
+                        </div>
+                        <div class="field-container">
+                            <label for="spouseNationality" class="field-title">配偶的国籍</label> 
+                            {{#nationalities | select:{id:"spouseNationality_"+i,name:"spouseNationality_"+i,defaultValue: n.spouseNationality,title:"请选择国籍！",autoCompleted:true,required:true} }}
+                        </div>
+                        <div class="field-container">
+                            <label for="spouseBirthCity" class="field-title">配偶的出生城市</label>
+                            <input type="text" required id="spouseBirthCity_{{i}}" name="spouseBirthCity_{{i}}" value="{{n.birth.city}}" class="text-input">
+                            <input type="checkbox" id="notAffordSpouseBirthCity_{{i}}" name="notAffordSpouseBirthCity_{{i}}" value="Y" class="align-middle" />
+                            <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
+                        </div>
+                        <div class="field-container">
+                            <label for="spouseBirthCountry_{{i}}" class="field-title">配偶的出生国家</label> 
+                            {{#countries | select:{id:"spouseBirthCountry_"+i,name:"spouseBirthCountry_"+i,defaultValue:n.birth.country,title:"请选择国家！",autoCompleted:true,required:true} }}
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">结婚日期</label>
+                            {{#n.marriageDate | renderDate:{name:"marriageDate_"+i,year:true,month:false,day:false} }}
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">离婚日期</label>
+                            {{#n.marriageDateEnd | renderDate:{name:"divorceDate_"+i,year:true,month:false,day:false} }}
+                        </div>
+                        <div class="field-container">
+                            <label for="divorceReason" class="field-title">离婚原因</label>
+                            <textarea required id="divorceReason_{{i}}" name="divorceReason_{{i}}" class="text-input" cols="31" rows="2">{{n.marriageEndExplain}}</textarea>
+                        </div>
+                        <div class="field-container">
+                            <label for="divorceCountry" class="field-title">离婚地点</label> 
+                            {{#countries | select:{id:"divorceCountry_"+i,name:"divorceCountry_"+i,defaultValue:n.terminatedCountry,title:"请选择地点！",required:true} }}
                         </div>
                     </div>
-            {{/if}}
-            {{if form.personalInfo.maritalStatus=='M'}}
-            <div id="spouseInfo">
-                <label class="field-title">请提供配偶信息</label>
-                <!--<input type="text" id="formerSpouseCount" name="formerSpouseCount" counter value="{{form.personalInfo.maritalStatus}}" />-->
+                    {{/each}}
+                <!--前配偶信息占位-->
+                <div id="operate_divorceSpouse_menu" class="control-menu">
+                    <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)">删除</a>
+                </div>
+            </div>
+    {{/if}}
+    {{if form.personalInfo.maritalStatus=='M'}}
+    <div id="spouseInfo">
+        <label class="field-title">请提供配偶信息</label>
+        <!--<input type="text" id="formerSpouseCount" name="formerSpouseCount" counter value="{{form.personalInfo.maritalStatus}}" />-->
 
-            <div class="field-container">
-                <label class="field-title">配偶的姓</label>
-                <input type="text" required id="spouseSurnName" name="spouseSurnName" value="{{form.spouseInfo.peopleName.surnName}}" class="text-input" />
-            </div>
-            <div class="field-container">
-                <label class="field-title">配偶的名</label>
-                <input type="text" required id="spouseGivenName" name="spouseGivenName" value="{{form.spouseInfo.peopleName.givenName}}" class="text-input" />
-            </div>
-            <div class="field-container">
-                <label class="field-title">配偶的出生日期</label>
-                <input id="spouseBirthday" name="spouseBirthday" class="Wdate text-input" value="{{form.spouseInfo.birth.birthDate}}" type="text" required onclick="WdatePicker()" />
-            </div>
-            <div class="field-container">
-                <label class="field-title">配偶的国籍</label>
-                {{#nationalities | select:{id:"spouseNationality",name:"spouseNationality",defaultValue:form.spouseInfo.spouseNationality,title:"请选择国家！",required:true} }}
-            </div>
-            <div class="field-container">
-                    <label class="field-title">配偶的出生城市</label>
-                    <input type="text" required id="spouseBirthCity" name="spouseBirthCity" {{!form.spouseInfo.birth.city && 'disabled'}} value="{{form.spouseInfo.birth.city}}" class="text-input">
-                    <input type="checkbox" id="notAffordSpouseBirthCity" name="notAffordSpouseBirthCity" {{!form.spouseInfo.birth.city && 'checked="checked"'}} value="Y" class="align-middle" />
-                    <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
-            </div>
-           <div class="field-container">
-                <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label>
-                {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:form.spouseInfo.birth.country,title:"请选择国家！",required:true} }}
-           </div>
+    <div class="field-container">
+        <label class="field-title">配偶的姓</label>
+        <input type="text" required id="spouseSurnName" name="spouseSurnName" value="{{form.spouseInfo.peopleName.surnName}}" class="text-input" />
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的名</label>
+        <input type="text" required id="spouseGivenName" name="spouseGivenName" value="{{form.spouseInfo.peopleName.givenName}}" class="text-input" />
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的出生日期</label>
+        {{#form.spouseInfo.birth.birthDate | renderDate:{name:"spouseBirthday",year:true,month:false,day:false} }}
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的国籍</label>
+        {{#nationalities | select:{id:"spouseNationality",name:"spouseNationality",defaultValue:form.spouseInfo.spouseNationality,title:"请选择国家！",autoCompleted:true,required:true} }}
+    </div>
+    <div class="field-container">
+            <label class="field-title">配偶的出生城市</label>
+            <input type="text" required id="spouseBirthCity" name="spouseBirthCity" {{!form.spouseInfo.birth.city && 'disabled'}} value="{{form.spouseInfo.birth.city}}" class="text-input">
+            <input type="checkbox" id="notAffordSpouseBirthCity" name="notAffordSpouseBirthCity" {{!form.spouseInfo.birth.city && 'checked="checked"'}} value="Y" class="align-middle" />
+            <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
+    </div>
+    <div class="field-container">
+        <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label>
+        {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:form.spouseInfo.birth.country,title:"请选择国家！",autoCompleted:true,required:true} }}
+    </div>
            
     <div class="field-container">
         <label class="field-title">配偶的住址</label>
@@ -414,7 +427,7 @@
             </div>
             <div class="field-container">
                 <label for="spouseCountry" class="field-title">国家</label>
-                {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:form.spouseInfo.birth.country,title:"请选择国家！",required:true} }}
+                {{#countries | select:{id:"spouseCountry",name:"spouseCountry",defaultValue:form.spouseInfo.address.country,title:"请选择国家！",autoCompleted:true,required:true} }}
            
             </div>
         </div>
@@ -434,11 +447,11 @@
             </div>
             <div class="field-container">
                 <label class="field-title">配偶的出生日期</label>
-                <input id="lateSpouseBirthday" name="lateSpouseBirthday" class="Wdate text-input" value="{{form.deseasedSpouseInfo.birth.birthDate}}" type="text" required onclick="WdatePicker()" />
+                {{#form.deseasedSpouseInfo.birth.birthDate | renderDate:{name:"lateSpouseBirthday",year:true,month:false,day:false} }}
             </div>
             <div class="field-container">
                 <label class="field-title">配偶的国籍</label>
-                {{#nationalities | select:{id:"lateSpouseNationality",name:"lateSpouseNationality",defaultValue:form.deseasedSpouseInfo.spouseNationality,title:"请选择国家！",required:true} }}
+                {{#nationalities | select:{id:"lateSpouseNationality",name:"lateSpouseNationality",defaultValue:form.deseasedSpouseInfo.spouseNationality,title:"请选择国家！",autoCompleted:true,required:true} }}
             </div>
             <div class="field-container">
                     <label class="field-title">配偶的出生城市</label>
@@ -448,13 +461,13 @@
             </div>
            <div class="field-container">
                 <label for="lateSpouseBirthCountry" class="field-title">配偶的出生国家</label>
-                {{#countries | select:{id:"lateSpouseBirthCountry",name:"lateSpouseBirthCountry",defaultValue:form.deseasedSpouseInfo.birth.country,title:"请选择国家！",required:true} }}
+                {{#countries | select:{id:"lateSpouseBirthCountry",name:"lateSpouseBirthCountry",defaultValue:form.deseasedSpouseInfo.birth.country,title:"请选择国家！",autoCompleted:true,required:true} }}
            </div>
        {{/if}}  
             </div>
         </div>
             
-            </script>     
+        </script>     
 
 <script id="immediateRelative-template" type="text/html">
     <div class="repeat">
@@ -499,8 +512,11 @@
         <input type="text" required id="spouseGivenName" name="spouseGivenName" class="text-input" />
     </div>
     <div class="field-container">
-        <label class="field-title">配偶的出生日期</label>
-        <input id="spouseBirthday" name="spouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <label class="field-title">配偶的出生日期</label>
+            <input id="spouseBirthday" name="spouseBirthday" data-input-type="date" type="hidden" />
+            <span><input id="spouseBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="spouseBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="spouseBirthday-day" class="text-date-input date-day"/><span>日</span></span>
     </div>
     <div class="field-container">
         <label class="field-title">配偶的国籍</label>
@@ -510,6 +526,7 @@
                 name: "spouseNationality",
                 title: "请选择国籍",
                 required: true,
+                autoCompleted:true,
                 defaultValue: "CHIN"
             }, NationalityOptions));
         </script>
@@ -527,6 +544,7 @@
                 id: "spouseBirthCountry",
                 name: "spouseBirthCountry",
                 title: "请选择国家",
+                autoCompleted:true,
                 required: true,
                 defaultValue: "CHIN"
             }, CountryOptions));
@@ -572,6 +590,7 @@
                         id: "spouseCountry",
                         name: "spouseCountry",
                         title: "请选择国家",
+                        autoCompleted:true,
                         required: true,
                         defaultValue: "CHIN"
                     }, CountryOptions));
@@ -593,10 +612,13 @@
         </div>
         <div class="field-container">
             <label class="field-title">配偶的出生日期</label>
-            <input id="spouseBirthday" name="spouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="spouseBirthday" name="spouseBirthday" data-input-type="date" type="hidden" />
+            <span><input id="spouseBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="spouseBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="spouseBirthday-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
         <div class="field-container">
-            <label for="spouseNationality" class="field-title">配偶的国籍</label> {{#nationalities | select:{id:"spouseNationality",name:"spouseNationality",defaultValue: "CHIN",title:"请选择国籍！",required:true} }}
+            <label for="spouseNationality" class="field-title">配偶的国籍</label> {{#nationalities | select:{id:"spouseNationality",name:"spouseNationality",defaultValue: "CHIN",title:"请选择国籍！",autoCompleted:true,required:true} }}
         </div>
         <div class="field-container">
             <label for="spouseBirthCity" class="field-title">配偶的出生城市</label>
@@ -605,22 +627,28 @@
             <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
         </div>
         <div class="field-container">
-            <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label> {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:"CHIN",title:"请选择国家！",required:true} }}
+            <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label> {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:"CHIN",title:"请选择国家！",autoCompleted:true,required:true} }}
         </div>
         <div class="field-container">
             <label class="field-title">结婚日期</label>
-            <input id="marriageDate" name="marriageDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="marriageDate" name="marriageDate" data-input-type="date" type="hidden" />
+            <span><input id="marriageDate-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="marriageDate-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="marriageDate-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
         <div class="field-container">
             <label class="field-title">离婚日期</label>
-            <input id="divorceDate" name="divorceDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="divorceDate" name="divorceDate" data-input-type="date" type="hidden" />
+            <span><input id="divorceDate-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="divorceDate-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="divorceDate-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
         <div class="field-container">
             <label for="divorceReason" class="field-title">离婚原因</label>
             <textarea required id="divorceReason" name="divorceReason" class="text-input" col="10" row="3"></textarea>
         </div>
         <div class="field-container">
-            <label for="divorceCountry" class="field-title">离婚地点</label> {{#countries | select:{id:"divorceCountry",name:"divorceCountry",defaultValue:"CHIN",title:"请选择地点！",required:true} }}
+            <label for="divorceCountry" class="field-title">离婚地点</label> {{#countries | select:{id:"divorceCountry",name:"divorceCountry",defaultValue:"CHIN",title:"请选择地点！",autoCompleted:true,required:true} }}
         </div>
     </div>
 </script>
@@ -636,7 +664,10 @@
     </div>
     <div class="field-container">
         <label class="field-title">配偶的出生日期</label>
-        <input id="lateSpouseBirthday" name="lateSpouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+        <input id="lateSpouseBirthday" name="lateSpouseBirthday" data-input-type="date" type="hidden" />
+        <span><input id="lateSpouseBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+        <span><input id="lateSpouseBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+        <span><input id="lateSpouseBirthday-day" class="text-date-input date-day"/><span>日</span></span>
     </div>
     <div class="field-container">
         <label for="lateSpouseNationality" class="field-title">配偶的国籍</label>
@@ -645,6 +676,7 @@
                 id: "lateSpouseNationality",
                 name: "lateSpouseNationality",
                 title: "请选择国籍",
+                autoCompleted:true,
                 required: true,
                 defaultValue: "CHIN"
             }, NationalityOptions));
@@ -663,6 +695,7 @@
                 id: "lateSpouseBirthCountry",
                 name: "lateSpouseBirthCountry",
                 title: "请选择国家",
+                autoCompleted:true,
                 required: true,
                 defaultValue: "CHIN"
             }, CountryOptions));

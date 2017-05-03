@@ -4,14 +4,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>签证资料填写-基本信息</title>
-    <link href="css/common.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/vsia_common_form.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/visa_nav.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/iF.step.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/loading.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/lib/se/reference.js"></script>    
     <script type="text/javascript" src="js/lib/se/visa_common_form.js"></script>  
- 
     <script type="text/javascript">
         $().ready(function() {
             var options = {
@@ -192,7 +186,10 @@
                     </div>
                     <div class="field-container">
                         <label class="field-title">出生日期</label>
-                        <input id="birthday" name="birthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                        <input id="birthday" name="birthday" data-input-type="date" type="hidden"  />
+                        <span><input id="birthday-year" class="text-date-input date-year" required/><span>年</span></span>
+                        <span><input id="birthday-month" class="text-date-input date-month" required/><span>月</span></span>
+                        <span><input id="birthday-day" class="text-date-input date-day" required/><span>日</span></span>
                     </div>
                     <div class="field-container">
                         <label for="birthCity" class="field-title">出生城市</label>
@@ -301,6 +298,7 @@
                                 id: "homeCountry",
                                 name: "homeCountry",
                                 title: "请选择国家！",
+                                autoCompleted:true,
                                 required: true,
                                 defaultValue: "CHIN"
                             }, $(window).data("countries")));
@@ -342,6 +340,7 @@
                                         id: "maillingCountry",
                                         name: "maillingCountry",
                                         title: "请选择国家",
+                                        autoCompleted:true,
                                         required: true,
                                         defaultValue: "CHIN"
                                     }, CountryOptions));
@@ -352,8 +351,6 @@
                     <div class="field-container">
                         <label for="firstPhone" class="field-title">首选电话号码</label>
                         <input type="text" id="firstPhone" name="firstPhone" class="text-input phone" />
-                        <input type="checkbox" id="notHaveFirstPhone" name="notHaveFirstPhone" value="Y" />
-                        <label for="notHaveFirstPhone">没有/无法提供</label>
                     </div>
                     <div class="field-container">
                         <label for="reservePhone" class="field-title">备选电话号码</label>
@@ -393,7 +390,7 @@
 <script id="other-nationality-template" type="text/html">
     <div class="repeat">
         <div class="field-container">
-            <label for="otherNationality" class="field-title">其他国籍</label> {{#nationalities | select:{id:"otherNationality",name:"otherNationality",title:"请选择国籍！",required:true} }}
+            <label for="otherNationality" class="field-title">其他国籍</label> {{#nationalities | select:{id:"otherNationality",name:"otherNationality",autoCompleted:true,title:"请选择国籍！",required:true} }}
         </div>
         <div class="field-container">
             <label class="field-title">您是否拥此国家或地区（国籍）的护照？</label>
@@ -413,7 +410,7 @@
 <script id="permanentCountry-template" type="text/html">
     <div class="repeat">
         <div class="field-container">
-            <label for="permanent" class="field-title">国家</label> {{#countries | select:{id:"permanentCountry",name:"permanentCountry",title:"请选择国家！",required:true} }}
+            <label for="permanent" class="field-title">国家</label> {{#countries | select:{id:"permanentCountry",name:"permanentCountry",title:"请选择国家！",autoCompleted:true,required:true} }}
         </div>
     </div>
 </script>

@@ -4,11 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>签证资料填写-亲属信息</title>
-    <link href="css/common.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/vsia_common_form.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/visa_nav.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/iF.step.css" rel="stylesheet" type="text/css" />  
-    <link href="css/lib/se/loading.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="js/lib/se/reference.js"></script>    
     <script type="text/javascript" src="js/lib/se/visa_common_form.js"></script>   
     <script type="text/javascript">
@@ -31,9 +26,6 @@
                 }
             };
             var formHelper = new VisaFormHelper(options);
-            formHelper.init();
-            formHelper.bindEvents();
-            formHelper.loadFormData();
             formHelper.getTabOp=function(page){
                 var curIndex=this.pages.indexOf(this.curPage);
                 var tabIndex=this.pages.indexOf(page);
@@ -42,6 +34,15 @@
                 }
                 return null;
             }
+            formHelper.init();
+            formHelper.bindEvents();
+            formHelper.loadFormData();
+            if(usUtil.isWETInfoHidden(formHelper.data)){
+                $("#nextBtn").data("next-url","loadOtherInfo");
+                 formHelper.nextUrl="loadOtherInfo";
+                 $("#nextBtn").html("下一步:补充信息");
+            } 
+
             if (usUtil.isSingle(formHelper.data)) {
                 $("#spouseArea").hide();
             } else if (usUtil.isMarried(formHelper.data)) {
@@ -149,7 +150,7 @@
             <form id="visa-form" action="">
                 <input id="para-country" type="hidden" name="para.country" value="us" />
                 <input id="para-page-type" type="hidden" name="para.pageType" value="" />
-                <input id="para-op" type="hidden" name="para.op" value="update" />
+                <input id="para-op" type="hidden" name="para.op" value="add" />
                 <input id="para-form-id" type="hidden" name="para.formId" value="" />
                 <input id="para-form-num" type="hidden" name="para.formSerialNum" value="" />
                 <input id="para-progress" type="hidden" name="para.progress" value="R" />
@@ -171,7 +172,12 @@
                     </div>
                     <div class="field-container">
                         <label class="field-title">父亲的出生日期</label>
-                        <input id="fatherBirthday" name="fatherBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                        <input id="fatherBirthday" name="fatherBirthday" data-input-type="date" type="hidden" />
+                        <span><input id="fatherBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+                        <span><input id="fatherBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+                        <span><input id="fatherBirthday-day" class="text-date-input date-day"/><span>日</span></span>
+                        <input type="checkbox" id="notFatherBirthday" name="notFatherBirthday" value="Y" class="align-middle" />
+                        <label for="notFatherBirthday" class="align-middle">无法提供</label>
                     </div>
                     <div class="field-container">
                         <label class="field-title">您的父亲是否在美国？</label>
@@ -212,7 +218,12 @@
                     </div>
                     <div class="field-container">
                         <label class="field-title">母亲的出生日期</label>
-                        <input id="motherBirthday" name="motherBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                        <input id="motherBirthday" name="motherBirthday" data-input-type="date" type="hidden" />
+                        <span><input id="motherBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+                        <span><input id="motherBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+                        <span><input id="motherBirthday-day" class="text-date-input date-day"/><span>日</span></span>
+                        <input type="checkbox" id="notMotherBirthday" name="notMotherBirthday" value="Y" class="align-middle" />
+                        <label for="notMotherBirthday" class="align-middle">无法提供</label>
                     </div>
                     <div class="field-container">
                         <label class="field-title">您的母亲是否在美国？</label>
@@ -341,7 +352,10 @@
     </div>
     <div class="field-container">
         <label class="field-title">配偶的出生日期</label>
-        <input id="spouseBirthday" name="spouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+        <input id="spouseBirthday" name="spouseBirthday" data-input-type="date" type="hidden" />
+        <span><input id="spouseBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+        <span><input id="spouseBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+        <span><input id="spouseBirthday-day" class="text-date-input date-day"/><span>日</span></span>
     </div>
     <div class="field-container">
         <label class="field-title">配偶的国籍</label>
@@ -350,6 +364,7 @@
                 id: "spouseNationality",
                 name: "spouseNationality",
                 title: "请选择国籍",
+                autoCompleted:true,
                 required: true,
                 defaultValue: "CHIN"
             }, NationalityOptions));
@@ -369,6 +384,7 @@
                 name: "spouseBirthCountry",
                 title: "请选择国家",
                 required: true,
+                autoCompleted:true,
                 defaultValue: "CHIN"
             }, CountryOptions));
         </script>
@@ -414,6 +430,7 @@
                         name: "spouseCountry",
                         title: "请选择国家",
                         required: true,
+                        autoCompleted:true,
                         defaultValue: "CHIN"
                     }, CountryOptions));
                 </script>
@@ -434,10 +451,13 @@
         </div>
         <div class="field-container">
             <label class="field-title">配偶的出生日期</label>
-            <input id="spouseBirthday" name="spouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="spouseBirthday" name="spouseBirthday" data-input-type="date" type="hidden" />
+            <span><input id="spouseBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="spouseBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="spouseBirthday-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
         <div class="field-container">
-            <label for="spouseNationality" class="field-title">配偶的国籍</label> {{#nationalities | select:{id:"spouseNationality",name:"spouseNationality",defaultValue: "CHIN",title:"请选择国籍！",required:true} }}
+            <label for="spouseNationality" class="field-title">配偶的国籍</label> {{#nationalities | select:{id:"spouseNationality",name:"spouseNationality",defaultValue: "CHIN",title:"请选择国籍！",autoCompleted:true,required:true} }}
         </div>
         <div class="field-container">
             <label for="spouseBirthCity" class="field-title">配偶的出生城市</label>
@@ -446,15 +466,21 @@
             <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
         </div>
         <div class="field-container">
-            <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label> {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:"CHIN",title:"请选择国家！",required:true} }}
+            <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label> {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:"CHIN",title:"请选择国家！",autoCompleted:true,required:true} }}
         </div>
         <div class="field-container">
             <label class="field-title">结婚日期</label>
-            <input id="marriageDate" name="marriageDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="marriageDate" name="marriageDate" data-input-type="date" type="hidden" />
+            <span><input id="marriageDate-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="marriageDate-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="marriageDate-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
         <div class="field-container">
             <label class="field-title">离婚日期</label>
-            <input id="divorceDate" name="divorceDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="divorceDate" name="divorceDate" data-input-type="date" type="hidden" />
+            <span><input id="divorceDate-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="divorceDate-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="divorceDate-day" class="text-date-input date-day"/><span>日</span></span>
         </div>
         <div class="field-container">
             <label for="divorceReason" class="field-title">离婚原因</label>
@@ -476,8 +502,11 @@
         <input type="text" required id="lateSpouseGivenName" name="lateSpouseGivenName" class="text-input" />
     </div>
     <div class="field-container">
-        <label class="field-title">配偶的出生日期</label>
-        <input id="lateSpouseBirthday" name="lateSpouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <label class="field-title">配偶的出生日期</label>
+            <input id="lateSpouseBirthday" name="lateSpouseBirthday" data-input-type="date" type="hidden" />
+            <span><input id="lateSpouseBirthday-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="lateSpouseBirthday-month" class="text-date-input date-month"/><span>月</span></span>
+            <span><input id="lateSpouseBirthday-day" class="text-date-input date-day"/><span>日</span></span>
     </div>
     <div class="field-container">
         <label for="lateSpouseNationality" class="field-title">配偶的国籍</label>
@@ -487,6 +516,7 @@
                 name: "lateSpouseNationality",
                 title: "请选择国籍",
                 required: true,
+                autoCompleted:true,
                 defaultValue: "CHIN"
             }, NationalityOptions));
         </script>
@@ -505,6 +535,7 @@
                 name: "lateSpouseBirthCountry",
                 title: "请选择国家",
                 required: true,
+                autoCompleted:true,
                 defaultValue: "CHIN"
             }, CountryOptions));
         </script>

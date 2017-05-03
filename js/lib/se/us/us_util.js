@@ -37,6 +37,21 @@ var usUtil = {
             throw "无出生日期，无法判断是否为小孩";
         }
     },
+    isWETInfoHidden:function(form){
+        if(usUtil.isChild(form)){
+            $("[data-page='E']").attr("class","hidden");
+            $("ol li:eq(3)").remove();
+            $("ol").attr("class","ui-step ui-step-5");
+               for(i=0;i<$(".ui-step-cont-number").length;i++){
+                    $(".ui-step-cont-number:eq("+i+")").html(i+1);
+              }
+            return true;
+        }else{
+            return false;
+        }
+        
+    },
+
     getTapOp:function(form,page){
         var tapOpFns={
             "P":function(){

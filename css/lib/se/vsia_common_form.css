@@ -8,6 +8,10 @@ body * {
     font-size: 16px;
 }
 
+a:focus {  
+    outline:none;  
+}
+
 .clear {
     clear: both;
 }
@@ -148,7 +152,7 @@ div.table-form label.error {
 /****/
 .wrapper{
 
-    width: 900px;
+    width: 1000px;
     height: auto;
     position: relative;
     top: 20px;
@@ -178,3 +182,54 @@ div.table-form label.error {
     margin-top: 30px;
     margin-left: -62px;
 }
+.text-date-input{
+    width: 65px;
+    height: 25px;
+    text-align: right;
+}
+.auto-completed{
+    width: 260px;
+    height: 28px;
+}
+.ui-autocomplete {
+    padding: 0;
+    list-style: none;
+    background-color: #fff;
+    width: 218px;
+    border: 1px solid #B0BECA;
+    max-height: 350px;
+    overflow-x: hidden;
+}
+.ui-autocomplete .ui-menu-item {
+    border-top: 1px solid #B0BECA;
+    display: block;
+    padding: 4px 6px;
+    color: #353D44;
+    cursor: pointer;
+}
+.ui-autocomplete .ui-menu-item:first-child {
+    border-top: none;
+}
+.ui-autocomplete .ui-menu-item.ui-state-focus {
+    background-color: #D5E5F4;
+    color: #161A1C;
+}
+.ui-helper-hidden-accessible{
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+/*.repeat{
+    height: auto;
+    background-color: white;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-right: 50px;
+    margin-left: 10px
+}*/

@@ -1,7 +1,8 @@
  
 function  Constants(){}
 Constants.ADD="add";
-Constants.UPDATE="update";
+Constants.UPDATE="modify";
+Constants.VIEW="view";
 Constants.COMPLETED="completed";
 Constants.CHECK="checking";
 
@@ -15,8 +16,11 @@ Constants.CHECK="checking";
                      $(input).prop("disabled", true);
                      $(input).val("");
                      $(this).siblings("label.error").remove();
+                     $(this).siblings("span").find("label.error").remove();
+                     $(this).siblings("span").find("input.text-date-input").val("").prop("disabled", true);
                  } else {
                      $(input).prop("disabled", false);
+                     $(this).siblings("span").find("input.text-date-input").prop("disabled", false);
                  }
              }
          });
@@ -29,6 +33,7 @@ Constants.CHECK="checking";
              if (count == 0) {
                  var $clone = visaCommon.repeat(templateId, count);
                  $clone.insertBefore($controlMenu);
+                 autoComplete();
                  $counter.val(1);
              }
          });
@@ -77,6 +82,7 @@ Constants.CHECK="checking";
                      templateId = $container.parent().children(expr).data("tpl-id");
                  var $clone = visaCommon.repeat(templateId, count);
                  $clone.hide().insertBefore($controlMenu);
+                 autoComplete();
                  $clone.show(300);
                  $counter.val(count + 1);
              });
@@ -124,19 +130,37 @@ Constants.CHECK="checking";
      },
      renderSelect: function(settings, listOptions) {
          var selectSource =
-             "<select id=\"{{id}}\" name=\"{{name}}\" title=\"{{title}}\" style='{{style}}'  {{conditioned && 'data-show-condition'}} {{if required}} required {{/if}}>" +
-             "<option value=''>--请选择--</option>" +
+             "<select id=\"{{id}}\" name=\"{{name}}\" title=\"{{title}}\" style='{{style}}' {{autoCompleted &&  'class=auto-completed' }} {{conditioned && 'data-show-condition'}} {{if required}} required {{/if}}>" +
+             "<option value='' {{!defaultValue && 'selected=\"selected\"'}} >--请选择--</option>" +
              "{{each list as op index}}" +
              "  {{if  defaultValue==op.value }}" +
-             "    <option value=\"{{op.value}}\"  data-show-area='{{op.showArea}}' selected=\"selected\">{{op.text}}</option>" +
+             "    <option value=\"{{op.value}}\" {{if op.pinyin}} data-alternative-spellings='{{op.pinyin}}' {{/if}} {{if op.showArea}}  data-show-area='{{op.showArea}}' {{/if}} selected=\"selected\">{{op.text}}</option>" +
              "  {{else}}" +
-             "     <option value=\"{{op.value}}\" data-show-area='{{op.showArea}}' >{{op.text}}</option>" +
+             "     <option value=\"{{op.value}}\" {{if op.pinyin}} data-alternative-spellings='{{op.pinyin}}' {{/if}} {{if op.showArea}}  data-show-area='{{op.showArea}}' {{/if}} >{{op.text}}</option>" +
              "    {{/if}}" +
              "{{/each}}" +
              "</select>";
          settings.list = listOptions;
          var render = template.compile(selectSource);
          return render(settings);
+     },
+     fillAllHiddenDate:function(){
+         $("input[data-input-type='date']").each(function(){
+             var $year=$(this).siblings("span").find("input.date-year");
+             var $month=$(this).siblings("span").find("input.date-month");
+             var $day=$(this).siblings("span").find("input.date-day");
+             var dateValue="";
+             if($year.val()){
+                 dateValue=$year.val();
+             }
+            if($month.val()){
+                 dateValue+="-"+$month.val();
+             }
+            if($month.val() && $day.val()){
+                  dateValue+="-"+$day.val();
+             }
+             $(this).val(dateValue||"---");
+         })
      },
      createLayer:function(layerId,tipId){
        var layerHtml="<div id=\""+layerId+"\" class=\"loading-shown hidden\">"+
@@ -148,7 +172,27 @@ Constants.CHECK="checking";
      layer:function(msg){
         msg && $("#loading-tip").html(msg);
         $("body").loading("toggle");
+     },
+     showInfo:function(msg,delay,callback){
+        ZENG.msgbox.show(msg,1,delay,callback);
+     },
+     showSuccess:function(msg,delay,callback){
+        ZENG.msgbox.show(msg,4,delay,callback);
+     },
+     showError:function(msg,delay,callback){
+        ZENG.msgbox.show(msg,5,delay,callback);
+     },
+     showLoading:function(msg,delay,callback){
+         ZENG.msgbox.show(msg,6,delay,callback);
+     },
+     hideTip:function(timeout,callback){
+         ZENG.msgbox.hide(timeout,callback);
      }
+ }
+ function autoComplete(){
+    $("select.auto-completed").selectToAutocomplete();
+    $("select.auto-completed").css("display","none")
+    utils.setFormDefault(document.forms[0]);
  }
 
  template.helper("select", function(listOptions, settings) {
@@ -157,6 +201,31 @@ Constants.CHECK="checking";
  template.helper("join",function(array){
    return array.join(",");
  })
+
+ template.helper("renderDate",function(date,options){
+     var data={ name:"",
+                date:{
+                    year:{value:"",required:true},
+                    month:{value:"",required:false},
+                    day:{value:"",required:false}
+                },
+                fullDate:""
+            };
+      data.name = options.name;
+      if(date && typeof date==="string"){
+            var arr=date.split("-");
+            data.date.year = {value:arr[0] ||"",required:options.year || true};
+            data.date.month = {value:arr[1] ||"",required:options.month || false};
+            data.date.day = {value:arr[2] ||"",required:options.day || false};
+            data.fullDate=date;
+     }
+     var dateSource="<input id=\"{{name}}\" name=\"{{name}}\" value=\"{{fullDate && fullDate}}\" data-input-type=\"date\" type=\"hidden\"  />"+
+                    "<span><input id=\"{{name}}-year\" value=\"{{date.year.value}}\" class=\"text-date-input date-year\" {{date.year.required && 'required'}}/><span>年</span></span>"+
+                    "<span><input id=\"{{name}}-month\" value=\"{{date.month.value}}\" class=\"text-date-input date-month\" {{date.month.required && 'required'}}/><span>月</span></span>"+
+                    "<span><input id=\"{{name}}-day\" value=\"{{date.day.value}}\" class=\"text-date-input date-day\" {{date.day.required && 'required'}}/><span>日</span></span>";
+     var render = template.compile(dateSource);
+     return render(data);
+ });
 
  var utils = {
      isYes: function(e) {
@@ -186,7 +255,7 @@ Constants.CHECK="checking";
      getQuery: function(q, url) {
          if (!url) url = window.location + '';
          else url += '';
-         var reg = new RegExp("[#?&](" + q + ")=([^&]+)", "i");
+         var reg = new RegExp("[?&](" + q + ")=([^#&]+)", "i");
          var re = reg.exec(url);
          if (re) return unescape(re[2]);
          else return "";
@@ -215,6 +284,26 @@ Constants.CHECK="checking";
             }
         }
         return false;
+     },
+     setFormDefault:function(form){
+        for (var i = 0; i < form.elements.length; i++) {
+            var element = form.elements[i];
+            var type = element.type;
+            if (type == "checkbox" || type == "radio") {
+                if(element.checked) element.defaultChecked=element.checked;
+             }   
+            else if (type == "hidden" || type == "password" ||
+                    type == "text" || type == "textarea") {
+                element.defaultValue=element.value
+             }
+            else if (type == "select-one" || type == "select-multiple") {
+                for (var j = 0; j < element.options.length; j++) {
+                    if (element.options[j].selected) {
+                        element.options[j].defaultSelected =element.options[j].selected
+                    }
+                }
+            }
+        }
      }
  };
 
@@ -225,12 +314,12 @@ Constants.CHECK="checking";
      visaForm: "#visa-form",
      nav:"#tab-nav",
      postUrl: "collect",
-     loadDataUrl:"http://localhost:9615/result.json",//"ajaxLoadVisaFormData",
+     loadDataUrl:"ajaxLoadVisaFormData",
      saveBtn: "#saveBtn",
      nextBtn: "#nextBtn",
      preBtn: "#preBtn",
      checkBtn: "#checkBtn",
-     saveTipMessage: "当前页面数据已修改，是否要保存当前页面数据?\n\点击\"是\"保存,\"取消\"则不保存",
+     saveTipMessage: "当前页面数据已修改，是否要保存当前页面数据?\n\n\点击\“是\”保存,\“取消\”放弃保存",
      curPage:null,
      pages:[],
      validateOptions: {}
@@ -243,13 +332,13 @@ Constants.CHECK="checking";
          formId && $("#para-form-id").val(formId);
          var operation = utils.getQuery("op");
          operation && $("#para-op").val(operation);
-         var progress= utils.getQuery("op");
-         progress==Constants.COMPLETED && $("#para-progress").val(progress);
+         this.curProgress= utils.getQuery("progress");
+         this.completed=this.curProgress==Constants.COMPLETED;
          var cfgId=utils.getQuery("cfgId");
          cfgId && $("#para-cfgId").val(cfgId);
          this.visaForm=$(this.settings.visaForm);
          this.saved=false;
-         this.isInCheck=utils.getQuery("checking")=="true";
+         this.checking=utils.getQuery("checking")=="true";
          this.isLastStep=$("#para-lastStep").length>0 && $("#para-lastStep").val()=="true";
          this.curPage=this.settings.curPage;
          this.pages=this.settings.pages;
@@ -266,29 +355,41 @@ Constants.CHECK="checking";
              cfgId:$("#para-cfgId").val(cfgId)
          }
          this.ajaxSetting();
-         this.completed=this.basePara.progress==Constants.COMPLETED;
-         if(this.isInCheck && this.isLastStep){
+         if(this.checking && this.isLastStep){
              $(this.settings.checkBtn).parent().show();
          }
+         var curIndex=this.pages.indexOf(this.curPage);
+         this.activeTap(curIndex);
          if(this.completed){
              $("div.step-indicator ol li").addClass("step-done");
-         }else if(this.isInCheck){
+         }else if(this.checking){
              $("div.step-indicator ol li:last").addClass("step-active")
              .prevAll().addClass("step-done");
              $(this.settings.nav).text("已进入表单检查模式").removeClass().addClass("check-mode-title").children().remove()
-         }
+        }
          else{
-             var curIndex=this.pages.indexOf(this.curPage);
-             var curIndicator=$("div.step-indicator ol li:eq("+curIndex+")");
-             curIndicator.addClass("step-active");
-             curIndicator.prevAll().addClass("step-done");
+            this.activeStep(curIndex);
          }
+         if(this.isViewAction()){
+             $("div.operate-menu-area").remove();
+         }
+     },
+     activeTap:function(curIndex){
+        var menu=$(".nav > ul > li:eq("+curIndex+")");
+        menu.addClass("active").siblings().removeClass("active");
+     },
+     activeStep:function(curIndex){
+        var curIndicator=$("div.step-indicator ol li:eq("+curIndex+")");
+        curIndicator.addClass("step-active");
+        curIndicator.prevAll().addClass("step-done");
      },
      ajaxSetting:function(){
          $(document).ajaxStart(function(){
-             visaCommon.layer("请求处理中...");
-          }).ajaxComplete(function(){
-              visaCommon.layer();
+        	 
+          }).ajaxSuccess(function(){
+              //visaCommon.hideTip(600);
+         }).ajaxError(function(){
+             visaCommon.showError("请求发生错误！",3000);
          });
      },
      bindEvents: function() {
@@ -305,7 +406,7 @@ Constants.CHECK="checking";
          $(this.settings.nav+" ul li a").click(function(){
             _self.onSwitchTab($(this));
          })
-        $(this.settings.checkBtn) && $(this.settings.preBtn).click(function() {
+        $(this.settings.checkBtn) && $(this.settings.checkBtn).click(function() {
              _self.completeCheck();
          })
      },
@@ -316,19 +417,22 @@ Constants.CHECK="checking";
          var _self = this;
          var result = { success: false, code: "-1", data: {}, message: null };
          var formId = formId || this.basePara.formId;
+         !_self.isAddAction() && visaCommon.showLoading("数据拉取中，请稍后...");
          $.ajax({
-             type: "GET",
+             type: "POST",
              url: this.settings.loadDataUrl,
-             data: null,//"formId=" + formId + "&time=" + new Date().toTimeString(),
+             data:"formId=" + formId + "&time=" + new Date().toTimeString(),
              dataType: "JSON",
              async: false,
              success: function(response) {
+
                  $.extend(result, response);
                  if (result.success) {
                      _self.data = $.parseJSON(result.data);
                      $(window).data("form", _self.data);
+                     visaCommon.hideTip(600);
                  } else {
-                     alert("获取签证资料表单数据错误！");
+                     visaCommon.showError("获取签证资料表单数据错误！",1500);
                  }
              }
          });
@@ -339,16 +443,19 @@ Constants.CHECK="checking";
              var bindId=$(this).attr("id");
              var $area = $(visaCommon.render(bindId, $(window).data()));
              $(_self.settings.visaForm).append($area);
-         })
+         }) 
+         autoComplete();
      },
      submit: function() {
          var _self = this;
+         visaCommon.fillAllHiddenDate();
          if (!_self.fullChecked()) {
-             alert("页面数据填写未校验通过，请根据提示完善信息！");
+             visaCommon.showInfo("页面数据填写未校验通过，请根据提示完善信息！",1400);
              return null;
          }
          var formData = $(_self.settings.visaForm).serialize();
          var result = { success: false, code: "-1", data: { formId: 0 }, message: null };
+         visaCommon.showLoading("数据保存中，请稍后...");
          $.ajax({
              type: "POST",
              url: _self.settings.postUrl,
@@ -357,26 +464,32 @@ Constants.CHECK="checking";
              success: function(response) {
                  $.extend(result, $.parseJSON(response));
                  if (result.success) {
-                     _self.saved=true;
+                	 if (_self.isAddAction()) { //添加操作成功后修改基础参数
+                        $("#para-op").val("modify");
+                        $("#para-form-id").val(result.data.formId);
+                        _self.basePara.op =Constants.UPDATE;
+                        _self.basePara.formId = result.data.formId;
+                        _self.saved=true;
+                    }
+                    utils.setFormDefault(_self.visaForm.get(0));
+                    visaCommon.hideTip();
                  }
              }
          })
          return result;
      },
      save: function() {
+         if(this.saved && !utils.formIsDirty(this.visaForm.get(0))){
+             visaCommon.showInfo("当前没有做任何修改",1400);
+             return;
+         }
          var result = this.submit();
          if (!result) return;
          if (result.success) {
-             if (this.isAddAction()) { //添加操作成功后修改基础参数
-                 $("#para-op").val("update");
-                 $("#para-form-id").val(result.data.formId);
-                 this.basePara.op =Constants.UPDATE;
-                 this.basePara.formId = result.data.formId;
-             }
              if(!this.isLastStep){
-                 alert("保存成功！");
-             }else if(this.isLastStep && !this.isInCheck){
-                if(confirm("保存成功，是否开始检查?")){
+                visaCommon.showSuccess("保存成功！",1200);
+             }else if(this.isLastStep && !this.checking){
+                if(confirm("保存成功，是否开始检查？\n\n点击“是”进入检查模式，“取消”则跳过检查完成提交!")){
                     var params={
                             formId:this.basePara.formId,
                             progress:this.basePara.progress,
@@ -384,93 +497,127 @@ Constants.CHECK="checking";
                             checking:true
                         }
                     location.href="loadPersonalInfo?"+$.param(params);
+                }else{
+                    this.completeCheck();
                 }
             }
          } else {
-             alert("当前页面数据保存失败！");
+             visaCommon.showError("当前页面数据保存失败！",1200);
          }
      },
      goPre: function() {
-         var result = this.submit();
-         if (!result) return;
-         if (result.success) {
-             var params={
-                 formId:this.basePara.formId,
-                 progress:this.basePara.progress,
-                 op:Constants.UPDATE,
-                 checking:this.isInCheck
-             }
-             location.href=this.preUrl +"?"+$.param(params);
-         } else {
-             alert("当前页面数据保存失败，无法进入上一步！");
-         }
+        var _self=this;
+        var redirect=function(){
+            var params={
+                    formId:_self.basePara.formId,
+                    progress: _self.completed?Constants.COMPLETED:_self.basePara.progress,
+                    op:Constants.UPDATE,
+                    checking:_self.checking
+                }
+             location.href=_self.preUrl +"?"+$.param(params);
+        }
+        if(utils.formIsDirty(_self.visaForm.get(0))){
+            var result = this.submit();
+            if (!result) return;
+            if(result.success){
+               visaCommon.showSuccess("保存成功！",1200,redirect);
+               return;
+            }else{
+                visaCommon.showError("当前页面数据保存失败，无法进入上一步！",1200);
+                return;
+            }
+        }else{
+            redirect();
+        }
      },
      goNext: function() {
-         var result = this.submit();
-         if (!result) return;
-         if (result.success) {
+         var _self=this;
+         var redirect=function(){
              var params={
-                 formId:result.data.formId || this.basePara.formId,
-                 progress:this.basePara.progress,
-                 op:this.getNextOp(),
-                 checking:this.isInCheck
+                 formId:_self.basePara.formId,
+                 progress: _self.completed?Constants.COMPLETED:_self.basePara.progress,
+                 op:_self.getNextOp(),
+                 checking:_self.checking
              }
-             location.href = this.nextUrl +"?"+$.param(params);
-         } else {
-             alert("当前页面数据保存失败，无法进入下一步！");
+             location.href=_self.nextUrl +"?"+$.param(params);
+         }
+         if(utils.formIsDirty(_self.visaForm.get(0))){
+            var result = this.submit();
+            if (!result) return;
+            if (result.success) {
+                visaCommon.showSuccess("保存成功！",1200,redirect);
+                return;
+            } else {
+                visaCommon.showError("当前页面数据保存失败，无法进入下一步！",1200);
+                return;
+            }
+         }else{
+             redirect();
          }
      },
      onSwitchTab: function(tab) {
-
+         var _self = this;
          var tabUrl = $(tab).parents("li[data-tab-url]").data("tab-url");
          var page=$(tab).parents("li[data-tab-url]").data("page");
          var scrollId=$(tab).data("scroll-id");
          if(this.settings.curPage==page) return;
-         if(this.isInCheck) {
-             alert("您已经进入检查模式,无法切换页面，请通过【上/下】一步顺序检查！");
+         if(this.checking) {
+             visaCommon.showInfo("您已经进入检查模式,无法切换页面，请通过【上/下】一步顺序检查！",1200);
              return;
          }
          var tabOp=this.getTabOp(page);
          if(!tabOp) {
-             alert("不能切换到此页面，请点击下一步顺序填写");
+             visaCommon.showInfo("不能切换到此页面，请点击下一步顺序填写！",1200);
              return;
          }
-         if(!this.saved && utils.formIsDirty(this.visaForm.get(0))){
+         var redirect=function(){
+            var params={
+                formId: _self.basePara.formId,
+                progress: _self.completed?Constants.COMPLETED:_self.basePara.progress,
+                op:_self.isViewAction()?Constants.VIEW:tabOp
+            }
+           location.href = tabUrl + "?"+$.param(params)+(scrollId?"#"+scrollId:"");
+         }
+         if(!this.isViewAction() && utils.formIsDirty(this.visaForm.get(0))){
              if(confirm(this.settings.saveTipMessage)){
                 var result = this.submit();
                 if (!result) return;
-                if (!result.success){
-                    alert("当前页面数据保存失败，无法切换页面！");
+                if (result.success){
+                    visaCommon.showSuccess("保存成功！",1200,redirect);
+                }else{
+                    visaCommon.showError("当前页面数据保存失败，无法切换页面！",1200);
                     return;
                 }
+             }else{
+                 redirect();
              }
+         }else{
+             redirect();
          }
-         var params={
-            formId: this.basePara.formId,
-            progress: this.basePara.progress,
-            op:tabOp
-         }
-         location.href = tabUrl + "?"+$.param(params)+(scrollId?"#"+scrollId:"");
      },
      completeCheck: function() {
          var _self=this;
          if(!_self.completed){
             var result = { success: false, code: "-1", data: { formId: 0 }, message: null };
+            visaCommon.showInfo("正在提交中...");
             $.ajax({
                 type: "POST",
                 url: "completeFillCheck",
                 data: {formId:_self.basePara.formId,time:new Date().toTimeString()},
-                async: true,
+                async: false,
                 success: function(response) {
                     $.extend(result, $.parseJSON(response));
                     if (result.success) {
-                        alert("完成检查提交成功！");
-                        location.href="loadVisaFormDataList";
+                        visaCommon.showSuccess("完成填写提交成功！",1200,function(){
+                            location.href="loadVisaFormDataList";
+                        });
                     }else{
-                        alert("更新检查状态失败，请稍后重试！");
+                        visaCommon.showError("更新检查状态失败，请稍后重试！",1200);
                     }
                 }
             })
+        }else{
+        	location.href="loadVisaFormDataList";
         }
      },
      isAddAction: function() {
@@ -478,6 +625,9 @@ Constants.CHECK="checking";
      },
      isUpdateAction: function() {
          return this.basePara.op && this.basePara.op == Constants.UPDATE && this.basePara.formId;
+     },
+     isViewAction:function(){
+        return this.basePara.op && this.basePara.op == Constants.VIEW ;
      },
      havaPreSetp: function() {
          return $(this.settings.preBtn) && $(this.settings.preBtn).length == 1;
@@ -490,13 +640,10 @@ Constants.CHECK="checking";
      },
      getTabOp:function(page){
         return null;
-     },
-     isCompelted:function(){
-         return this.basePara.progress==Constants.COMPLETED
      }
  };
 
- (function() {
+ (function($) {
      $(document).ready(function() {
          visaCommon.attachChangeEvent();
          visaCommon.attachAddDelEvent();
@@ -508,11 +655,21 @@ Constants.CHECK="checking";
              return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value);
          }, '请输入正确的身份证号');
          $.validator.addMethod("passport", function(value) {
-             return /(^1[45][0-9]{7}|G[0-9]{8}|P[0-9]{7}|S[0-9]{7,8}|D[0-9]+$)/.test(value);
+             return /(^1[45][0-9]{7}|[GE][0-9]{8}|P[0-9]{7}|S[0-9]{7,8}|D[0-9]+$)/.test(value);
          }, '请输入正确的护照号');
          $.validator.addMethod("english", function(value) {
-             return /^([A-Za-z]+(\s)?[A-Za-z]+)+$/.test(value);
+             return /^([A-Za-z-0-9]+(\s)?([A-Za-z-0-9])?[^\s].)+$/.test(value);
          }, '请输入英文,单词之间空格不能多于1个!');
+
+         $.validator.addMethod("year", function(value) {
+             return /^\d{4}$/.test(value);
+         }, '年份格式不正确!');
+         $.validator.addMethod("month", function(value) {
+             return /^0?[1-9]$|^[1][0-2]$/.test(value);
+         }, '月份格式不正确!');
+         $.validator.addMethod("day", function(value) {
+             return /^0?[1-9]$|^[1-2][0-9]$|^[3][0-1]$/.test(value);
+         }, '格式不正确!');
 
          $.validator.addClassRules("passport", {
              required: true,
@@ -530,12 +687,17 @@ Constants.CHECK="checking";
              required: true,
              maxlength: 88
          });
-         visaCommon.createLayer("custom-overlay","loading-tip").appendTo($("body"));
-         $.Loading.setDefaults({
-             overlay: $("#custom-overlay"),
-             onStop: function(loading) {
-                    loading.overlay.hide()
-                }
-            })
+
+         $.validator.addClassRules("date-year", {
+             required: true,
+             year: true
+         });
+         $.validator.addClassRules("date-month", {
+             month: true
+         });
+         $.validator.addClassRules("date-day", {
+             day: true
+         });
+         autoComplete();
      })
- })();
+ })(jQuery);

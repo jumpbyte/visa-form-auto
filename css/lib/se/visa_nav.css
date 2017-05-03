@@ -13,13 +13,11 @@ a {
 }
 
 .nav {
-    /*border: 2px solid #ff669b;*/
-    border-right: none;
     overflow: hidden;
-    margin-top: 30px;
-    margin-left: -62px;
     z-index: 999;
     text-align: center;
+    background-color: rgba(274, 74, 146, 1);
+    margin: 30px auto;
 }
 
 .nav ul li {
@@ -38,13 +36,18 @@ a {
     color: #fff;
 }
 
-.nav ul li a:hover {
-    color: #fff;
+.nav ul li:hover > a {
+    background-color: #CD3473
+}
+
+ul li.active a{
+    background-color: #CD3473
 }
 
 .nav ul li ul {
     position: absolute;
     display: none;
+    z-index: 999;
 }
 
 .nav ul li ul li {
@@ -56,6 +59,11 @@ a {
     border-right: none;
     border-top: 1px dotted #ccc;
     background: #ff669b;
+    
+}
+
+.nav ul li ul li a:hover{
+ background-color:rgba(274, 74, 146, 1)
 }
 
 .nav ul li:hover ul {

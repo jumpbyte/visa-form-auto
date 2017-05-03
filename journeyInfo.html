@@ -3,12 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>签证资料填写-旅程信息2222</title>
-    <link href="css/common.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/vsia_common_form.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/visa_nav.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/iF.step.css" rel="stylesheet" type="text/css" />
-    <link href="css/lib/se/loading.css" rel="stylesheet" type="text/css" />
+    <title>签证资料填写-旅程信息</title>
     <script type="text/javascript" src="js/lib/se/reference.js"></script>    
     <script type="text/javascript" src="js/lib/se/visa_common_form.js"></script>   
     <script type="text/javascript">
@@ -19,7 +14,7 @@
                 validateOptions: {
                     rules: {
                         payerEmail: {
-                            required: true,
+                            required: false,
                             email: true
                         },
                         contactEmail: {
@@ -39,8 +34,6 @@
                 }
             }
             var formHelper = new VisaFormHelper(options);
-            formHelper.init();
-            formHelper.bindEvents();
             formHelper.getTabOp=function(page){
                 var curIndex=this.pages.indexOf(this.curPage);
                 var tabIndex=this.pages.indexOf(page);
@@ -49,6 +42,11 @@
                 }
                 return null;
             }
+            formHelper.init();
+            formHelper.loadFormData();
+            formHelper.bindEvents();
+            usUtil.isWETInfoHidden(formHelper.data);
+
         });
     </script>
 </head>
@@ -141,7 +139,7 @@
         <form id="visa-form">
             <input id="para-country" type="hidden" name="para.country" value="us" />
             <input id="para-page-type" type="hidden" name="para.pageType" value="" />
-            <input id="para-op" type="hidden" name="para.op" value="update" />
+            <input id="para-op" type="hidden" name="para.op" value="add" />
             <input id="para-form-id" type="hidden" name="para.formId" value="" />
             <input id="para-form-num" type="hidden" name="para.formSerialNum" value="" />
             <input id="para-progress" type="hidden" name="para.progress" value="T" />
@@ -166,8 +164,8 @@
                 </div>
                 <div class="field-container">
                     <label for="passportBookNum" class="field-title">护照本编码</label>
-                    <input type="text" required id="passportBookNum" name="passportBookNum" class="text-input" />
-                    <input type="checkbox" id="notHavePassportBookNum" name="notHavePassportBookNum" />
+                    <input type="text" required id="passportBookNum" disabled="disabled" name="passportBookNum" class="text-input" />
+                    <input type="checkbox" id="notHavePassportBookNum" checked="checked" name="notHavePassportBookNum" />
                     <label for="notHavePassportBookNum">没有/无法提供</label>
                 </div>
                 <div class="field-container clear" style="margin-top: 10px;">
@@ -178,6 +176,7 @@
                             name: "country",
                             title: "请选国家！",
                             required: true,
+                            autoCompleted:true,
                             defaultValue: "CHIN"
                         }, CountryOptions));
                     </script>
@@ -198,17 +197,24 @@
                             name: "issuedCountry",
                             title: "请选择国家！",
                             required: true,
+                            autoCompleted:true,
                             defaultValue: "CHIN"
                         }, CountryOptions));
                     </script>
                 </div>
                 <div class="field-container">
                     <label class="field-title">签发日期</label>
-                    <input id="issuanceDate" name="issuanceDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                    <input id="issuanceDate" name="issuanceDate" data-input-type="date" type="hidden"/>
+                    <span><input id="issuanceDate-year" class="text-date-input date-year" required/><span>年</span></span>
+                    <span><input id="issuanceDate-month" class="text-date-input date-month" /><span>月</span></span>
+                    <span><input id="issuanceDate-day" class="text-date-input date-day" /><span>日</span></span>               
                 </div>
                 <div class="field-container">
                     <label class="field-title">失效日期</label>
-                    <input id="expirationDate" name="expirationDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                    <input id="expirationDate" name="expirationDate" data-input-type="date" type="hidden" />
+                    <span><input id="expirationDate-year" class="text-date-input date-year" required/><span>年</span></span>
+                    <span><input id="expirationDate-month" class="text-date-input date-month" /><span>月</span></span>
+                    <span><input id="expirationDate-day" class="text-date-input date-day" /><span>日</span></span>
                 </div>
                 <div class="field-container">
                     <label class="field-title">您的护照是否曾经遗失或被盗？</label>
@@ -264,7 +270,10 @@
                         <hr/>
                         <div class="field-container">
                             <label class="field-title">预计到达日期</label>
-                            <input id="planArrivalDate" name="planArrivalDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                            <input id="planArrivalDate" name="planArrivalDate" data-input-type="date" type="hidden"/>
+                            <span><input id="planArrivalDate-year" class="text-date-input date-year" required/><span>年</span></span>
+                            <span><input id="planArrivalDate-month" class="text-date-input date-month" /><span>月</span></span>
+                            <span><input id="planArrivalDate-day" class="text-date-input date-day" /><span>日</span></span>
                         </div>
                         <div class="field-container">
                             <label class="field-title">到达航班(选填)</label>
@@ -276,7 +285,10 @@
                         </div>
                         <div class="field-container">
                             <label class="field-title">离开日期</label>
-                            <input id="departureDate" name="departureDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                            <input id="departureDate" name="departureDate" data-input-type="date" type="hidden"/>
+                            <span><input id="departureDate-year" class="text-date-input date-year" required/><span>年</span></span>
+                            <span><input id="departureDate-month" class="text-date-input date-month" /><span>月</span></span>
+                            <span><input id="departureDate-day" class="text-date-input date-day" /><span>日</span></span>
                         </div>
                         <div class="field-container">
                             <label class="field-title">离开航班(选填)</label>
@@ -294,7 +306,10 @@
                     <div id="noPlanArea" class="area">
                         <div class="field-container">
                             <label class="field-title">预计到达日期</label>
-                            <input id="arrivalDate" name="arrivalDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                            <input id="arrivalDate" name="arrivalDate" data-input-type="date" type="hidden"/>
+                            <span><input id="arrivalDate-year" class="text-date-input date-year" required/><span>年</span></span>
+                            <span><input id="arrivalDate-month" class="text-date-input date-month" /><span>月</span></span>
+                            <span><input id="arrivalDate-day" class="text-date-input date-day" /><span>日</span></span>
                         </div>
                         <div class="field-container">
                             <label class="field-title">预计停留时间</label>
@@ -303,7 +318,7 @@
                                 <option value>--请选择--</option>
                                 <option value="D" >天</option>
                                 <option value="H" >24小时之内</option>
-                                <option value="W" >州</option>
+                                <option value="W" >周</option>
                                 <option value="M" >月</option>
                                 <option value="Y" >年</option>
                             </select>
@@ -326,6 +341,7 @@
                             id: "stayState",
                             name: "stayState",
                             title: "请选择州！",
+                            autoCompleted:true,
                             required: true,
                             defaultValue: null
                         }, StateOptions));
@@ -358,8 +374,8 @@
                             <input id="payerTel" name="payerTel" class="text-input phone" type="text" required />
                         </div>
                         <div class="field-container">
-                            <label class="field-title">电子邮箱</label>
-                            <input id="payerEmail" name="payerEmail" class="text-input" type="email" required />
+                            <label class="field-title">电子邮箱(选填)</label>
+                            <input id="payerEmail" name="payerEmail" class="text-input" type="email" />
                         </div>
                         <div class="field-container">
                             <span class="field-title">与您的关系</span>
@@ -375,12 +391,12 @@
                         </div>
                         <div class="field-container">
                             <span class="field-title">付费人的地址与您的通讯地址是否相同？</span>
-                            <input type="radio" id="isSameAddreesYes" name="isSameAddrees" value="Y" required data-is-show="N" class="align-middle" />
+                            <input type="radio" id="isSameAddreesYes" name="isSameAddrees" value="Y" checked="checked" required data-is-show="N" class="align-middle" />
                             <label for="isSameAddreesYes" class="align-middle">是</label>
-                            <input type="radio" id="isSameAddreesNo" name="isSameAddrees" value="N" data-is-show="Y" checked="checked" class="align-middle" />
+                            <input type="radio" id="isSameAddreesNo" name="isSameAddrees" value="N" data-is-show="Y"  class="align-middle" />
                             <label for="isSameAddreesNo" class="align-middle">否</label>
                             <label for="isSameAddrees" class="error"></label>
-                            <div class="area info-area two">
+                            <div class="area info-area two hidden">
                                 <div class="field-container">
                                     <label class="field-title">付费人的地址（英文）</label>
                                     <input id="payerStreet" name="payerStreet" class="text-input address" type="text" />
@@ -409,6 +425,7 @@
                                             id: "payerCountry",
                                             name: "payerCountry",
                                             title: "请选择国家！",
+                                            autoCompleted:true,
                                             required: true,
                                             defaultValue: "CHIN"
                                         }, CountryOptions));
@@ -461,6 +478,7 @@
                                         id: "orgPayerCountry",
                                         name: "orgPayerCountry",
                                         title: "请选择国家！",
+                                        autoCompleted:true,
                                         required: true,
                                         defaultValue: "CHIN"
                                     }, CountryOptions));
@@ -556,12 +574,13 @@
                                         name: "contactState",
                                         title: "请选择州！",
                                         required: true,
+                                        autoCompleted:true,
                                         defaultValue: null
                                     }, StateOptions));
                                 </script>
                             </div>
                             <div class="field-container">
-                                <label class="field-title">邮编</label>
+                                <label class="field-title">邮编(选填)</label>
                                 <input id="contactZipCode" name="contactZipCode" class="text-input" type="text" />
                             </div>
                             <div class="field-container">
@@ -626,7 +645,10 @@
                         <span class="field-title">请在下方填写以往的美国签证信息</span>
                         <div class="field-container">
                             <span class="field-title">上次获得签证日期(格式:YYYY-MM-DD)</span>
-                            <input id="lastObtainVisaDate" name="lastObtainVisaDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+                            <input id="lastObtainVisaDate" name="lastObtainVisaDate" data-input-type="date" type="hidden" />
+                            <span><input id="lastObtainVisaDate-year" class="text-date-input date-year" required/><span>年</span></span>
+                            <span><input id="lastObtainVisaDate-month" class="text-date-input date-month" /><span>月</span></span>
+                            <span><input id="lastObtainVisaDate-day" class="text-date-input date-day" /><span>日</span></span>
                         </div>
                         <div class="field-container">
                             <span class="field-title">签证号码</span>
@@ -752,7 +774,7 @@
             <input id="lostPassportNum" name="lostPassportNum" class="text-input passport" type="text" />
         </div>
         <div class="field-container">
-            <label class="field-title">签发国家</label> {{#countries | select:{id:"lostIssuedCountry",name:"lostIssuedCountry",title:"请选择国家！",defaultValue:"CHIN",required:true} }}
+            <label class="field-title">签发国家</label> {{#countries | select:{id:"lostIssuedCountry",name:"lostIssuedCountry",title:"请选择国家！",autoCompleted:true,defaultValue:"CHIN",required:true} }}
         </div>
         <div class="field-container">
             <label for="lostPassportExplain" class="field-title">解释/原因说明</label>
@@ -779,7 +801,10 @@
     <div class="repeat">
         <div class="field-container">
             <span class="field-title">抵达日期</span>
-            <input id="lastFiveArrivalDate" name="lastFiveArrivalDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+            <input id="lastFiveArrivalDate" name="lastFiveArrivalDate" data-input-type="date" type="hidden"/>
+            <span><input id="lastFiveArrivalDate-year" class="text-date-input date-year" required/><span>年</span></span>
+            <span><input id="lastFiveArrivalDate-month" class="text-date-input date-month" /><span>月</span></span>
+            <span><input id="lastFiveArrivalDate-day" class="text-date-input date-day" /><span>日</span></span>
         </div>
         <div class="field-container">
             <div class="field-container">
@@ -789,7 +814,7 @@
                     <option value>--请选择--</option>
                     <option value="D" >天</option>
                     <option value="H" >24小时之内</option>
-                    <option value="W" >州</option>
+                    <option value="W" >周</option>
                     <option value="M" >月</option>
                     <option value="Y" >年</option>
                </select>
@@ -807,7 +832,7 @@
         </div>
         <div class="field-container">
             <div class="field-container">
-                <label class="field-title">所属州</label> {{#states | select:{id:"driverState",name:"driverState",title:"请选择所属州！",required:true} }}
+                <label class="field-title">所属州</label> {{#states | select:{id:"driverState",name:"driverState",autoCompleted:true,title:"请选择所属州！",required:true} }}
             </div>
         </div>
     </div>
@@ -815,7 +840,7 @@
 
 <script id="visitedCountry-template" type="text/html">
     <div class="field-container">
-        <label for="country" class="field-title">去过的国家</label> {{#countries | select:{id:"visitedCountry",name:"visitedCountry",title:"请选择国家！",required:true} }}
+        <label for="country" class="field-title">去过的国家</label> {{#countries | select:{id:"visitedCountry",name:"visitedCountry",autoCompleted:true,title:"请选择国家！",required:true} }}
     </div>
 </script>
 
