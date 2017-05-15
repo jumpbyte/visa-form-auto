@@ -1,4 +1,0 @@
-/**
- * 定义所有页面表单列表项数据源
- */
-var RelationshipOptions = [{ value: "C", text: "子女" }, { value: "P", text: "父母" }]
