@@ -201,11 +201,16 @@
                     </div>
                     <div class="field-container">
                         <label for="birthCountry" class="field-title">出生国家</label>
-                        <select id="birthCountry" name="birthCountry">
-                        <option value="CHIN" selected="selected">中国</option>
-                        <option value="HNK">中国香港特别行政区</option>
-                        <option value="HOKO">香港BNO</option>
-                    </select>
+                        <script type="text/javascript">
+                            document.write(visaCommon.renderSelect({
+                                id: "birthCountry",
+                                name: "birthCountry",
+                                title: "请选择出生地！",
+                                autoCompleted:true,
+                                required: true,
+                                defaultValue: "CHIN"
+                            }, $(window).data("countries")));
+                        </script>
                     </div>
                     <div class="field-container">
                         <label for="nationality" class="field-title">国籍</label>

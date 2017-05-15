@@ -32,6 +32,7 @@ Constants.CHECK="checking";
                  count = Number.parseInt($counter.val());
              if (count == 0) {
                  var $clone = visaCommon.repeat(templateId, count);
+                 visaCommon.appendDelBtn($clone,count);
                  $clone.insertBefore($controlMenu);
                  autoComplete();
                  $counter.val(1);
@@ -81,6 +82,7 @@ Constants.CHECK="checking";
                      expr = "input[type='radio'][data-tpl-id]",
                      templateId = $container.parent().children(expr).data("tpl-id");
                  var $clone = visaCommon.repeat(templateId, count);
+                 visaCommon.appendDelBtn($clone,count);
                  $clone.hide().insertBefore($controlMenu);
                  autoComplete();
                  $clone.show(300);
@@ -96,6 +98,32 @@ Constants.CHECK="checking";
                  }
              });
          });
+         $(document).on("click","div.repeat a.op-delete",function(){
+            var $delItem=$(this).parent();
+            var $counter=$delItem.siblings("input[counter]");
+            var count = Number.parseInt($counter.val() || 0);
+            var index=Number.parseInt($(this).attr("item-index"));
+            if(count>1){
+                $delItem.parent().children("div.repeat").slice(index+1).each(function(i){
+                    var newIndex= i==0 ? index:++index;
+                    $(this).find("[id],a.op-delete").each(function(){
+                        if(!$(this).attr("item-index")){
+                            $(this).attr("id",$(this).attr("id") && $(this).attr("id").replace(/_\d+/g,"_"+newIndex));
+                            $(this).attr("name",$(this).attr("name") && $(this).attr("name").replace(/_\d+/g,"_"+newIndex));
+                        }else{
+                           $(this).attr("item-index",newIndex);
+                        }
+                    });
+                });
+                $delItem.hide(300,function(){$(this).remove()}) && $counter.val(count - 1);
+            }
+         })
+     },
+     appendDelBtn:function($repeat,count){
+         var delBtnHtml="<a href=\"javascript:void(0)\" class=\"op-delete\">删除</a>";
+         if($repeat.find("a.op-delete").length==0){
+            $repeat.prepend($(delBtnHtml).attr("item-index",count));
+         }
      },
      repeat: function(templateId, count) {
 
@@ -673,7 +701,6 @@ Constants.CHECK="checking";
 
          $.validator.addClassRules("passport", {
              required: true,
-             passport: true
          });
          $.validator.addClassRules("english", {
              required: true,

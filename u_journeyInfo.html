@@ -227,6 +227,8 @@
                             <div class="field-container">
                                 <label class="field-title">遗失或被盗护照的号码</label>
                                 <input id="lostPassportNum_{{i}}" name="lostPassportNum_{{i}}" value="{{item.passportNum}}" class="text-input passport" type="text" />
+                                <input type="checkbox" id="notKnowLostPassportNum_{{i}}" {{!item.passportNum && 'checked="checked"'}} name="notKnowLostPassportNum_{{i}}" value="Y">
+                                <label for="lostPassportNum">不知道</label>
                             </div>
                             <div class="field-container">
                                 <label class="field-title">签发国家</label> 
@@ -710,6 +712,8 @@
         <div class="field-container">
             <label class="field-title">遗失或被盗护照的号码</label>
             <input id="lostPassportNum" name="lostPassportNum" class="text-input passport" type="text" />
+            <input type="checkbox" id="notKnowLostPassportNum" name="notKnowLostPassportNum" value="Y">
+            <label for="lostPassportNum">不知道</label>
         </div>
         <div class="field-container">
             <label class="field-title">签发国家</label> {{#countries | select:{id:"lostIssuedCountry",name:"lostIssuedCountry",title:"请选择国家！",autoCompleted:true,defaultValue:"CHIN",required:true}

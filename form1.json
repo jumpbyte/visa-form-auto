@@ -1,0 +1,380 @@
+{
+    "formId": 11,
+    "data": {
+        "addrPhoneInfo": {
+            "email": "1477164834@qq.com",
+            "haveSecondaryPhone": true,
+            "homeAddr": {
+                "city": "beijing",
+                "country": "CHIN",
+                "isHavePostCode": true,
+                "isHaveProvince": false,
+                "postCode": "100120",
+                "province": null,
+                "street": "41903, LIUPUKANG ERQU,DESHENGMEN WAI,xicheng dist"
+            },
+            "mailingAddr": null,
+            "primaryPhone": "15901169113",
+            "sameAddress": true,
+            "secondaryPhone": "01062364243",
+            "workAddr": null,
+            "workPhone": null
+        },
+        "backgroundInfo": {
+            "abettedHumanExplain": null,
+            "abettedHumanTrafficking": false,
+            "abettedHumanTraffickingInFive": false,
+            "abortionExplain": null,
+            "additional": {
+                "belongClanOrTribe": false,
+                "clanOrTribeName": null,
+                "contributedForOrganization": false,
+                "languages": [
+                    "  chinese",
+                    "english  "
+                ],
+                "militarys": [
+                    {
+                        "branch": "army",
+                        "country": "CHIN",
+                        "from": "1996-05",
+                        "rank": "Colonel",
+                        "specialty": "no",
+                        "to": "2000-03"
+                    }
+                ],
+                "organizationName": null,
+                "rebelExplain": null,
+                "served": true,
+                "servedForRebelOrg": false,
+                "skillExplain": null,
+                "specializedSkill": false,
+                "traveledInFiveYear": true,
+                "visitedCountry": []
+            },
+            "arrestedBefore": false,
+            "arrestedExplain": null,
+            "avoidedTaxation": false,
+            "avoidedTaxationExplain": null,
+            "carriedOutFreedom": false,
+            "childCustodyExplain": null,
+            "conspiredHumanTrafficking": false,
+            "diseaseExplain": null,
+            "dragAddict": false,
+            "dragExplain": null,
+            "engagedInIllegalActivity": false,
+            "engagedInRecruitment": false,
+            "engagedTerroristActivity": false,
+            "engagedUnlawfulThing": false,
+            "financialExplain": null,
+            "freedomExplain": null,
+            "genocideExplain": null,
+            "haveDisease": false,
+            "haveMental": false,
+            "hearingExplain": null,
+            "illegalActivityExplain": null,
+            "immigrationExplain": null,
+            "immigrationFraud": false,
+            "inlaunderingExplain": null,
+            "involvedInAbortion": false,
+            "involvedInTransplantation": false,
+            "involvedInlaundering": false,
+            "killingExplain": null,
+            "lawExplain": null,
+            "mentalExplain": null,
+            "notPayForSchool": false,
+            "notPayForSchoolExplain": null,
+            "oneOfTerrorist": false,
+            "oneOfTerroristExplain": null,
+            "participatedInGenocide": false,
+            "participatedKilling": false,
+            "participatedorture": false,
+            "participatedortureExplain": null,
+            "provideFinancialForTerrorists": false,
+            "recruitmentExplain": null,
+            "terroristExplain": null,
+            "traffickingExplain": null,
+            "traffickingInFiveExplain": null,
+            "transferredToHearing": false,
+            "transplantationExplain": null,
+            "unableToHearingExplain": null,
+            "unableToHearingInFive": false,
+            "unlawfulPresence": false,
+            "unlawfulPresenceExplain": null,
+            "unlawfulThingExplain": null,
+            "violatedLaw": false,
+            "votedViolation": false,
+            "votedViolationExplain": null,
+            "withheldChildCustody": false
+        },
+        "companionInfo": {
+            "asPartOfGroup": false,
+            "companions": [
+                {
+                    "givenName": "sulan",
+                    "relationship": "F",
+                    "surnName": "zhang"
+                }
+            ],
+            "groupName": null,
+            "haveCompanion": true
+        },
+        "contactInfo": {
+            "city": "ROCK SPRINGS",
+            "email": "frankyujie@hotmail.com",
+            "givenName": "jie",
+            "notApplyEmail": false,
+            "notKnowOrganization": true,
+            "notKnowPerson": false,
+            "organizationName": null,
+            "phoneNumber": "3073894453",
+            "relationship": "R",
+            "state": "WY",
+            "street": "APT 138,2475 CASCADE DRIVE",
+            "surnName": "yu ",
+            "zipCode": "82901"
+        },
+        "deseasedSpouseInfo": {
+            "birth": {
+                "birthDate": null,
+                "city": null,
+                "country": null,
+                "province": null,
+                "sex": false
+            },
+            "peopleName": {
+                "fullName": null,
+                "givenName": null,
+                "surnName": null
+            },
+            "spouseNationality": null
+        },
+        "familyInfo": {
+            "father": {
+                "birthDate": "1921-05-05",
+                "givenName": "fan",
+                "haveGivenName": true,
+                "haveSurnName": true,
+                "identityInUS": null,
+                "inUS": false,
+                "relationWithYou": null,
+                "surnName": "yu"
+            },
+            "haveImmediateRelative": true,
+            "haveOtherRelative": false,
+            "mother": {
+                "birthDate": "1924-03-15",
+                "givenName": "zhi",
+                "haveGivenName": true,
+                "haveSurnName": true,
+                "identityInUS": null,
+                "inUS": false,
+                "relationWithYou": null,
+                "surnName": "shang"
+            },
+            "relatives": [
+                {
+                    "birthDate": null,
+                    "givenName": "jie",
+                    "haveGivenName": false,
+                    "haveSurnName": false,
+                    "identityInUS": "P",
+                    "inUS": false,
+                    "relationWithYou": "C",
+                    "surnName": "yu"
+                }
+            ]
+        },
+        "formerSpouseInfos": [
+            {
+                "birth": {
+                    "birthDate": "1956-02-08",
+                    "city": "shanxi",
+                    "country": "CHIN",
+                    "province": null,
+                    "sex": false
+                },
+                "marriageDate": "1990-01-01",
+                "marriageDateEnd": "2000-05-05",
+                "marriageEndExplain": "loss of feeling",
+                "peopleName": {
+                    "fullName": null,
+                    "givenName": "sunlan",
+                    "surnName": "zhang"
+                },
+                "spouseNationality": "CHIN",
+                "terminatedCountry": "CHIN"
+            }
+        ],
+        "fullName": "于仲元",
+        "passport": "E99569041",
+        "passportInfo": {
+            "country": "CHIN",
+            "expirationDate": "2027-04-10",
+            "haveLostBefore": true,
+            "issuanceDate": "2017-04-11",
+            "issuedCity": "beijing",
+            "issuedCountry": "CHIN",
+            "issuedProvince": "",
+            "lostInfoList": [
+                {
+                    "country": "CHIN",
+                    "explain": "lost",
+                    "passportNum": "G10231457"
+                }
+            ],
+            "passportBookNum": null,
+            "passportNum": "E99569041",
+            "type": "R"
+        },
+        "personalInfo": {
+            "birth": {
+                "birthDate": "1947-01-30",
+                "city": "liaoning",
+                "country": "CHIN",
+                "province": "liaoning",
+                "sex": true
+            },
+            "haveTelecode": true,
+            "holdOtherNationality": false,
+            "idCard": "11022719470130001X",
+            "isHaveIdCard": true,
+            "isHaveSecurityNumber": false,
+            "isHaveTaxpayerNumber": false,
+            "maritalStatus": "D",
+            "name": {
+                "fullName": "于仲元",
+                "givenName": "zhongyuan",
+                "surnName": "yu"
+            },
+            "nationalities": null,
+            "nationality": "CHIN",
+            "otherNames": null,
+            "permanent": false,
+            "permanentCountries": null,
+            "securityNumber": null,
+            "taxpayerNumber": null,
+            "telecodeGivenName": "0112 0337",
+            "telecodeSurnName": "0060",
+            "usedOtherName": false
+        },
+        "previousTravelInfo": {
+            "dirverList": null,
+            "filedExplain": "2010 apply for immigration",
+            "filedImmigrantBefore": true,
+            "haveStayed": false,
+            "haveVisaBefore": false,
+            "holdDirverLicense": false,
+            "previous": null,
+            "refusedBefore": true,
+            "refusedExplain": "2015.01 was refused",
+            "traveledInFiveYear": true,
+            "visitList": null,
+            "visitedCountry": [
+                "BHU",
+                "CHIN"
+            ]
+        },
+        "question": {
+            "answer": "LILI",
+            "option": "1"
+        },
+        "spouseInfo": {
+            "address": null,
+            "addressSelection": null,
+            "birth": {
+                "birthDate": null,
+                "city": null,
+                "country": null,
+                "province": null,
+                "sex": false
+            },
+            "peopleName": {
+                "fullName": null,
+                "givenName": null,
+                "surnName": null
+            },
+            "spouseNationality": null
+        },
+        "travelInfo": {
+            "arrivalDate": "2017-06-20",
+            "itinerary": null,
+            "madePlan": false,
+            "payFeeType": "S",
+            "payOrganization": null,
+            "payPerson": null,
+            "purpose": "B",
+            "specify": "B1-B2",
+            "stayInfo": {
+                "city": "ROCK SPRINGS",
+                "state": "WY",
+                "street": "APT 138,2475 CASCADE DRIVE,",
+                "zipCode": "82901"
+            },
+            "stayTime": 1,
+            "stayUnit": "M"
+        },
+        "wetInfo": {
+            "addition": {
+                "belongClanOrTribe": false,
+                "clanOrTribeName": null,
+                "contributedForOrganization": false,
+                "languages": [
+                    "chinese",
+                    "english"
+                ],
+                "militarys": [
+                    {
+                        "branch": "army",
+                        "country": "CHIN",
+                        "from": "1996-05",
+                        "rank": "Colonel",
+                        "specialty": "no",
+                        "to": "2000-03"
+                    }
+                ],
+                "organizationName": null,
+                "rebelExplain": null,
+                "served": true,
+                "servedForRebelOrg": false,
+                "skillExplain": null,
+                "specializedSkill": false,
+                "traveledInFiveYear": true,
+                "visitedCountry": []
+            },
+            "explain": "",
+            "haveAttendSchool": false,
+            "haveWorkBefore": true,
+            "other": "",
+            "presentWork": null,
+            "previousWork": {
+                "employmentList": [
+                    {
+                        "address": {
+                            "city": "beijing",
+                            "country": "CHIN",
+                            "isHavePostCode": false,
+                            "isHaveProvince": false,
+                            "postCode": "100000",
+                            "province": null,
+                            "street": "daxing dist"
+                        },
+                        "companyName": "BEIJING BEIYI INNOVATIVE VACUUM TECHNOLOGY CO LTD",
+                        "duteDescription": "staff",
+                        "from": "1965-05",
+                        "jobTitle": "staff",
+                        "supervisor": {
+                            "fullName": null,
+                            "givenName": null,
+                            "surnName": null
+                        },
+                        "telephone": "010",
+                        "to": "2003-06"
+                    }
+                ],
+                "institutionList": null
+            },
+            "primaryOccupation": "RT"
+        }
+    }
+}

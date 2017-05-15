@@ -1,0 +1,60 @@
+/**
+ * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+ * For licensing, see LICENSE.md or http://ckeditor.com/license
+ */
+
+CKEDITOR.editorConfig = function( config ) {
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#AADC6E';
+	
+	config.toolbar = 'Full';
+	 
+	config.toolbar_Full =
+	[
+		/*{ name: 'document', items : [ 'Source','-','Save','NewPage','DocProps','Preview','Print','-','Templates' ] },
+		{ name: 'clipboard', items : [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo' ] },
+		{ name: 'editing', items : [ 'Find','Replace','-','SelectAll','-','SpellChecker', 'Scayt' ] },
+		{ name: 'forms', items : [ 'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 
+	        'HiddenField' ] },
+		'/',
+		{ name: 'basicstyles', items : [ 'Bold','Italic','Underline','Strike','Subscript','Superscript','-','RemoveFormat' ] },
+		{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','Outdent','Indent','-','Blockquote','CreateDiv',
+		'-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-','BidiLtr','BidiRtl' ] },
+		{ name: 'links', items : [ 'Link','Unlink','Anchor' ] },
+		{ name: 'insert', items : [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ] },
+		{ name: 'insert', items : [ 'Image','Table','HorizontalRule','Smiley','SpecialChar' ] },
+		{ name: 'styles', items : [ 'Styles','Format','Font','FontSize' ] },
+		{ name: 'styles', items : [ 'Font','FontSize' ] },
+		{ name: 'colors', items : [ 'TextColor','BGColor' ] }
+		{ name: 'tools', items : [ 'Maximize', 'ShowBlocks','-','About' ] }*/
+		
+		{ name: 'document', items : [ 'Source'] },
+		{ name: 'clipboard', items : [ 'PasteFromWord'] },
+		{ name: 'basicstyles', items : [ 'Bold'] },
+		/*{ name: 'paragraph', items : [ 'NumberedList','BulletedList','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock' ] },*/
+		/*{ name: 'paragraph', items : [ 'NumberedList','BulletedList'] },*/
+		{ name: 'insert', items : [ 'Image','Table'] },
+		/*{ name: 'styles', items : [ 'Font','FontSize' ] },*/
+		{ name: 'colors', items : [ 'TextColor' ] }
+	];
+	 
+	config.toolbar_Basic =
+	[
+		['Bold', 'Italic', '-', /*'NumberedList',*/ 'BulletedList', '-', 'Link', 'Unlink','-','About']
+	];
+	
+	//工具栏默认是否展开
+	config.toolbarStartupExpanded = true; 
+
+	// 取消“拖拽以改变尺寸”功能plugins/resize/plugin.js 
+	config.resize_enabled = false;
+	
+	//图片上传
+	config.image_previewText = ' ';
+	config.filebrowserUploadUrl="CkeditorUpload";
+	
+	//是否强制复制来的内容去除格式 plugins/pastetext/plugin.js
+    config.forcePasteAsPlainText =true //去除
+
+};

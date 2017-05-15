@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>签证资料填写-亲属信息</title>
+    <script type="text/javascript" src="js/lib/se/reference.js"></script>    
+    <script type="text/javascript" src="js/lib/se/visa_common_form.js"></script>   
+    <script type="text/javascript">
+        $().ready(function() {
+            var options = {
+                curPage:"R",
+                pages:Pages,
+                validateOptions: {
+                    rules: {
+                        email: {
+                            required: true,
+                            email: true
+                        }
+                    },
+                    messages: {
+                        isFatherInUS: "请选择是或否",
+                        isMotherInUS: "请选择是或否",
+                        isHaveImmediateRelative: "请选择是或否"
+                    }
+                }
+            };
+            var formHelper = new VisaFormHelper(options);
+            formHelper.init();
+            formHelper.bindEvents();
+            formHelper.loadFormData();
+            if(usUtil.isWETInfoHidden(formHelper.data)){
+                $("#nextBtn").data("next-url","loadOtherInfo");
+                 formHelper.nextUrl="loadOtherInfo";
+                 $("#nextBtn").html("下一步:补充信息");
+            } 
+            formHelper.getTabOp=function(page){
+                var curIndex=this.pages.indexOf(this.curPage);
+                var tabIndex=this.pages.indexOf(page);
+                if(tabIndex<curIndex){
+                    return Constants.UPDATE;
+                }
+                return null;
+            }
+            if (usUtil.isSingle(formHelper.data)) {
+                $("#spouseArea").hide();
+            } else if (usUtil.isMarried(formHelper.data)) {
+                $("#spouse-area-title").text("配偶信息");
+                $("#spouseArea").append($("#spouse-template").show()).show();
+            } else if (usUtil.isDivorced(formHelper.data)) {
+                $("#spouse-area-title").text("前配偶信息");
+                $("#trigger-spouse-add").click();
+                $("#spouseArea").show();
+            } else if (usUtil.isWidowed(formHelper.data)) {
+                $("#spouse-area-title").text("已故配偶信息");
+                $("#spouseArea").append($("#lateSpouse-template").show()).show();
+            } else {
+                //其他状态
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main wrapper">
+        <div  class="header">
+            <div id="tab-nav" class="nav">
+                <ul>
+                    <li class="active" data-tab-url="loadPersonalInfo" data-page="P">
+                        <a href="javascript:void(0)" >个人信息</a>
+                        <ul>
+                            <li><a data-scroll-id="personInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#personInfoArea'),300)">基础信息</a></li>
+                            <li><a data-scroll-id="addressPhoneInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#addressPhoneInfoArea'),300)">地址/电话信息</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadJourneyInfo"  data-page="T">
+                        <a href="javascript:void(0)"  >旅程信息</a>
+                        <ul>
+                            <li><a data-scroll-id="passportInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#passportInfoArea'),300)">护照信息</a></li>
+                            <li><a data-scroll-id="thisTripInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#thisTripInfo'),300)">本次旅程</a></li>
+                            <li><a data-scroll-id="previousTripInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#previousTripInfo'),300)">曾经的旅程</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadRelativeInfo"  data-page="R">
+                        <a href="javascript:void(0)">亲属信息</a>
+                        <ul>
+                            <li><a data-scroll-id="relationInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#relationInfoArea'),300)">亲属信息</a></li>
+                            <li><a data-scroll-id="spouseArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#spouseArea'),300)">配偶信息</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadWorkEducationInfo"  data-page="E" >
+                        <a href="javascript:void(0)">职业及教育经历</a>
+                        <ul>
+                            <li><a data-scroll-id="workInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#workInfo'),300)">职业信息</a></li>
+                            <li><a data-scroll-id="eduInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#eduInfo'),300)">教育信息</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadOtherInfo" data-page="O" ><a href="javascript:void(0)" >补充信息</a></li>
+                </ul>
+            </div>
+            <div class="step-indicator">
+                <ol class="ui-step ui-step-6">
+                    <li class="step-start">
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">1</span>
+                            <span class="ui-step-cont-text">填写个人信息</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">2</span>
+                            <span class="ui-step-cont-text">填写旅程信息</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">3</span>
+                            <span class="ui-step-cont-text">填写亲属信息</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">4</span>
+                            <span class="ui-step-cont-text">填写职业与教育经历</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">5</span>
+                            <span class="ui-step-cont-text">填写补充信息</span>
+                        </div>
+                    </li>
+                    <li class="step-end">
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">5</span>
+                            <span class="ui-step-cont-text">完成检查并提交</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="table-form">
+            <form id="visa-form" action="">
+                <input id="para-country" type="hidden" name="para.country" value="us" />
+                <input id="para-page-type" type="hidden" name="para.pageType" value="" />
+                <input id="para-op" type="hidden" name="para.op" value="add" />
+                <input id="para-form-id" type="hidden" name="para.formId" value="" />
+                <input id="para-form-num" type="hidden" name="para.formSerialNum" value="" />
+                <input id="para-progress" type="hidden" name="para.progress" value="R" />
+                <input id="para-cfgId" type="hidden" name="para.cfgId" value="0" />
+                <!--亲属信息-->
+                <div id="relationInfoArea">
+                    <h2 class="area-title">亲属信息</h2>
+                    <div class="field-container">
+                        <label for="fatherFirstName" class="field-title">父亲的姓</label>
+                        <input type="text" required id="fatherFirstName" name="fatherFirstName" class="text-input" />
+                        <input type="checkbox" id="notAffordFFirstName" name="notAffordFFirstName" value="Y" class="align-middle" />
+                        <label for="" class="align-middle">无法提供</label>
+                    </div>
+                    <div class="field-container">
+                        <label for="fatherLastName" class="field-title">父亲的名</label>
+                        <input type="text" required id="fatherLastName" name="fatherLastName" class="text-input" />
+                        <input type="checkbox" id="notAffordFLastName" name="notAffordFLastName" value="Y" class="align-middle" />
+                        <label for="notAffordFLastName" class="align-middle">无法提供</label>
+                    </div>
+                    <div class="field-container">
+                        <label class="field-title">父亲的出生日期</label>
+                        <input id="fatherBirthday" name="fatherBirthday" data-type="date" class="Wdate text-input" type="text" onclick="WdatePicker()" />
+                    	<input type="checkbox" id="notFatherBirthday" name="notFatherBirthday" value="Y" class="align-middle" />
+                        <label for="notFatherBirthday" class="align-middle">无法提供</label>
+                    </div>
+                    <div class="field-container">
+                        <label class="field-title">您的父亲是否在美国？</label>
+                        <input type="radio" id="fatherInUSYes" name="isFatherInUS" required value="Y" class="align-middle" />
+                        <label for="fatherInUSYes" class="align-middle">是</label>
+                        <input type="radio" id="fatherInUSNo" name="isFatherInUS" value="N" class="align-middle" />
+                        <label for="fatherInUSNo" class="align-middle">否</label>
+                        <label for="isFatherInUS" class="error">请选是或否！</label>
+                        <div class="area  info-area one hidden">
+                            <label style="display: block ">请填写如下信息</label>
+                            <hr/>
+                            <div class="field-container">
+                                <label for="fatherIdentityInUS" class="field-title">父亲在美国的身份</label>
+                                <script type="text/javascript">
+                                    document.write(visaCommon.renderSelect({
+                                        id: "fatherIdentityInUS",
+                                        name: "fatherIdentityInUS",
+                                        title: "请选择身份！",
+                                        required: true,
+                                        defaultValue: null
+                                    }, IidentityInUSOptions));
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="field-container">
+                        <label for="motherFirstName" class="field-title">母亲的姓</label>
+                        <input type="text" required id="motherFirstName" name="motherFirstName" class="text-input" />
+                        <input type="checkbox" id="notAffordMFirstName" name="notAffordMFirstName" value="Y" class="align-middle" />
+                        <label for="notAffordMFirstName" class="align-middle">无法提供</label>
+                    </div>
+                    <div class="field-container">
+                        <label for="motherLastName" class="field-title">母亲的名</label>
+                        <input type="text" required id="motherLastName" name="motherLastName" class="text-input" />
+                        <input type="checkbox" id="notAffordMLastName" name="notAffordMLastName" value="Y" class="align-middle" />
+                        <label for="notAffordMLastName" class="align-middle">无法提供</label>
+                    </div>
+                    <div class="field-container">
+                        <label class="field-title">母亲的出生日期</label>
+                        <input id="motherBirthday" name="motherBirthday" data-type="date" class="Wdate text-input" type="text" onclick="WdatePicker()" />
+                    	<input type="checkbox" id="notMotherBirthday" name="notMotherBirthday" value="Y" class="align-middle" />
+                        <label for="notMotherBirthday" class="align-middle">无法提供</label>
+                    </div>
+                    <div class="field-container">
+                        <label class="field-title">您的母亲是否在美国？</label>
+                        <input type="radio" id="motherInUSYes" name="isMotherInUS" value="Y" required class="align-middle" />
+                        <label for="motherInUSYes" class="align-middle">是</label>
+                        <input type="radio" id="motherInUSNo" name="isMotherInUS" value="N" class="align-middle" />
+                        <label for="motherInUSNo" class="align-middle">否</label>
+                        <label for="isMotherInUS" class="error">请选是或否！</label>
+                        <div class="area  info-area one hidden">
+                            <label style="display: block ">请填写如下信息</label>
+                            <hr/>
+                            <div class="field-container">
+                                <label for="motherIdentityInUS" class="field-title">母亲在美国的身份</label>
+                                <script type="text/javascript">
+                                    document.write(visaCommon.renderSelect({
+                                        id: "motherIdentityInUS",
+                                        name: "motherIdentityInUS",
+                                        title: "请选择身份！",
+                                        required: true,
+                                        defaultValue: null
+                                    }, IidentityInUSOptions));
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label class="field-title">除父母以外，您在美国是否还有其他直系亲属？</label>
+                        <input type="radio" id="haveImmediateRelativeYes" name="isHaveImmediateRelative" value="Y" required data-tpl-id="immediateRelative-template" class="align-middle" />
+                        <label for="haveImmediateRelativeYes" class="align-middle">是</label>
+                        <input type="radio" id="haveImmediateRelativeNo" name="isHaveImmediateRelative" value="N" class="align-middle" />
+                        <label for="haveImmediateRelativeNo" class="align-middle">否</label>
+                        <label for="isHaveImmediateRelative" class="error"></label>
+                        <div class="area  info-area one hidden">
+                            <label style="display: block">请填写如下信息</label>
+                            <hr/>
+                            <input type="hidden" id="immediateRelativeCount" name="immediateRelativeCount" counter value="0" />
+                            <!--直系亲属占位-->
+                            <div id="operate_immediateRelative_menu" class="control-menu">
+                                <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+                                <a href="javascript:void(0)">删除</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field-container">
+                        <label class="field-title">您在美国是否还有其他亲属？</label>
+                        <input type="radio" id="ishaveOtherRelativeYes" name="ishaveOtherRelative" value="Y" class="align-middle" />
+                        <label for="ishaveOtherRelativeYes" class="align-middle">是</label>
+                        <input type="radio" id="ishaveOtherRelativeNo" name="ishaveOtherRelative" checked="checked" value="N" class="align-middle" />
+                        <label for="ishaveOtherRelativeNo" class="align-middle">否</label>
+                    </div>
+                </div>
+                <br/>
+                <hr/>
+                <!--配偶信息，默认隐藏根据婚姻状态显示-->
+                <div id="spouseArea" class="hidden">
+                    <h2 id="spouse-area-title" class="area-title">配偶信息</h2>
+                    <div class="field-container">
+                        <input type="radio" class="hidden" id="trigger-spouse-add" value="Y" data-tpl-id="divorcedSpouse-template" />
+                        <div id="divorceSpouseInfoArea" class="area hidden">
+                            <label class="field-title">请提供前配偶信息</label>
+                            <input type="hidden" id="formerSpouseCount" name="formerSpouseCount" counter value="0" />
+                            <!--前配偶信息占位-->
+                            <div id="operate_divorceSpouse_menu" class="control-menu">
+                                <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+                                <a href="javascript:void(0)">删除</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="operate-menu-area">
+            <div class="button float-left">
+                <a id="preBtn" class="prestep" data-pre-url="loadJourneyInfo" href="javascript:void(0)">上一步:旅游信息</a>
+            </div>
+            <div class="button float-left">
+                <a id="saveBtn" class="save" href="javascript:void(0)">保存</a>
+            </div>
+            <div class="button float-left">
+                <a id="nextBtn" class="nextstep" data-next-url="loadWorkEducationInfo" href="javascript:void(0)">下一步:职业教育经历</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script id="immediateRelative-template" type="text/html">
+    <div class="repeat">
+        <div class="field-container">
+            <label for="immediateRelativeFirstName" class="field-title">直系亲属的姓</label>
+            <input type="text" required id="immediateRelativeFirstName" name="immediateRelativeFirstName" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label for="immediateRelativeLastName" class="field-title">直系亲属的名</label>
+            <input type="text" required id="immediateRelativeLastName" name="immediateRelativeLastName" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label for="relationWithYou" class="field-title">直系亲属和您的关系</label>
+            <select id="relationWithYou" name="relationWithYou" title="请选择关系！" required>
+                <option value>---请选择--</option>
+                <option value="S" >配偶</option>
+                <option value="F" >未婚夫/妻</option>
+                <option value="C" >子女</option>
+                <option value="B" >兄弟姐妹</option>
+            </select>
+        </div>
+        <div class="field-container">
+            <label for="immediateRelativeIdentityInUS" class="field-title">直系亲属在美国的身份</label>
+            <select id="immediateRelativeIdentityInUS" title="请选择身份！" name="immediateRelativeIdentityInUS" required>
+                <option value>---请选择--</option>
+                <option value="S" >美国公民</option>
+                <option value="C" >美国合法永久居留者</option>
+                <option value="P" >非移民</option>
+                <option value="O">其他/我不知道</option>
+            </select>
+        </div>
+    </div>
+</script>
+<!--现配偶信息模板-->
+<div id="spouse-template" class="hidden">
+    <div class="field-container">
+        <label class="field-title">配偶的姓</label>
+        <input type="text" required id="spouseSurnName" name="spouseSurnName" class="text-input" />
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的名</label>
+        <input type="text" required id="spouseGivenName" name="spouseGivenName" class="text-input" />
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的出生日期</label>
+        <input id="spouseBirthday" name="spouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的国籍</label>
+        <script type="text/javascript">
+            document.write(visaCommon.renderSelect({
+                id: "spouseNationality",
+                name: "spouseNationality",
+                title: "请选择国籍",
+                required: true,
+                defaultValue: "CHIN"
+            }, NationalityOptions));
+        </script>
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的出生城市</label>
+        <input type="text" required id="spouseBirthCity" name="spouseBirthCity" class="text-input">
+        <input type="checkbox" id="notAffordSpouseBirthCity" name="notAffordSpouseBirthCity" value="Y" class="align-middle" />
+        <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
+    </div>
+    <div class="field-container">
+        <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label>
+        <script type="text/javascript">
+            document.write(visaCommon.renderSelect({
+                id: "spouseBirthCountry",
+                name: "spouseBirthCountry",
+                title: "请选择国家",
+                required: true,
+                defaultValue: "CHIN"
+            }, CountryOptions));
+        </script>
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的住址</label>
+        <select id="spouseHomeAddressType" name="spouseHomeAddressType" title="必须选择一项！" data-show-condition required>
+            <option value >---请选择--</option>
+            <option value="H" >与家庭地址相同</option>
+            <option value="M" >与邮寄地址相同</option>
+            <option value="U" >与美国联络地址相同</option>
+            <option value="D" >不知道</option>
+            <option value="O" data-show-area="spouseAddrArea">其他（请具体说明地址）</option>
+        </select>
+        <div id="spouseAddrArea" class="area  info-area one hidden">
+            <label style="display: block">请填写如下（配偶地址）信息</label>
+            <hr/>
+            <div class="field-container">
+                <label for="spouseHomeStreet" class="field-title">通信地址</label>
+                <input type="text" required id="spouseHomeStreet" name="spouseHomeStreet" class="text-input address" />
+            </div>
+            <div class="field-container">
+                <label for="spouseHomeCity" class="field-title">城市</label>
+                <input type="text" required id="spouseHomeCity" name="spouseHomeCity" class="text-input" />
+            </div>
+            <div class="field-container">
+                <label for="spouseHomeProvince" class="field-title">省份</label>
+                <input type="text" required id="spouseHomeProvince" name="spouseHomeProvince" class="text-input" />
+                <input type="checkbox" id="notKnowSpouseHomeProvince" name="notKnowSpouseHomeProvince" value="Y" />
+                <label for="notKnowSpouseHomeProvince">没有/无法提供</label>
+            </div>
+            <div class="field-container">
+                <label for="spouseHomePostCode" class="field-title">邮编</label>
+                <input type="text" required id="spouseHomePostCode" name="spouseHomePostCode" class="text-input" />
+                <input type="checkbox" id="notHaveSpouseHomePostCode" name="notHaveSpouseHomePostCode" value="Y" />
+                <label for="notHaveSpouseHomePostCode">没有/无法提供</label>
+            </div>
+            <div class="field-container">
+                <label for="spouseCountry" class="field-title">国家</label>
+                <script type="text/javascript">
+                    document.write(visaCommon.renderSelect({
+                        id: "spouseCountry",
+                        name: "spouseCountry",
+                        title: "请选择国家",
+                        required: true,
+                        defaultValue: "CHIN"
+                    }, CountryOptions));
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<!--离异配偶信息模板-->
+<script id="divorcedSpouse-template" type="text/html" class="hidden">
+    <div class="repeat">
+        <div class="field-container">
+            <label for="spouseSurnName" class="field-title">配偶的姓</label>
+            <input type="text" required id="spouseSurnName" name="spouseSurnName" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label for="spouseGivenName" class="field-title">配偶的名</label>
+            <input type="text" required id="spouseGivenName" name="spouseGivenName" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label class="field-title">配偶的出生日期</label>
+            <input id="spouseBirthday" name="spouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+        </div>
+        <div class="field-container">
+            <label for="spouseNationality" class="field-title">配偶的国籍</label> {{#nationalities | select:{id:"spouseNationality",name:"spouseNationality",defaultValue: "CHIN",title:"请选择国籍！",required:true} }}
+        </div>
+        <div class="field-container">
+            <label for="spouseBirthCity" class="field-title">配偶的出生城市</label>
+            <input type="text" required id="spouseBirthCity" name="spouseBirthCity" class="text-input">
+            <input type="checkbox" id="notAffordSpouseBirthCity" name="notAffordSpouseBirthCity" value="Y" class="align-middle" />
+            <label for="notAffordSpouseBirthCity" class="align-middle">无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="spouseBirthCountry" class="field-title">配偶的出生国家</label> {{#countries | select:{id:"spouseBirthCountry",name:"spouseBirthCountry",defaultValue:"CHIN",title:"请选择国家！",required:true} }}
+        </div>
+        <div class="field-container">
+            <label class="field-title">结婚日期</label>
+            <input id="marriageDate" name="marriageDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+        </div>
+        <div class="field-container">
+            <label class="field-title">离婚日期</label>
+            <input id="divorceDate" name="divorceDate" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+        </div>
+        <div class="field-container">
+            <label for="divorceReason" class="field-title">离婚原因</label>
+            <textarea required id="divorceReason" name="divorceReason" class="text-input" col="10" row="3"></textarea>
+        </div>
+        <div class="field-container">
+            <label for="divorceCountry" class="field-title">离婚地点</label> {{#countries | select:{id:"divorceCountry",name:"divorceCountry",defaultValue:"CHIN",title:"请选择地点！",required:true} }}
+        </div>
+    </div>
+</script>
+<!--已故配偶信息模板-->
+<div id="lateSpouse-template" class="hidden">
+    <div class="field-container">
+        <label for="lateSpouseSurnName" class="field-title">配偶的姓</label>
+        <input type="text" required id="lateSpouseSurnName" name="lateSpouseSurnName" class="text-input" />
+    </div>
+    <div class="field-container">
+        <label for="lateSpouseGivenName" class="field-title">配偶的名</label>
+        <input type="text" required id="lateSpouseGivenName" name="lateSpouseGivenName" class="text-input" />
+    </div>
+    <div class="field-container">
+        <label class="field-title">配偶的出生日期</label>
+        <input id="lateSpouseBirthday" name="lateSpouseBirthday" class="Wdate text-input" type="text" required onclick="WdatePicker()" />
+    </div>
+    <div class="field-container">
+        <label for="lateSpouseNationality" class="field-title">配偶的国籍</label>
+        <script type="text/javascript">
+            document.write(visaCommon.renderSelect({
+                id: "lateSpouseNationality",
+                name: "lateSpouseNationality",
+                title: "请选择国籍",
+                required: true,
+                defaultValue: "CHIN"
+            }, NationalityOptions));
+        </script>
+    </div>
+    <div class="field-container">
+        <label for="lateSpouseBirthCity" class="field-title">配偶的出生城市</label>
+        <input type="text" required id="lateSpouseBirthCity" name="lateSpouseBirthCity" class="text-input">
+        <input type="checkbox" id="notLateSpouseBirthCity" name="notLateSpouseBirthCity" value="Y" class="align-middle" />
+        <label for="notLateSpouseBirthCity" class="align-middle">无法提供</label>
+    </div>
+    <div class="field-container">
+        <label for="lateSpouseBirthCountry" class="field-title">配偶的出生国家</label>
+        <script type="text/javascript">
+            document.write(visaCommon.renderSelect({
+                id: "lateSpouseBirthCountry",
+                name: "lateSpouseBirthCountry",
+                title: "请选择国家",
+                required: true,
+                defaultValue: "CHIN"
+            }, CountryOptions));
+        </script>
+    </div>
+</div>
+
+</html>

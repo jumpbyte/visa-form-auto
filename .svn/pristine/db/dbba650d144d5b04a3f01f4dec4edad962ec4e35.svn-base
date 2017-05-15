@@ -1,0 +1,420 @@
+{
+    "addrPhoneInfo": {
+        "email": "800160250@qq.com",
+        "havePrimaryPhone": false,
+        "haveSecondaryPhone": false,
+        "homeAddr": {
+            "city": "beijing",
+            "country": "CHIN",
+            "isHavePostCode": false,
+            "isHaveProvince": false,
+            "postCode": "100000",
+            "province": "beijing",
+            "street": "West Gate 2, ChaoYang Park"
+        },
+        "mailingAddr": {
+            "city": "beijing",
+            "country": "CHIN",
+            "isHavePostCode": false,
+            "isHaveProvince": false,
+            "postCode": "100125",
+            "province": "beijing",
+            "street": "No. 8,ChaoYang Park Road, ChaoYang District, Beijing"
+        },
+        "primaryPhone": "15810216611",
+        "sameAddress": false,
+        "secondaryPhone": "18611123512"
+    },
+    "backgroundInfo": {
+        "abettedHumanTrafficking": false,
+        "abettedHumanTraffickingInFive": false,
+        "arrestedBefore": false,
+        "avoidedTaxation": false,
+        "carriedOutFreedom": false,
+        "conspiredHumanTrafficking": false,
+        "dragAddict": false,
+        "engagedInIllegalActivity": false,
+        "engagedInRecruitment": false,
+        "engagedTerroristActivity": false,
+        "engagedUnlawfulThing": false,
+        "haveDisease": false,
+        "haveMental": false,
+        "immigrationFraud": false,
+        "involvedInAbortion": false,
+        "involvedInTransplantation": false,
+        "involvedInlaundering": false,
+        "notPayForSchool": false,
+        "oneOfTerrorist": false,
+        "participatedInGenocide": false,
+        "participatedKilling": false,
+        "participatedorture": false,
+        "provideFinancialForTerrorists": false,
+        "transferredToHearing": false,
+        "unableToHearingInFive": false,
+        "unlawfulPresence": false,
+        "violatedLaw": false,
+        "votedViolation": false,
+        "withheldChildCustody": false
+    },
+    "companionInfo": {
+        "asPartOfGroup": false,
+        "companions": [{
+                "givenName": "jiu",
+                "relationship": "R",
+                "surnName": "feng"
+            },
+            {
+                "givenName": "gu",
+                "relationship": "F",
+                "surnName": "mi"
+            }
+        ],
+        "haveCompanion": true
+    },
+    "contactInfo": {
+        "city": "NewYork",
+        "email": "789528566@qq.com",
+        "givenName": "hua",
+        "notApplyEmail": false,
+        "notKnowOrganization": true,
+        "notKnowPerson": false,
+        "phoneNumber": "15200696629",
+        "relationship": "S",
+        "state": "NY",
+        "street": "No. 222 South Road, New York University",
+        "surnName": "ye",
+        "zipCode": "10041NY200"
+    },
+    "deseasedSpouseInfo": {
+        "birth": {},
+        "peopleName": {}
+    },
+    "familyInfo": {
+        "father": {
+            "birthDate": "1950-03-04",
+            "givenName": "di",
+            "haveGivenName": false,
+            "haveSurnName": false,
+            "identityInUS": "C",
+            "inUS": true,
+            "surnName": "bai"
+        },
+        "haveImmediateRelative": true,
+        "haveOtherRelative": true,
+        "mother": {
+            "birthDate": "1954-03-04",
+            "givenName": "hou",
+            "haveGivenName": false,
+            "haveSurnName": false,
+            "identityInUS": "O",
+            "inUS": true,
+            "surnName": "bai"
+        },
+        "relatives": [{
+                "givenName": "zhen",
+                "identityInUS": "S",
+                "inUS": false,
+                "relationWithYou": "B",
+                "surnName": "bai"
+            },
+            {
+                "givenName": "jia",
+                "identityInUS": "P",
+                "inUS": false,
+                "relationWithYou": "B",
+                "surnName": "bai"
+            }
+        ]
+    },
+    "formerSpouseInfos": [],
+    "fullName": "siyin",
+    "passport": "G12345600",
+    "passportInfo": {
+        "country": "CHIN",
+        "expirationDate": "2020-03-04",
+        "haveLostBefore": true,
+        "issuanceDate": "2010-03-04",
+        "issuedCity": "beijing",
+        "issuedCountry": "CHIN",
+        "issuedProvince": "beijing",
+        "lostInfoList": [{
+                "country": "CHIN",
+                "explain": "lost G12356123",
+                "passportNum": "G12356123"
+            },
+            {
+                "country": "CAN",
+                "explain": "stolen by other G89546215",
+                "passportNum": "G89546215"
+            }
+        ],
+        "passportBookNum": "0224790196",
+        "passportNum": "G12345600",
+        "type": "R"
+    },
+    "personalInfo": {
+        "birth": {
+            "birthDate": "1980-03-04",
+            "city": "kunlunxu",
+            "country": "CHIN",
+            "province": "kunlunshan",
+            "sex": false
+        },
+        "haveTelecode": true,
+        "holdOtherNationality": true,
+        "idCard": "110226198501272116",
+        "isHaveIdCard": false,
+        "isHaveSecurityNumber": true,
+        "isHaveTaxpayerNumber": true,
+        "maritalStatus": "S",
+        "name": {
+            "fullName": "siyin",
+            "givenName": "yin",
+            "surnName": "si"
+        },
+        "nationalities": [{
+                "holdThePassport": true,
+                "name": "ASTL",
+                "passportNumber": "G12345678"
+            },
+            {
+                "holdThePassport": true,
+                "name": "CAN",
+                "passportNumber": "G12345679"
+            },
+            {
+                "holdThePassport": false,
+                "name": "BELG"
+            }
+        ],
+        "nationality": "CHIN",
+        "otherNames": [{
+                "givenName": "qian",
+                "surnName": "bai"
+            },
+            {
+                "givenName": "wu",
+                "surnName": "xiao"
+            }
+        ],
+        "permanent": true,
+        "permanentCountries": [
+            "BRNI",
+            "AUST"
+        ],
+        "telecodeGivenName": "7299",
+        "telecodeSurnName": "0674",
+        "usedOtherName": true
+    },
+    "previousTravelInfo": {
+        "dirverList": [{
+                "licenseNum": "2368549",
+                "notKnow": false,
+                "state": "AK"
+            },
+            {
+                "notKnow": false,
+                "state": "AL"
+            }
+        ],
+        "filedExplain": "",
+        "filedImmigrantBefore": false,
+        "haveStayed": true,
+        "haveVisaBefore": true,
+        "holdDirverLicense": true,
+        "previous": {
+            "applySameVisa": true,
+            "cancelExplain": "",
+            "cancelledOrRevoked": false,
+            "haveFingerprint": false,
+            "haveLostBefore": true,
+            "lastIssuedDate": "2016-02-29",
+            "lostExplain": "lost long long time ago",
+            "lostYear": 2016,
+            "notKnow": true,
+            "sameIssuePlace": true
+        },
+        "refusedBefore": false,
+        "traveledInFiveYear": true,
+        "visitList": [{
+                "arrivedDate": "2016-03-10",
+                "stayTime": 15,
+                "stayUnit": "D"
+            },
+            {
+                "arrivedDate": "2015-03-10",
+                "stayTime": 10,
+                "stayUnit": "D"
+            }
+        ],
+        "visitedCountry": [
+            "ASTL",
+            "AUST",
+            "BELG"
+        ]
+    },
+    "spouseInfo": {
+        "birth": {},
+        "peopleName": {}
+    },
+    "travelInfo": {
+        "itinerary": {
+            "arrivalCity": "NewYork",
+            "arrivalDate": "2017-03-10",
+            "arrivalFlight": "AK6114",
+            "departureDate": "2017-03-25",
+            "departureFlight": "AK6127",
+            "visitLocations": [
+                "LosAngeles",
+                "Chicago",
+                "NewYork"
+            ]
+        },
+        "madePlan": true,
+        "payFeeType": "O",
+        "payPerson": {
+            "address": {
+                "city": "shanghai",
+                "country": "CHIN",
+                "isHavePostCode": false,
+                "isHaveProvince": false,
+                "postCode": "200000",
+                "province": "shanghai",
+                "street": "No. 666 Pudong Road, Shanghai"
+            },
+            "email": "45216551@qq.com",
+            "givenName": "zi",
+            "relationship": "C",
+            "sameAddrees": false,
+            "surnName": "tuan",
+            "telephone": "13600052603"
+        },
+        "purpose": "B",
+        "specify": "B1-B2",
+        "stayInfo": {
+            "city": "NewYork ",
+            "state": "NY",
+            "street": "New York University West Street No. 306",
+            "zipCode": "10041NY212"
+        }
+    },
+    "wetInfo": {
+        "addition": {
+            "belongClanOrTribe": true,
+            "clanOrTribeName": "Communist Party of China",
+            "contributedForOrganization": true,
+            "languages": [
+                "Chinese",
+                " English",
+                " French",
+                " Korean"
+            ],
+            "militarys": [{
+                "branch": "lu",
+                "country": "CHIN",
+                "from": "2005-03-04",
+                "rank": "shibing",
+                "specialty": "wu",
+                "to": "2007-03-04"
+            }],
+            "organizationName": "Red Cross Society",
+            "rebelExplain": "Perform military service",
+            "served": true,
+            "servedForRebelOrg": true,
+            "skillExplain": "need",
+            "specializedSkill": true,
+            "traveledInFiveYear": true,
+            "visitedCountry": [
+                "ASTL",
+                "AUST",
+                "BELG"
+            ]
+        },
+        "explain": "",
+        "haveAttendSchool": true,
+        "haveWorkBefore": true,
+        "other": "",
+        "presentWork": {
+            "duteDescription": "xiaoshou",
+            "income": 100,
+            "notHaveIncome": false
+        },
+        "previousWork": {
+            "employmentList": [{
+                    "address": {
+                        "city": "shanghai",
+                        "country": "CHIN",
+                        "isHavePostCode": false,
+                        "isHaveProvince": false,
+                        "postCode": "200000",
+                        "province": "shanghai",
+                        "street": "shanghaiyouzailvyouwang"
+                    },
+                    "companyName": "youzai",
+                    "duteDescription": "xiaoshou",
+                    "from": "2007-03-07",
+                    "jobTitle": "xiaoshou",
+                    "supervisor": {
+                        "givenName": "yuan",
+                        "surnName": "mo"
+                    },
+                    "telephone": "1895236442",
+                    "to": "2010-04-06"
+                },
+                {
+                    "address": {
+                        "city": "beijing",
+                        "country": "CHIN",
+                        "isHavePostCode": false,
+                        "isHaveProvince": false,
+                        "postCode": "beijing",
+                        "province": "beijing",
+                        "street": "beijingshichaoyangqukaixinxiaoxiaole"
+                    },
+                    "companyName": "kaixinxiaoxiaole",
+                    "duteDescription": "wusuoshishi",
+                    "from": "2013-03-04",
+                    "jobTitle": "jingli",
+                    "supervisor": {
+                        "givenName": "jun",
+                        "surnName": "tian"
+                    },
+                    "telephone": "13756489206",
+                    "to": "2014-05-21"
+                }
+            ],
+            "institutionList": [{
+                    "address": {
+                        "city": "beijing",
+                        "country": "CHIN",
+                        "isHavePostCode": false,
+                        "isHaveProvince": false,
+                        "postCode": "100089",
+                        "province": "beijing",
+                        "street": "beijingshihaidianquhaidianlu75hao"
+                    },
+                    "course": "jisuanji",
+                    "from": "2012-03-01",
+                    "name": "UniversityofScienceandTechnologyBeijing",
+                    "to": "2013-03-21"
+                },
+                {
+                    "address": {
+                        "city": "beijing",
+                        "country": "CHIN",
+                        "isHavePostCode": false,
+                        "isHaveProvince": false,
+                        "postCode": "100091",
+                        "province": "beijing",
+                        "street": "haidianqubeijingdaxue"
+                    },
+                    "course": "ruanjian",
+                    "from": "2013-03-20",
+                    "name": "beijingdaxue",
+                    "to": "2014-03-20"
+                }
+            ]
+        },
+        "primaryOccupation": "B"
+    }
+}

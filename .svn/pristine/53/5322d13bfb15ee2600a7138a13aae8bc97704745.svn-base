@@ -1,0 +1,103 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Î¢ÈíÑÅºÚ';
+}
+
+ul,ul li {
+	list-style: none;
+} /* topmenu */
+#topmenu {
+	width: 450px;
+	margin: 30px auto 0 auto;
+	height: 80px;
+	position: relative;
+}
+
+#topmenu ul {
+	margin: 0;
+	padding: 0;
+}
+
+#topmenu ul li {
+	float: left;
+	font-size: 12px;
+	background: #222;
+	position: relative;
+	text-align: center;
+	width: 70px;
+	margin: 0 10px;
+	display: inline;
+	line-height: 30px;
+}
+
+#topmenu ul li a {
+	color: #aaa;
+	text-decoration: none;
+}
+
+#topmenu ul li a:hover {
+	color: #fff;
+	border-radius:32px
+}
+
+#topmenu ul li.active a {
+	color: #fff;
+	font-weight: 800;
+} /* tab */
+.tab {
+	width: 900px;
+}
+
+.tab ul.menu {
+	height: 34px;
+	width: 1500px;
+}
+
+.tab ul.menu li {
+	float: left;
+	text-align: center;
+	width: 120px;
+	height: 32px;
+	background: #f6f6f6;
+	line-height: 32px;
+	list-style: none;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.tab ul.menu li.active {
+	background: #21a557;
+	color: #fff;
+}
+
+.con1,.con2,.con3 {
+	height: 190px;
+	border-top: 2px solid #21a557;
+	margin-top: -2px;
+}
+
+.con2,.con3 {
+	display: none;
+}
+
+.con1 ul,.con2 ul,.con3 ul {
+	padding: 5px;
+}
+
+.con1 ul li,.con2 ul li,.con3 ul li {
+	background: url(images/point.png) no-repeat left center;
+	padding: 0 0 0 10px;
+	font-size: 14px;
+	line-height: 180%;
+	color: #252525;
+}
+
+.con1 ul li:hover,.con2 ul li:hover,.con3 ul li:hover {
+	color: #ba2636;
+	cursor: pointer;
+	text-decoration: underline;
+}

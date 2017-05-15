@@ -1,0 +1,508 @@
+<!DOCTYPE html PUBLIC"-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>签证资料填写-基本信息</title>
+    <script type="text/javascript" src="js/lib/se/reference.js"></script>    
+    <script type="text/javascript" src="js/lib/se/visa_common_form.js"></script> 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var options = {
+                curPage:"P",
+                pages:Pages,
+                validateOptions: {
+                    rules: {
+                        email: {
+                            required: true,
+                            email: true
+                        },
+                        //  firstPhone: "phone",
+                        //  reservePhone: "phone",
+                        idCardCode: "idCardNum"
+
+                    },
+                    messages: {
+                        gender: "请选择性别！"
+                            //idCardCode: "请填写身份证号"
+                    }
+                }
+            };
+            window.formHelper = new VisaFormHelper(options);
+            formHelper.init();
+            formHelper.bindEvents();
+            formHelper.loadFormData();
+            formHelper.bindFormData();
+            visaCommon.attachChangeEvent();
+            visaCommon.attachAddDelEvent();
+            
+            usUtil.isWETInfoHidden(formHelper.data);
+
+            formHelper.getNextOp=function(){
+                if(formHelper.data){
+                     return formHelper.data.travelInfo ?Constants.UPDATE:Constants.ADD;
+                }else{
+                    return Constants.ADD
+                }
+            }
+            formHelper.getTabOp=function(page){
+                return  usUtil.getTapOp(this.data,page);
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="main wrapper">
+        <div  class="header">
+            <div id="tab-nav" class="nav">
+                <ul>
+                    <li class="active" data-tab-url="loadPersonalInfo" data-page="P">
+                        <a href="javascript:void(0)" >个人信息</a>
+                        <ul>
+                            <li><a data-scroll-id="personInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#personInfoArea'),300)">基础信息</a></li>
+                            <li><a data-scroll-id="addressPhoneInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#addressPhoneInfoArea'),300)">地址/电话信息</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadJourneyInfo"  data-page="T">
+                        <a href="javascript:void(0)"  >旅程信息</a>
+                        <ul>
+                            <li><a data-scroll-id="passportInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#passportInfoArea'),300)">护照信息</a></li>
+                            <li><a data-scroll-id="thisTripInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#thisTripInfo'),300)">本次旅程</a></li>
+                            <li><a data-scroll-id="previousTripInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#previousTripInfo'),300)">曾经的旅程</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadRelativeInfo"  data-page="R">
+                        <a href="javascript:void(0)">亲属信息</a>
+                        <ul>
+                            <li><a data-scroll-id="relationInfoArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#relationInfoArea'),300)">亲属信息</a></li>
+                            <li><a data-scroll-id="spouseArea" href="javascript:void(0)" onclick="$(window).scrollTo($('#spouseArea'),300)">配偶信息</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadWorkEducationInfo"  data-page="E">
+                        <a href="javascript:void(0)">职业及教育经历</a>
+                        <ul>
+                            <li><a data-scroll-id="workInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#workInfo'),300)">职业信息</a></li>
+                            <li><a data-scroll-id="eduInfo" href="javascript:void(0)" onclick="$(window).scrollTo($('#eduInfo'),300)">教育信息</a></li>
+                        </ul>
+                    </li>
+                    <li data-tab-url="loadOtherInfo" data-page="O" ><a href="javascript:void(0)" >补充信息</a></li>
+                </ul>
+            </div>
+            <div class="step-indicator">
+                <ol class="ui-step ui-step-6">
+                    <li class="step-start">
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">1</span>
+                            <span class="ui-step-cont-text">填写个人信息</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">2</span>
+                            <span class="ui-step-cont-text">填写旅程信息</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">3</span>
+                            <span class="ui-step-cont-text">填写亲属信息</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">4</span>
+                            <span class="ui-step-cont-text">填写职业与教育经历</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">5</span>
+                            <span class="ui-step-cont-text">填写补充信息</span>
+                        </div>
+                    </li>
+                    <li class="step-end">
+                        <div class="ui-step-line"></div>
+                        <div class="ui-step-cont">
+                            <span class="ui-step-cont-number">5</span>
+                            <span class="ui-step-cont-text">完成检查并提交</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="table-form">
+            <form id="visa-form" action="collect">
+                <input id="para-country" type="hidden" name="para.country" value="us" />
+                <input id="para-page-type" type="hidden" name="para.pageType" value="" />
+                <input id="para-op" type="hidden" name="para.op" value="modify" />
+                <input id="para-form-id" type="hidden" name="para.formId" value="" />
+                <input id="para-form-num" type="hidden" name="para.formSerialNum" value="" />
+                <input id="para-progress" type="hidden" name="para.progress" value="P" />
+                <input id="para-cfgId" type="hidden" name="para.cfgId" value="0" />
+                <!--基础信息-->
+                <!--地址信息-->
+            </form>
+        </div>
+        <div class="operate-menu-area">
+            <div class="button float-left">
+                <a id="saveBtn" class="save" href="javascript:void(0)">保存</a>
+            </div>
+            <div class="button float-left">
+                <a id="nextBtn" class="nextstep" data-next-url="loadJourneyInfo" href="javascript:void(0)">下一步:旅程信息</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+<script id="personInfoArea-v-bind" type="text/html">
+    <div id="personInfoArea">
+        <h2 class="area-title">基础信息</h2>
+        <div class="field-container">
+            <label for="surnName" class="field-title">姓</label>
+            <input type="text" required id="surnName" name="surnName" value="{{form.personalInfo.name.surnName}}" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label for="givenName" class="field-title">名</label>
+            <input type="text" required id="givenName" name="givenName" value="{{form.personalInfo.name.givenName}}" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label class="field-title">是否有曾用名？</label> 
+            
+            <input type="radio" id="usedNameYes" name="isHaveUsedName" {{form.personalInfo.usedOtherName ? 'checked="checked"':''}} value="Y" data-tpl-id="usedname-template" class="align-middle" />
+            <label for="usedNameYes" class="align-middle">是</label>
+            <input type="radio" id="usedNameNo" name="isHaveUsedName" {{!form.personalInfo.usedOtherName ? 'checked="checked"':''}} value="N" class="align-middle" />
+            <label for="usedNameNo" class="align-middle">否</label> 
+
+            <div class="area info-area {{!form.personalInfo.usedOtherName?'hidden':''}} one">
+                <label style="display: block">请填写如下信息</label>
+                {{if form.personalInfo.usedOtherName}}
+                <input type="hidden" id="usedNameCount" counter name="usedNameCount" value="{{form.personalInfo.otherNames.length}}" />
+                <hr/>
+                {{each form.personalInfo.otherNames as n i}}
+                    <div class="repeat">
+                        <div class="field-container">
+                            <label class="field-title">曾用姓</label>
+                            <input id="usedSurnName_{{i}}" name="usedSurnName_{{i}}" class="text-input" type="text" value="{{n.surnName}}" required />
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">曾用名</label>
+                            <input id="usedGivenName_{{i}}" name="usedGivenName_{{i}}" class="text-input" type="text" value="{{n.givenName}}" required />
+                        </div>
+                    </div>
+                {{/each}}
+                {{else}}
+                 <input type="hidden" id="usedNameCount" counter name="usedNameCount" value="0" />
+                {{/if}}
+                <div id="operate_usedName_menu" class="control-menu">
+                    <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)">删除</a>
+                </div>
+            </div>
+        </div>
+        <div class="field-container">
+            <label for="telecodeSurnName" class="field-title">姓的电报码</label>
+            <input type="text" value="{{form.personalInfo.telecodeSurnName}}" required id="telecodeSurnName" name="telecodeSurnName" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label for="telecodeGivenName" class="field-title">名的电报码</label>
+            <input type="text" required id="telecodeGivenName" name="telecodeGivenName" value="{{form.personalInfo.telecodeGivenName}}" class="text-input" />
+        </div>
+        <div class="field-container">
+            <label class="field-title">性别</label>
+            <input type="radio" id="genderM" name="gender" {{form.personalInfo.sex?'checked="checked"':''}} value="1" required class="align-middle" />
+            <label for="genderM" class="align-middle">男</label>
+            <input type="radio" id="genderF" name="gender" {{!form.personalInfo.sex?'checked="checked"':''}} value="0" class="align-middle" />
+            <label for="genderF" class="align-middle">女</label>
+            <label for="gender" class="error">请选择性别！</label>
+        </div>
+        <div class="field-container">
+            <label class="field-title">婚姻状况</label>
+            {{#maritalStatus | select:{id:"maritalStatus",name:"maritalStatus",defaultValue:form.personalInfo.maritalStatus,title:"必须选一项婚姻状况！",required:true} }}
+        </div>
+        <div class="field-container">
+            <label class="field-title">出生日期</label>
+            {{#form.personalInfo.birth.birthDate | renderDate:{name:"birthday",year:true,month:true,day:true} }}
+        </div>
+        <div class="field-container">
+            <label for="birthCity" class="field-title">出生城市</label>
+            <input type="text" required id="birthCity" value="{{form.personalInfo.birth.city}}" name="birthCity" class="text-input">
+        </div>
+        <div class="field-container">
+            <label for="birthProvince" class="field-title">出生省份</label>
+            <input type="text" required id="birthProvince" value="{{form.personalInfo.birth.province}}" name="birthProvince" class="text-input">
+        </div>
+        <div class="field-container">
+            <label for="birthCountry" class="field-title">出生国家</label>
+            {{#countries | select:{id:"birthCountry",name:"birthCountry",defaultValue:form.personalInfo.birth.country,title:"请选择国家！",required:true} }}
+        </div>
+        <div class="field-container">
+            <label for="nationality" class="field-title">国籍</label>
+            {{#nationalities | select:{id:"nationality",name:"nationality",defaultValue:form.personalInfo.nationality,title:"请选择国籍！",required:true} }}
+        </div>
+        <div class="field-container">
+            <label class="field-title">除了上述国籍外，您是否还拥有或曾经拥有其他国籍？</label>
+            <input type="radio" id="isHaveOtherNationalityYes" name="isHaveOtherNationality" {{form.personalInfo.holdOtherNationality ? 'checked="checked"':''}} value="Y" data-tpl-id="other-nationality-template" class="align-middle" />
+            <label for="isHaveOtherNationalityYes" class="align-middle">是</label>
+            <input type="radio" id="isHaveOtherNationalityNo" name="isHaveOtherNationality" {{!form.personalInfo.holdOtherNationality ? 'checked="checked"':''}} value="N" class="align-middle" />
+            <label for="isHaveOtherNationalityNo" class="align-middle">否</label>
+            <div class="area info-area {{!form.personalInfo.holdOtherNationality?'hidden':''}} one">
+                <label style="display: block">请列举拥有的国籍</label>
+                {{if form.personalInfo.holdOtherNationality}}
+                    <input type="hidden" id="otherNationalityCount" counter name="otherNationalityCount" value="{{form.personalInfo.nationalities.length}}" />
+                    <hr/>
+                {{each form.personalInfo.nationalities as n i}}
+                    <div class="repeat">
+                        <div class="field-container">
+                            <label for="otherNationality" class="field-title">其他国籍</label>
+                            {{#nationalities | select:{id:"otherNationality_"+i,name:"otherNationality_"+i,defaultValue:n.name,title:"请选择国籍！",required:true} }}
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">您是否拥此国家或地区（国籍）的护照？</label>
+                            <input type="radio" id="isHaveOtherPassport_{{i}}" name="isHaveOtherPassport_{{i}}" {{n.holdThePassport ? 'checked=checked':''}} value="Y" class="align-middle" />
+                            <label for="otherPassportYes" class="align-middle">是</label>
+                            <input type="radio" id="isHaveOtherPassport_{{i}}" name="isHaveOtherPassport_{{i}}" {{!n.holdThePassport ? 'checked=checked':''}} value="N" class="align-middle" />
+                            <label for="otherPassportNo" class="align-middle">否</label>
+                        <div class="area info-area {{!n.holdThePassport?'hidden':''}} two">
+                        <div class="field-container">
+                            <label for="otherPassportNum" class="field-title">护照号</label>
+                            <input id="otherPassportNum_{{i}}" name="otherPassportNum_{{i}}" value="{{n.passportNumber}}" class="text-input passport" type="text" required />
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                {{/each}}
+                {{else}}
+                    <input type="hidden" id="otherNationalityCount" counter name="otherNationalityCount" value="0" />
+                {{/if}}
+                <!--占位-->
+                <div id="operate_otherNationality_menu" class="control-menu">
+                    <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)">删除</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        <!-- 永久居住 -->
+        <div class="field-container">
+            <label class="field-title">您现在是其他国家/地区的永久居民吗？</label>
+            <input type="radio" id="isOtherPermanentYes" name="isOtherPermanent" {{form.personalInfo.permanent ? 'checked="checked"':''}} value="Y" data-tpl-id="permanentCountry-template" class="align-middle" />
+            <label for="isOtherPermanentYes" class="align-middle">是</label>
+            <input type="radio" id="isOtherPermanentNo" name="isOtherPermanent" {{!form.personalInfo.permanent ? 'checked="checked"':''}} value="N" class="align-middle" />
+            <label for="isOtherPermanentNo" class="align-middle">否</label>
+            <div class="area info-area {{!form.personalInfo.permanent?'hidden':''}} one">
+                <label style="display: block">请列举永久居民的国家</label>
+                {{if form.personalInfo.permanent}}
+                <input type="hidden" id="permanentCountryCount" name="permanentCountryCount" counter value="{{form.personalInfo.permanentCountries.length}}" />
+                <hr/>
+                 {{each form.personalInfo.permanentCountries as n i}}
+                 <div class="repeat">
+                    <div class="field-container">
+                        <label for="otherPermanent" class="field-title">国家</label>
+                        {{#countries | select:{id:"permanentCountry_"+i,name:"permanentCountry_"+i,defaultValue:n,title:"请选择国家！",required:true} }}
+                    </div>
+                </div>
+                 {{/each}}
+                 {{else}}
+                  <input type="hidden" id="permanentCountryCount" name="permanentCountryCount" counter value="0"/>
+                {{/if}}
+                <!--永久居民国家占位-->
+                <div id="operate_permanent_menu" class="control-menu">
+                    <a href="javascript:void(0)">添加</a>&nbsp;&nbsp;
+                    <a href="javascript:void(0)">删除</a>
+                </div>
+            </div>
+        </div>
+        <div class="field-container">
+            <label class="field-title">身份证号</label>
+            <input type="text" id="idCardCode" name="idCardCode" {{!form.personalInfo.idCard && 'disabled'}} value="{{form.personalInfo.idCard}}" required class="text-input" />
+            <input type="checkbox" id="notIdCardNum" name="notIdCardNum" {{!form.personalInfo.idCard && 'checked="checked"'}} value="Y" />
+            <label for="notIdCardNum">没有/无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="securityNumber" class="field-title">美国社会安全号码</label>
+            <input type="text" id="securityNumber" name="securityNumber" {{!form.personalInfo.securityNumber && 'disabled'}} value="{{form.personalInfo.securityNumber}}" required class="text-input" />
+            <input type="checkbox" id="securityNumberBox" name="securityNumberBox" {{!form.personalInfo.securityNumber && 'checked="checked"'}} value="Y" />
+            <label for="securityNumberBox">没有/无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="securityNumber" class="field-title">美国纳税人身份号码</label>
+            <input type="text" required id="taxpayerNumber" name="taxpayerNumber" {{!form.personalInfo.taxpayerNumber && 'disabled'}} value="{{form.personalInfo.taxpayerNumber}}" class="text-input" disabled/>
+            <input type="checkbox" id="taxpayerNumberBox" name="taxpayerNumberBox" {{!form.personalInfo.taxpayerNumber && 'checked="checked"'}} value="Y" />
+            <label for="taxpayerNumberBox">没有/无法提供</label>
+        </div>
+    </div>
+    <br/><hr><br/>
+</script>
+
+<script id="addrPhoneInfoArea-v-bind" type="text/html">
+    <div id="addressPhoneInfoArea">
+        <h2 class="area-title">电话/地址信息</h2>
+        <div class=" field-container">
+            <label for="homeAddr" class="field-title">家庭地址（英文）</label>
+            <input type="text" id="homeAddr" name="homeAddr" class="text-input address" value="{{form.addrPhoneInfo.homeAddr.street}}" />
+            <span style="color: red;display: block">备注:请录入英文地址，限88个字符（包含字母和标点符号）</span>
+        </div>
+        <div class="field-container">
+            <label for="homeCity" class="field-title">城市</label>
+            <input type="text" required id="homeCity" name="homeCity" value="{{form.addrPhoneInfo.homeAddr.city}}" class="text-input">
+        </div>
+        <div class="field-container">
+            <label for="homeProvince" class="field-title">省份</label>
+            <input type="text" required id="homeProvince" name="homeProvince" {{!form.addrPhoneInfo.homeAddr.province && 'disabled'}} value="{{form.addrPhoneInfo.homeAddr.province}}" class="text-input">
+            <input type="checkbox" id="haveHomeProvinceBox" name="haveHomeProvinceBox" {{!form.addrPhoneInfo.homeAddr.province && 'checked="checked"'}} value="Y" />
+            <label for="haveHomeProvinceBox">没有/无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="homePostCode" class="field-title">邮编</label>
+            <input type="text" required id="homePostCode" name="homePostCode" {{!form.addrPhoneInfo.homeAddr.postCode && 'disabled'}} value="{{form.addrPhoneInfo.homeAddr.postCode}}" class="text-input">
+            <input type="checkbox" id="haveHomePostCodeBox" name="haveHomePostCodeBox" {{!form.addrPhoneInfo.homeAddr.postCode && 'checked="checked"'}} value="Y" />
+            <label for="haveHomePostCodeBox">没有/无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="homeCountry" class="field-title">国家</label>
+            {{#countries | select:{id:"homeCountry",name:"homeCountry",defaultValue:form.addrPhoneInfo.homeAddr.country,title:"请选择国家！",required:true} }}            
+        </div>
+        <div class="field-container">
+            <label class="field-title">通信地址是否与家庭住址相同？</label>
+            <input type="radio" id="sameAddressYes" name="isSameAddress" {{form.addrPhoneInfo.sameAddress ? 'checked="checked"':''}} value="Y" data-is-show="N" class="align-middle" />
+            <label for="sameAddressYes" class="align-middle">是</label>
+            <input type="radio" id="sameAddressNo" name="isSameAddress" {{!form.addrPhoneInfo.sameAddress ? 'checked="checked"':''}} value="N" data-is-show="Y" class="align-middle" />
+            <label for="sameAddressNo" class="align-middle">否</label>
+            {{if !form.addrPhoneInfo.sameAddress}}
+            <div class="area info-area {{form.addrPhoneInfo.sameAddress?'hidden':''}} one">
+                <label style="display: block">请填写如下信息</label>
+                <hr/>
+                <div class="field-container">
+                    <label for="maillingAddress" class="field-title">通信地址</label>
+                    <input type="text" id="maillingAddress" name="maillingAddress" value="{{form.addrPhoneInfo.mailingAddr.street}}" class="text-input address">
+                </div>
+                <div class="field-container">
+                    <label for="maillingCity" class="field-title">城市</label>
+                    <input type="text" required id="maillingCity" name="maillingCity" value="{{form.addrPhoneInfo.mailingAddr.city}}" class="text-input">
+                </div>
+                <div class="field-container">
+                    <label for="maillingProvince" class="field-title">省份</label>
+                    <input type="text" required id="maillingProvince" name="maillingProvince" {{!form.addrPhoneInfo.mailingAddr.province && 'disabled'}} value="{{form.addrPhoneInfo.mailingAddr.province}}" class="text-input" />
+                    <input type="checkbox" id="notHaveMaillingProvince" name="notHaveMaillingProvince" {{!form.addrPhoneInfo.mailingAddr.province && 'checked="checked"'}} value="Y" />
+                    <label for="notHaveMaillingProvince">没有/无法提供</label>
+                </div>
+                <div class="field-container">
+                    <label class="field-title">邮编</label>
+                    <input type="text" required id="maillingPostCode" name="maillingPostCode" {{!form.addrPhoneInfo.mailingAddr.postCode && 'disabled'}} value="{{form.addrPhoneInfo.mailingAddr.postCode}}" class="text-input" />
+                    <input type="checkbox" id="notHaveMaillingPostCode" name="notHaveMaillingPostCode" {{!form.addrPhoneInfo.mailingAddr.postCode && 'checked="checked"'}} value="Y" />
+                    <label for="notHaveMaillingPostCode">没有/无法提供</label>
+                </div>
+                <div class="field-container">
+                    <label for="maillingCountry" class="field-title">国家</label>
+                    {{#countries | select:{id:"maillingCountry",name:"maillingCountry",defaultValue:form.addrPhoneInfo.mailingAddr.country,title:"请选择国家！",required:true} }}
+                </div>
+            </div>
+             {{else}}
+                 <div class="area info-area one hidden">
+                            <label style="display: block">请填写如下信息</label>
+                            <hr/>
+                            <div class="field-container">
+                                <label for="maillingAddress" class="field-title">通信地址</label>
+                                <input type="text" id="maillingAddress" name="maillingAddress" class="text-input address">
+                            </div>
+                            <div class="field-container">
+                                <label for="maillingCity" class="field-title">城市</label>
+                                <input type="text" required id="maillingCity" name="maillingCity" class="text-input">
+                            </div>
+                            <div class="field-container">
+                                <label for="maillingProvince" class="field-title">省份</label>
+                                <input type="text" required id="maillingProvince" name="maillingProvince" class="text-input" />
+                                <input type="checkbox" id="notHaveMaillingProvince" name="notHaveMaillingProvince" value="Y" />
+                                <label for="notHaveMaillingProvince">没有/无法提供</label>
+                            </div>
+                            <div class="field-container">
+                                <label class="field-title">邮编</label>
+                                <input type="text" required id="maillingPostCode" name="maillingPostCode" class="text-input" />
+                                <input type="checkbox" id="notHaveMaillingPostCode" name="notHaveMaillingPostCode" value="Y" />
+                                <label for="notHaveMaillingPostCode">没有/无法提供</label>
+                            </div>
+                            <div class="field-container">
+                                <label for="maillingCountry" class="field-title">国家</label>
+                                {{#countries | select:{id:"maillingCountry",name:"maillingCountry",defaultValue:"CHIN",title:"请选择国家！",required:true} }}
+                            </div>
+                </div>
+            {{/if}}
+        </div>
+        <div class="field-container">
+            <label for="firstPhone" class="field-title">首选电话号码</label>
+            <input type="text" id="firstPhone" name="firstPhone" {{!form.addrPhoneInfo.primaryPhone && 'disabled'}} value="{{form.addrPhoneInfo.primaryPhone}}" class="text-input phone" />
+            <input type="checkbox" id="notHaveFirstPhone" name="notHaveFirstPhone" {{!form.addrPhoneInfo.primaryPhone && 'checked="checked"'}} value="Y" />
+            <label for="notHaveFirstPhone">没有/无法提供</label>
+        </div>
+        <div class="field-container">
+            <label for="reservePhone" class="field-title">备选电话号码</label>
+            <input type="text" id="reservePhone" name="reservePhone" {{!form.addrPhoneInfo.secondaryPhone && 'disabled'}} value="{{form.addrPhoneInfo.secondaryPhone}}" class="text-input phone" />
+            <input type="checkbox" id="notHaveReservePhone" name="notHaveReservePhone" {{!form.addrPhoneInfo.secondaryPhone && 'checked="checked"'}} value="Y" />
+            <label for="notHaveReservePhone">没有/无法提供</label>
+        </div>
+        <div class="field-container">
+            <label class="field-title">电子邮箱</label>
+            <input type="email" required id="email" name="email" value="{{form.addrPhoneInfo.email}}" class="text-input" />
+        </div>
+    </div>
+</script>
+
+<script id="usedname-template" type="text/html">
+    <div class="repeat">
+        <div class="field-container">
+            <label class="field-title">曾用姓</label>
+            <input id="usedSurnName" name="usedSurnName" class="text-input" type="text" required />
+        </div>
+        <div class="field-container">
+            <label class="field-title">曾用名</label>
+            <input id="usedGivenName" name="usedGivenName" class="text-input" type="text" required />
+        </div>
+    </div>
+</script>
+<script id="other-nationality-template" type="text/html">
+    <div class="repeat">
+        <div class="field-container">
+            <label for="otherNationality" class="field-title">其他国籍</label> {{#nationalities | select:{id:"otherNationality",name:"otherNationality",title:"请选择国籍！",required:true} }}
+        </div>
+        <div class="field-container">
+            <label class="field-title">您是否拥此国家或地区（国籍）的护照？</label>
+            <input type="radio" id="isHaveOtherPassport" name="isHaveOtherPassport" value="Y" class="align-middle" />
+            <label for="otherPassportYes" class="align-middle">是</label>
+            <input type="radio" id="isHaveOtherPassport" name="isHaveOtherPassport" value="N" class="align-middle" />
+            <label for="otherPassportNo" class="align-middle">否</label>
+            <div class="area info-area two hidden">
+                <div class="field-container">
+                    <label for="otherPassportNum" class="field-title">护照号</label>
+                    <input id="otherPassportNum" name="otherPassportNum" class="text-input passport" type="text" required />
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script id="permanentCountry-template" type="text/html">
+    <div class="repeat">
+        <div class="field-container">
+            <label for="permanent" class="field-title">国家</label> {{#countries | select:{id:"permanentCountry",name:"permanentCountry",title:"请选择国家！",required:true} }}
+        </div>
+    </div>
+</script>
+<script id="select_template" type="text/html">
+    <select id="{{id}}" name="{{name}}" title="{{title}}" {{if required}} required {{/if}}>
+        <option value>---请选择--</option>
+        {{each list as op index}}
+            {{if  defaultValue==op.value }} 
+               <option value="{{op.value}}" selected="selected">{{op.text}}</option>
+               {{else}}
+               <option value="{{op.value}}">{{op.text}}</option>
+            {{/if}}
+        {{/each}}
+    </select>
+</script>
+</html>

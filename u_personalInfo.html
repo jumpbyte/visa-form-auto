@@ -216,9 +216,9 @@
         </div>
         <div class="field-container">
             <label class="field-title">性别</label>
-            <input type="radio" id="genderM" name="gender" {{form.personalInfo.sex?'checked="checked"':''}} value="1" required class="align-middle" />
+            <input type="radio" id="genderM" name="gender" {{form.personalInfo.birth.sex?'checked="checked"':''}} value="1" required class="align-middle" />
             <label for="genderM" class="align-middle">男</label>
-            <input type="radio" id="genderF" name="gender" {{!form.personalInfo.sex?'checked="checked"':''}} value="0" class="align-middle" />
+            <input type="radio" id="genderF" name="gender" {{!form.personalInfo.birth.sex?'checked="checked"':''}} value="0" class="align-middle" />
             <label for="genderF" class="align-middle">女</label>
             <label for="gender" class="error">请选择性别！</label>
         </div>

@@ -1,23 +1,23 @@
 {
     "data": {
         "addrPhoneInfo": {
-            "email": "2639778786@qq.com",
-            "haveSecondaryPhone": false,
+            "email": "zhengzifei@antengsilu.com",
+            "haveSecondaryPhone": true,
             "homeAddr": {
-                "city": "yinchuan",
+                "city": "beijing",
                 "country": "CHIN",
                 "isHavePostCode": true,
-                "isHaveProvince": true,
-                "postCode": "750001",
-                "province": "ningxia",
-                "street": "31-1-102 gaoerfu community,xingqing dist"
+                "isHaveProvince": false,
+                "postCode": "100000",
+                "province": null,
+                "street": "8-2-1628,no.65 beisihuan west rd,haidian dist"
             },
             "mailingAddr": null,
-            "primaryPhone": "18995115003",
+            "primaryPhone": "13910633508",
             "sameAddress": true,
-            "secondaryPhone": null,
+            "secondaryPhone": "13501399601",
             "workAddr": null,
-            "workPhone": "130000000"
+            "workPhone": null
         },
         "backgroundInfo": {
             "abettedHumanExplain": null,
@@ -27,12 +27,14 @@
             "additional": {
                 "belongClanOrTribe": false,
                 "clanOrTribeName": null,
-                "contributedForOrganization": false,
+                "contributedForOrganization": true,
                 "languages": [
                     "chinese"
                 ],
                 "militarys": null,
-                "organizationName": null,
+                "organizationName": [
+                    "United Nations International Children's Emergency Fund"
+                ],
                 "rebelExplain": null,
                 "served": false,
                 "servedForRebelOrg": false,
@@ -40,7 +42,11 @@
                 "specializedSkill": false,
                 "traveledInFiveYear": true,
                 "visitedCountry": [
-                    "SAFR"
+                    "KOR",
+                    "JPN",
+                    "ASTL",
+                    "NETH",
+                    "GER"
                 ]
             },
             "arrestedBefore": false,
@@ -102,38 +108,28 @@
             "asPartOfGroup": false,
             "companions": [
                 {
-                    "givenName": "yanbin",
-                    "relationship": "R",
-                    "surnName": "shen"
-                },
-                {
-                    "givenName": "liqiang",
-                    "relationship": "R",
-                    "surnName": "zhou"
-                },
-                {
-                    "givenName": "jiangping",
-                    "relationship": "R",
-                    "surnName": "tan"
+                    "givenName": "yi",
+                    "relationship": "F",
+                    "surnName": "liu"
                 }
             ],
             "groupName": null,
             "haveCompanion": true
         },
         "contactInfo": {
-            "city": "Minneapolis",
-            "email": "stagea1@163.com",
-            "givenName": "yuxiang",
-            "notApplyEmail": false,
-            "notKnowOrganization": true,
-            "notKnowPerson": false,
-            "organizationName": null,
-            "phoneNumber": "6512144908",
-            "relationship": "R",
-            "state": "MN",
-            "street": "1016 washington ave.se",
-            "surnName": "zhou",
-            "zipCode": "55414"
+            "city": "LAS VEGAS",
+            "email": null,
+            "givenName": null,
+            "notApplyEmail": true,
+            "notKnowOrganization": false,
+            "notKnowPerson": true,
+            "organizationName": "NOBU HOTEL AT CAESARS PALACE",
+            "phoneNumber": "7027856628",
+            "relationship": "O",
+            "state": "NV",
+            "street": "3570 Las Vegas Boulevard South",
+            "surnName": null,
+            "zipCode": "89109"
         },
         "deseasedSpouseInfo": {
             "birth": {
@@ -152,98 +148,129 @@
         },
         "familyInfo": {
             "father": {
-                "birthDate": "1930-01-08",
-                "givenName": "qi",
+                "birthDate": "1946-03-19",
+                "givenName": "hongshou",
                 "haveGivenName": true,
                 "haveSurnName": true,
                 "identityInUS": null,
                 "inUS": false,
                 "relationWithYou": null,
-                "surnName": "zhou"
+                "surnName": "zheng"
             },
             "haveImmediateRelative": false,
-            "haveOtherRelative": true,
+            "haveOtherRelative": false,
             "mother": {
-                "birthDate": "1928-01-28",
-                "givenName": "shenying",
+                "birthDate": "1950-07-13",
+                "givenName": "guiyu",
                 "haveGivenName": true,
                 "haveSurnName": true,
                 "identityInUS": null,
                 "inUS": false,
                 "relationWithYou": null,
-                "surnName": "zeng"
+                "surnName": "guo"
             },
             "relatives": []
         },
         "formerSpouseInfos": [],
-        "fullName": "李晓",
-        "passport": "G55186348",
+        "fullName": "郑子飞",
+        "passport": "G34212827",
         "passportInfo": {
             "country": "CHIN",
-            "expirationDate": "2021-10-08",
+            "expirationDate": "2019-04-08",
             "haveLostBefore": false,
-            "issuanceDate": "2011-10-09",
-            "issuedCity": "ningxia",
+            "issuanceDate": "2009-04-09",
+            "issuedCity": "anhui",
             "issuedCountry": "CHIN",
-            "issuedProvince": "ningxia",
+            "issuedProvince": "",
             "lostInfoList": null,
             "passportBookNum": null,
-            "passportNum": "G55186378",
+            "passportNum": "G34212827",
             "type": "R"
         },
         "personalInfo": {
             "birth": {
-                "birthDate": "1955-09-11",
-                "city": "gansu",
+                "birthDate": "1976-11-02",
+                "city": "anhui",
                 "country": "CHIN",
-                "province": "gansu",
-                "sex": false
+                "province": "anhui",
+                "sex": true
             },
             "haveTelecode": true,
             "holdOtherNationality": false,
-            "idCard": "640102195509111548",
+            "idCard": "342601197611023019",
             "isHaveIdCard": true,
             "isHaveSecurityNumber": false,
             "isHaveTaxpayerNumber": false,
             "maritalStatus": "M",
             "name": {
-                "fullName": "李晓",
-                "givenName": "xiao",
-                "surnName": "li"
+                "fullName": "郑子飞",
+                "givenName": "zifei",
+                "surnName": "zheng"
             },
             "nationalities": null,
             "nationality": "CHIN",
             "otherNames": [
                 {
                     "fullName": null,
-                    "givenName": "xiaoyi",
-                    "surnName": "zhou"
+                    "givenName": "xiaofei",
+                    "surnName": "zheng"
                 }
             ],
             "permanent": false,
             "permanentCountries": null,
             "securityNumber": null,
             "taxpayerNumber": null,
-            "telecodeGivenName": "2556 3015",
-            "telecodeSurnName": "0719",
+            "telecodeGivenName": "1311 7378",
+            "telecodeSurnName": "6774",
             "usedOtherName": true
         },
         "previousTravelInfo": {
-            "dirverList": null,
+            "dirverList": [
+                {
+                    "licenseNum": "448764296",
+                    "notKnow": true,
+                    "state": "NY"
+                }
+            ],
             "filedExplain": "",
             "filedImmigrantBefore": false,
-            "haveStayed": false,
-            "haveVisaBefore": false,
-            "holdDirverLicense": false,
-            "previous": null,
+            "haveStayed": true,
+            "haveVisaBefore": true,
+            "holdDirverLicense": true,
+            "previous": {
+                "applySameVisa": false,
+                "cancelExplain": "",
+                "cancelledOrRevoked": false,
+                "haveFingerprint": true,
+                "haveLostBefore": false,
+                "lastIssuedDate": "2011-12-21",
+                "lostExplain": null,
+                "lostYear": null,
+                "notKnow": false,
+                "sameIssuePlace": true,
+                "visaNumber": "f3754612"
+            },
             "refusedBefore": false,
             "refusedExplain": "",
             "traveledInFiveYear": true,
-            "visitList": null,
+            "visitList": [
+                {
+                    "arrivedDate": "2012-2-12",
+                    "stayTime": 4,
+                    "stayUnit": "D"
+                },
+                {
+                    "arrivedDate": "2012-03-15",
+                    "stayTime": 4,
+                    "stayUnit": "D"
+                }
+            ],
             "visitedCountry": [
-                "SAFR",
-                "UAE",
-                "MLAS"
+                "KOR",
+                "JPN",
+                "ASTL",
+                "NETH",
+                "GER"
             ]
         },
         "question": {
@@ -254,21 +281,21 @@
             "address": null,
             "addressSelection": "H",
             "birth": {
-                "birthDate": "1955-02-05",
-                "city": "hebei",
+                "birthDate": "1978-07-31",
+                "city": "beijing",
                 "country": "CHIN",
                 "province": null,
                 "sex": false
             },
             "peopleName": {
                 "fullName": null,
-                "givenName": "guojian",
-                "surnName": "bao"
+                "givenName": "ying",
+                "surnName": "liu"
             },
             "spouseNationality": "CHIN"
         },
         "travelInfo": {
-            "arrivalDate": "2017-06-05",
+            "arrivalDate": "2017-06-02",
             "itinerary": null,
             "madePlan": false,
             "payFeeType": "S",
@@ -277,24 +304,26 @@
             "purpose": "B",
             "specify": "B1-B2",
             "stayInfo": {
-                "city": "Minneapolis",
-                "state": "MN",
-                "street": "1016 washington.ave.se",
-                "zipCode": "55414"
+                "city": "LAS VEGAS",
+                "state": "NV",
+                "street": "3570 Las Vegas Boulevard South",
+                "zipCode": "89109"
             },
-            "stayTime": 15,
+            "stayTime": 14,
             "stayUnit": "D"
         },
         "wetInfo": {
             "addition": {
                 "belongClanOrTribe": false,
                 "clanOrTribeName": null,
-                "contributedForOrganization": false,
+                "contributedForOrganization": true,
                 "languages": [
                     "chinese"
                 ],
                 "militarys": null,
-                "organizationName": null,
+                "organizationName": [
+                    "United Nations International Children's Emergency Fund"
+                ],
                 "rebelExplain": null,
                 "served": false,
                 "servedForRebelOrg": false,
@@ -302,7 +331,11 @@
                 "specializedSkill": false,
                 "traveledInFiveYear": true,
                 "visitedCountry": [
-                    "SAFR"
+                    "KOR",
+                    "JPN",
+                    "ASTL",
+                    "NETH",
+                    "GER"
                 ]
             },
             "explain": "",
@@ -310,8 +343,8 @@
             "haveWorkBefore": true,
             "other": "",
             "presentWork": {
-                "duteDescription": "jiaoyu",
-                "income": 123456,
+                "duteDescription": "general manager",
+                "income": 10932,
                 "notHaveIncome": false,
                 "schoolUnit": {
                     "address": {
@@ -319,58 +352,58 @@
                         "country": "CHIN",
                         "isHavePostCode": true,
                         "isHaveProvince": true,
-                        "postCode": "100125",
-                        "province": "BEIJING",
-                        "street": "Beijing chaoyang district jia Doris"
+                        "postCode": "100000",
+                        "province": null,
+                        "street": "ROOM1628,HAIDIAN XINJISHU BUILDING,NO.65 BEISIHUAN WEST RD,HAIDIAN DIST"
                     },
-                    "name": "beijinguniversity",
-                    "phoneNumber": "130000000"
+                    "name": "BEIJING ANTENG SILU TECHNOLOGY DEVELOPMENT CO LTD",
+                    "phoneNumber": "01082886019"
                 }
             },
             "previousWork": {
                 "employmentList": [
                     {
                         "address": {
-                            "city": "yinchuan",
+                            "city": "BEIJING",
                             "country": "CHIN",
                             "isHavePostCode": false,
                             "isHaveProvince": false,
-                            "postCode": null,
-                            "province": "ningxia",
-                            "street": "jinfeng dist"
+                            "postCode": "100085",
+                            "province": null,
+                            "street": "BEIJING"
                         },
-                        "companyName": "YINCHUAN TANGLAI HUIMIDDLE SCHOOL",
-                        "duteDescription": "senior teacher",
-                        "from": "1975-12",
-                        "jobTitle": "senior teacher",
+                        "companyName": "BEIJING XINCHENG JINDIAN TECHNOLOGY DEVELOPMENT CO LTD",
+                        "duteDescription": "general manager",
+                        "from": "2001-12-01",
+                        "jobTitle": "GENERAL MANAGER",
                         "supervisor": {
                             "fullName": null,
-                            "givenName": null,
-                            "surnName": null
+                            "givenName": "yongli",
+                            "surnName": "qi"
                         },
-                        "telephone": "0951",
-                        "to": "2010-09"
+                        "telephone": "01082781885",
+                        "to": "2003-11-01"
                     }
                 ],
                 "institutionList": [
                     {
                         "address": {
-                            "city": "yinchuan",
+                            "city": "hefei",
                             "country": "CHIN",
                             "isHavePostCode": false,
                             "isHaveProvince": false,
-                            "postCode": null,
-                            "province": "ningxia",
-                            "street": "yinchuan"
+                            "postCode": "230001",
+                            "province": "anhui",
+                            "street": "NO.266 HUAIHE RD"
                         },
-                        "course": "education",
-                        "from": "1987-07",
-                        "name": "ningxia education college",
-                        "to": "1989-07"
+                        "course": "COMPUTER APPLICATION",
+                        "from": "1998-09-01",
+                        "name": "ANHUI OPEN UNIVERSITY",
+                        "to": "2001-07-01"
                     }
                 ]
             },
-            "primaryOccupation": "ED"
+            "primaryOccupation": "CS"
         }
     },
     "formId": 13

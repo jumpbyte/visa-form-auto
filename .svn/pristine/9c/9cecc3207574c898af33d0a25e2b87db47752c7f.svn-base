@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>签证资料填写-其他信息</title>
+    <link href="css/common.css" rel="stylesheet" type="text/css" />
+    <link href="css/lib/se/vsia_common_form.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="js/common/common.js"></script>
+    <script type="text/javascript" src="plugin/My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+    <div class="table-form">
+        <div id="otherInfo">
+            <h2 class="area-title"></h2>
+            <div class="field-container">
+                <label class="field-title">请提供一份您所说语言的清单</label>
+                <input id="languages" name="languages" class="text-input" type="text" />
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否属于一个党派或宗族？</label>
+                <input type="radio" id="belongClanOrTribeYes" name="belongClanOrTribe" class="align-middle" />
+                <label for="belongClanOrTribeYes" class="align-middle">是</label>
+                <input type="radio" id="belongClanOrTribeNo" name="belongClanOrTribe" checked="checked" class="align-middle" />
+                <label for="belongClanOrTribeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">党派或宗族的名字</span>
+                        <input id="clanOrTribeName" name="clanOrTribeName" class="text-input" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否属于、捐助过或任职于任何职业机构、社会机构或慈善机构？</label>
+                <input type="radio" id="contributedForOrganizationYes" name="contributedForOrganization" class="align-middle" />
+                <label for="contributedForOrganizationYes" class="align-middle">是</label>
+                <input type="radio" id="contributedForOrganizationNo" name="contributedForOrganization" checked="checked" class="align-middle" />
+                <label for="contributedForOrganizationNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">机构的名字</span>
+                        <input id="organizationName" name="organizationName" class="text-input" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否具有特殊技能或接受过特殊培训，例如有关枪械、炸药、核装置、生物或化学方面的经验？</label>
+                <input type="radio" id="specializedSkillYes" name="specializedSkill" class="align-middle" />
+                <label for="specializedSkillYes" class="align-middle">是</label>
+                <input type="radio" id="specializedSkillNo" name="specializedSkill" checked="checked" class="align-middle" />
+                <label for="specializedSkillNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="skillExplain" id="skillExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经在军队服役？</label>
+                <input type="radio" id="servedYes" name="served" class="align-middle" />
+                <label for="servedYes" class="align-middle">是</label>
+                <input type="radio" id="servedNo" name="served" checked="checked" class="align-middle" />
+                <label for="servedNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <span class="field-title">请提供以下有关你曾服役的军队信息</span>
+                    <div class="template">
+                        <div class="field-container">
+                            <span class="field-title">国家</span>
+                            <select name="servedCountry" id="servedCountry">
+                                <option value="null">--请选择--</option>
+                                <option value="CHIN" selected="selected">中国</option>
+                            </select>
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">军种</label>
+                            <input id="branch" name="branch" class="text-input" type="text" />
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">级别或职位</label>
+                            <input id="rank" name="rank" class="text-input" type="text" />
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">军事特长</label>
+                            <input id="specialty" name="specialty" class="text-input" type="text" />
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">服役开始日期</label>
+                            <input id="servedFromDate" name="servedFromDate" class="Wdate text-input" type="text" onclick="WdatePicker()" />
+                        </div>
+                        <div class="field-container">
+                            <label class="field-title">服役结束日期</label>
+                            <input id="servedToDate" name="servedToDate" class="Wdate text-input" type="text" onclick="WdatePicker()" />
+                        </div>
+                        <div id="operate_served_menu" class="control-menu">
+                            <a href="javascript:void(0)" onclick="addLostPassport()">添加</a>&nbsp;&nbsp;
+                            <a href="javascript:void(0)" onclick="removePassport()">删除</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经服务于或参与过准军事单位、治安团体、造反组织、游击队或暴动组织，或曾经是其中一员？</label>
+                <input type="radio" id="isOneOfTerrorisYes" name="isOneOfTerrorist" class="align-middle" />
+                <label for="isOneOfTerroristYes" class="align-middle">是</label>
+                <input type="radio" id="isOneOfTerroristNo" name="isOneOfTerrorist" checked="checked" class="align-middle" />
+                <label for="isOneOfTerroristNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否患有涉及公共卫生的传染病？（按照美国卫生和公众服务部界定，涉及公共卫生的传染病包括软下疳，淋病，腹股沟肉芽肿，传染性麻风，性病性淋巴肉芽肿，感染期梅毒、软活动性肺结核等）</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否患有对其他人的人身安全及利益造成威胁的精神或身体疾病？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经滥用药物并上瘾？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经因违法或犯罪被捕或被判罪，即使是后来获得了宽恕、赦免或其它类似的裁决?</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经违反或密谋违反有关管控物资方面的法律？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是来美国从事卖淫或非法商业性交易吗？在过去的十年中，您是否从事过卖淫或组织介绍过卖淫？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经参与或意图从事洗钱活动？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您曾在美国或美国以外的地方犯有或密谋人口走私罪吗？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您有没有故意资助、教唆、协助或勾结某个人，而这个人在美国或美国以外的地方曾犯有或密谋了一个严重的人口走私案？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是一曾在美国或美国以外犯有或密谋人口走私案犯的配偶或儿女吗？您在近5年里是否从走私活动中获得过好处？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">在美国期间，您是否意图从事间谍活动、阴谋破坏、违反出口管制条例或其他任何非法活动?</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">在美国期间，您是否意图从事恐怖活动?或您是否曾经从事过恐怖活动？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经或计划为恐怖分子或恐怖组织提供经济或其他方面的支持？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否是恐怖组织成员或代表？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经指使、煽动、从事、协助或参与过种族灭绝屠杀？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经从事、指使、煽动、协助或以其他方式参与刑讯？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经从事、指使、煽动、协助或参与了法庭外的杀戮、政治谋杀或者其他暴力行为？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您曾经从事过招募士兵或利用儿童士兵吗？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">在担任政府官员期间，您是否曾经负责或直接执行过严重违反宗教自由的行动？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您曾经直接参与过制定或执行人口控制的规定，强迫妇女或男士违意进行人流或绝育吗？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否直接参与过强迫人体器官及人体组织的移植？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经被提交移送或驱逐出境的听证会？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经试图以欺骗或故意造假及其他非法手段为自己，或帮助他人获取美国签证，入境美国或获取任何其他移民福利？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否在过去的五年里未能出席聆讯？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经有过非法居留，超过移民官员批准的停留时间或违反了美国签证条款？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾经拒绝将一在美国境外的美籍儿童的监护权移交给一位被美国法庭批准享有法定监护权的人？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否违反了法律或规定在美国进行过投票选举？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾为逃避交税而声明放弃美国公民身份？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">是否曾有人在公民及移民服务局为您申请过移民？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="field-container">
+                <label class="field-title">您是否曾在1996年11月30日以后以学生身份到美国公立小学或公立中学就读而没有向学校补偿费用？</label>
+                <input type="radio" id="filedImmigrantBeforeYes" name="filedImmigrantBefore" class="align-middle" />
+                <label for="filedImmigrantBeforeYes" class="align-middle">是</label>
+                <input type="radio" id="filedImmigrantBeforeNo" name="filedImmigrantBefore" checked="checked" class="align-middle" />
+                <label for="filedImmigrantBeforeNo" class="align-middle">否</label>
+                <div class="info-area one">
+                    <div class="field-container">
+                        <span class="field-title">解释/原因说明</span>
+                        <textarea name="filedExplain" id="filedExplain" cols="31" rows="2"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

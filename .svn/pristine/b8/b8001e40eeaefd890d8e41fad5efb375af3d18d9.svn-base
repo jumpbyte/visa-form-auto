@@ -1,0 +1,23 @@
+
+.list-tit p{display: inline-block;
+padding: 3px 13px;
+border-bottom:3px solid #fd4e93;
+font-size: 14px;
+font-weight:bold;
+line-height:19px;
+color: #fd4e93; position:absolute;top:-6px;left:0px;font-family:Microsoft YaHei;
+vertical-align: middle\0;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

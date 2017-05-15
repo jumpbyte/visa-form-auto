@@ -1,0 +1,377 @@
+{
+    "data": {
+        "addrPhoneInfo": {
+            "email": "2639778786@qq.com",
+            "haveSecondaryPhone": false,
+            "homeAddr": {
+                "city": "yinchuan",
+                "country": "CHIN",
+                "isHavePostCode": true,
+                "isHaveProvince": true,
+                "postCode": "750001",
+                "province": "ningxia",
+                "street": "31-1-102 gaoerfu community,xingqing dist"
+            },
+            "mailingAddr": null,
+            "primaryPhone": "18995115003",
+            "sameAddress": true,
+            "secondaryPhone": null,
+            "workAddr": null,
+            "workPhone": "130000000"
+        },
+        "backgroundInfo": {
+            "abettedHumanExplain": null,
+            "abettedHumanTrafficking": false,
+            "abettedHumanTraffickingInFive": false,
+            "abortionExplain": null,
+            "additional": {
+                "belongClanOrTribe": false,
+                "clanOrTribeName": null,
+                "contributedForOrganization": false,
+                "languages": [
+                    "chinese"
+                ],
+                "militarys": null,
+                "organizationName": null,
+                "rebelExplain": null,
+                "served": false,
+                "servedForRebelOrg": false,
+                "skillExplain": null,
+                "specializedSkill": false,
+                "traveledInFiveYear": true,
+                "visitedCountry": [
+                    "SAFR"
+                ]
+            },
+            "arrestedBefore": false,
+            "arrestedExplain": null,
+            "avoidedTaxation": false,
+            "avoidedTaxationExplain": null,
+            "carriedOutFreedom": false,
+            "childCustodyExplain": null,
+            "conspiredHumanTrafficking": false,
+            "diseaseExplain": null,
+            "dragAddict": false,
+            "dragExplain": null,
+            "engagedInIllegalActivity": false,
+            "engagedInRecruitment": false,
+            "engagedTerroristActivity": false,
+            "engagedUnlawfulThing": false,
+            "financialExplain": null,
+            "freedomExplain": null,
+            "genocideExplain": null,
+            "haveDisease": false,
+            "haveMental": false,
+            "hearingExplain": null,
+            "illegalActivityExplain": null,
+            "immigrationExplain": null,
+            "immigrationFraud": false,
+            "inlaunderingExplain": null,
+            "involvedInAbortion": false,
+            "involvedInTransplantation": false,
+            "involvedInlaundering": false,
+            "killingExplain": null,
+            "lawExplain": null,
+            "mentalExplain": null,
+            "notPayForSchool": false,
+            "notPayForSchoolExplain": null,
+            "oneOfTerrorist": false,
+            "oneOfTerroristExplain": null,
+            "participatedInGenocide": false,
+            "participatedKilling": false,
+            "participatedorture": false,
+            "participatedortureExplain": null,
+            "provideFinancialForTerrorists": false,
+            "recruitmentExplain": null,
+            "terroristExplain": null,
+            "traffickingExplain": null,
+            "traffickingInFiveExplain": null,
+            "transferredToHearing": false,
+            "transplantationExplain": null,
+            "unableToHearingExplain": null,
+            "unableToHearingInFive": false,
+            "unlawfulPresence": false,
+            "unlawfulPresenceExplain": null,
+            "unlawfulThingExplain": null,
+            "violatedLaw": false,
+            "votedViolation": false,
+            "votedViolationExplain": null,
+            "withheldChildCustody": false
+        },
+        "companionInfo": {
+            "asPartOfGroup": false,
+            "companions": [
+                {
+                    "givenName": "yanbin",
+                    "relationship": "R",
+                    "surnName": "shen"
+                },
+                {
+                    "givenName": "liqiang",
+                    "relationship": "R",
+                    "surnName": "zhou"
+                },
+                {
+                    "givenName": "jiangping",
+                    "relationship": "R",
+                    "surnName": "tan"
+                }
+            ],
+            "groupName": null,
+            "haveCompanion": true
+        },
+        "contactInfo": {
+            "city": "Minneapolis",
+            "email": "stagea1@163.com",
+            "givenName": "yuxiang",
+            "notApplyEmail": false,
+            "notKnowOrganization": true,
+            "notKnowPerson": false,
+            "organizationName": null,
+            "phoneNumber": "6512144908",
+            "relationship": "R",
+            "state": "MN",
+            "street": "1016 washington ave.se",
+            "surnName": "zhou",
+            "zipCode": "55414"
+        },
+        "deseasedSpouseInfo": {
+            "birth": {
+                "birthDate": null,
+                "city": null,
+                "country": null,
+                "province": null,
+                "sex": false
+            },
+            "peopleName": {
+                "fullName": null,
+                "givenName": null,
+                "surnName": null
+            },
+            "spouseNationality": null
+        },
+        "familyInfo": {
+            "father": {
+                "birthDate": "1930-01-08",
+                "givenName": "qi",
+                "haveGivenName": true,
+                "haveSurnName": true,
+                "identityInUS": null,
+                "inUS": false,
+                "relationWithYou": null,
+                "surnName": "zhou"
+            },
+            "haveImmediateRelative": false,
+            "haveOtherRelative": true,
+            "mother": {
+                "birthDate": "1928-01-28",
+                "givenName": "shenying",
+                "haveGivenName": true,
+                "haveSurnName": true,
+                "identityInUS": null,
+                "inUS": false,
+                "relationWithYou": null,
+                "surnName": "zeng"
+            },
+            "relatives": []
+        },
+        "formerSpouseInfos": [],
+        "fullName": "李晓",
+        "passport": "G55186348",
+        "passportInfo": {
+            "country": "CHIN",
+            "expirationDate": "2021-10-08",
+            "haveLostBefore": false,
+            "issuanceDate": "2011-10-09",
+            "issuedCity": "ningxia",
+            "issuedCountry": "CHIN",
+            "issuedProvince": "ningxia",
+            "lostInfoList": null,
+            "passportBookNum": null,
+            "passportNum": "G55186378",
+            "type": "R"
+        },
+        "personalInfo": {
+            "birth": {
+                "birthDate": "1955-09-11",
+                "city": "gansu",
+                "country": "CHIN",
+                "province": "gansu",
+                "sex": false
+            },
+            "haveTelecode": true,
+            "holdOtherNationality": false,
+            "idCard": "640102195509111548",
+            "isHaveIdCard": true,
+            "isHaveSecurityNumber": false,
+            "isHaveTaxpayerNumber": false,
+            "maritalStatus": "M",
+            "name": {
+                "fullName": "李晓",
+                "givenName": "xiao",
+                "surnName": "li"
+            },
+            "nationalities": null,
+            "nationality": "CHIN",
+            "otherNames": [
+                {
+                    "fullName": null,
+                    "givenName": "xiaoyi",
+                    "surnName": "zhou"
+                }
+            ],
+            "permanent": false,
+            "permanentCountries": null,
+            "securityNumber": null,
+            "taxpayerNumber": null,
+            "telecodeGivenName": "2556 3015",
+            "telecodeSurnName": "0719",
+            "usedOtherName": true
+        },
+        "previousTravelInfo": {
+            "dirverList": null,
+            "filedExplain": "",
+            "filedImmigrantBefore": false,
+            "haveStayed": false,
+            "haveVisaBefore": false,
+            "holdDirverLicense": false,
+            "previous": null,
+            "refusedBefore": false,
+            "refusedExplain": "",
+            "traveledInFiveYear": true,
+            "visitList": null,
+            "visitedCountry": [
+                "SAFR",
+                "UAE",
+                "MLAS"
+            ]
+        },
+        "question": {
+            "answer": "LILI",
+            "option": "1"
+        },
+        "spouseInfo": {
+            "address": null,
+            "addressSelection": "H",
+            "birth": {
+                "birthDate": "1955-02-05",
+                "city": "hebei",
+                "country": "CHIN",
+                "province": null,
+                "sex": false
+            },
+            "peopleName": {
+                "fullName": null,
+                "givenName": "guojian",
+                "surnName": "bao"
+            },
+            "spouseNationality": "CHIN"
+        },
+        "travelInfo": {
+            "arrivalDate": "2017-06-05",
+            "itinerary": null,
+            "madePlan": false,
+            "payFeeType": "S",
+            "payOrganization": null,
+            "payPerson": null,
+            "purpose": "B",
+            "specify": "B1-B2",
+            "stayInfo": {
+                "city": "Minneapolis",
+                "state": "MN",
+                "street": "1016 washington.ave.se",
+                "zipCode": "55414"
+            },
+            "stayTime": 15,
+            "stayUnit": "D"
+        },
+        "wetInfo": {
+            "addition": {
+                "belongClanOrTribe": false,
+                "clanOrTribeName": null,
+                "contributedForOrganization": false,
+                "languages": [
+                    "chinese"
+                ],
+                "militarys": null,
+                "organizationName": null,
+                "rebelExplain": null,
+                "served": false,
+                "servedForRebelOrg": false,
+                "skillExplain": null,
+                "specializedSkill": false,
+                "traveledInFiveYear": true,
+                "visitedCountry": [
+                    "SAFR"
+                ]
+            },
+            "explain": "",
+            "haveAttendSchool": true,
+            "haveWorkBefore": true,
+            "other": "",
+            "presentWork": {
+                "duteDescription": "jiaoyu",
+                "income": 123456,
+                "notHaveIncome": false,
+                "schoolUnit": {
+                    "address": {
+                        "city": "beijing",
+                        "country": "CHIN",
+                        "isHavePostCode": true,
+                        "isHaveProvince": true,
+                        "postCode": "100125",
+                        "province": "BEIJING",
+                        "street": "Beijing chaoyang district jia Doris"
+                    },
+                    "name": "beijinguniversity",
+                    "phoneNumber": "130000000"
+                }
+            },
+            "previousWork": {
+                "employmentList": [
+                    {
+                        "address": {
+                            "city": "yinchuan",
+                            "country": "CHIN",
+                            "isHavePostCode": false,
+                            "isHaveProvince": false,
+                            "postCode": null,
+                            "province": "ningxia",
+                            "street": "jinfeng dist"
+                        },
+                        "companyName": "YINCHUAN TANGLAI HUIMIDDLE SCHOOL",
+                        "duteDescription": "senior teacher",
+                        "from": "1975-12",
+                        "jobTitle": "senior teacher",
+                        "supervisor": {
+                            "fullName": null,
+                            "givenName": null,
+                            "surnName": null
+                        },
+                        "telephone": "0951",
+                        "to": "2010-09"
+                    }
+                ],
+                "institutionList": [
+                    {
+                        "address": {
+                            "city": "yinchuan",
+                            "country": "CHIN",
+                            "isHavePostCode": false,
+                            "isHaveProvince": false,
+                            "postCode": null,
+                            "province": "ningxia",
+                            "street": "yinchuan"
+                        },
+                        "course": "education",
+                        "from": "1987-07",
+                        "name": "ningxia education college",
+                        "to": "1989-07"
+                    }
+                ]
+            },
+            "primaryOccupation": "ED"
+        }
+    },
+    "formId": 13
+}
